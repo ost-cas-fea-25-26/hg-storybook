@@ -11,16 +11,17 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint lib --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky"
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.umd.js"
     }
   },
   "peerDependencies": {
@@ -40,6 +41,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/jest": "^30.0.0",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
@@ -49,28 +51,41 @@
     "@vitest/coverage-v8": "^3.2.4",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.35.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-storybook": "^9.1.7",
     "globals": "^16.4.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.5.1",
     "jsdom": "^27.0.0",
+    "lint-staged": "^16.1.6",
     "playwright": "^1.55.0",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "storybook": "^9.1.7",
     "tailwindcss": "^4.1.13",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.43.0",
+    "typescript-eslint": "^8.44.0",
     "vite": "^7.1.6",
-    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4"
   },
-  "dependencies": {
-    "prettier": "^3.6.2"
+  "lint-staged": {
+    "*.ts|tsx": "eslint --cache --fix"
+  },
+  "prettier": {
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports"
+    ],
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 120,
+    "endOfLine": "auto",
+    "arrowParens": "always"
   }
 }
