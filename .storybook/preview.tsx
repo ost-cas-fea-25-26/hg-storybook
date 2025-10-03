@@ -1,7 +1,4 @@
-import '../lib/index.css';
-import '../lib/tailwind.css';
-import { Theme, ThemePanel } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
+import '../lib/styles/index.css';
 import { Wrapper } from '@storybook/addon-docs/blocks';
 import React from 'react';
 
@@ -18,10 +15,7 @@ const preview = {
     (Story: React.FC) => {
       return (
         <Wrapper className={'w-full'}>
-          <Theme accentColor={'blue'}>
-            <ThemePanel></ThemePanel>
-            <Story />
-          </Theme>
+          <Story />
         </Wrapper>
       );
     },
