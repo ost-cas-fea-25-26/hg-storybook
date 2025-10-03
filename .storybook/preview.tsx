@@ -1,4 +1,4 @@
-import '../lib/styles/index.css';
+import '../lib/styles/tailwind.css';
 import { Wrapper } from '@storybook/addon-docs/blocks';
 import React from 'react';
 
