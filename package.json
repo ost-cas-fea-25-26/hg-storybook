@@ -1,16 +1,13 @@
 {
-  "name": "hg-storybook2",
-  "version": "0.0.0",
+  "name": "hg-storybook",
+  "version": "0.0.23",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc && vite build",
     "lint": "eslint lib --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
@@ -21,16 +18,18 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "import": "./dist/index.es.ts",
+      "require": "./dist/index.umd.ts"
     }
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.4",
+    "@headlessui/react": "^2.2.9",
     "clsx": "^2.1.1",
-    "@headlessui/react": "^2.2.9"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
@@ -41,6 +40,7 @@
     "@storybook/addon-vitest": "^9.1.7",
     "@storybook/cli": "^9.1.7",
     "@storybook/react-vite": "^9.1.7",
+    "@tailwindcss/postcss": "^4.1.14",
     "@tailwindcss/vite": "^4.1.13",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
@@ -74,6 +74,7 @@
     "typescript-eslint": "^8.44.0",
     "vite": "^7.1.6",
     "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-lib-inject-css": "^2.2.2",
     "vitest": "^3.2.4"
   },
   "lint-staged": {
@@ -90,5 +91,8 @@
     "printWidth": 120,
     "endOfLine": "auto",
     "arrowParens": "always"
+  },
+  "dependencies": {
+    "react-compiler-runtime": "19.1.0-rc.3"
   }
 }
