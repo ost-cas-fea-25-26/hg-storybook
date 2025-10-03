@@ -1,8 +1,6 @@
+import Page from './Page.tsx';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
 import { expect, userEvent, within } from 'storybook/test';
-
-import { Page } from './Page.tsx';
 
 const meta = {
   title: 'Example/Page',
