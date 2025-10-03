@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme static {
+    --color-primary: var(--color-violet-500);
+    --color-secondary: var(--color-pink-500);
+    --color-black: var(--color-slate-500);
+    --font-mono: "Poppins";
+}

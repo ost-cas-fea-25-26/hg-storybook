@@ -1,26 +1,16 @@
+import { Button } from '@radix-ui/themes';
 import React from 'react';
 
 export interface ButtonProps {
-  /** Is this the principal call to action on the page? */
-  primary?: boolean;
-  /** What background color to use */
-  backgroundColor?: string;
-  /** How large should the button be? */
-  size?: 'small' | 'medium' | 'large';
-  /** Button contents */
   label: string;
-  /** Optional click handler */
-  onClick?: () => void;
 }
 
 /** Primary UI component for user interaction */
-const Button = ({ primary = false, size = 'medium', backgroundColor, label, ...props }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+
+export default ({ label }: ButtonProps) => {
   return (
-    <button type="button" className={['mt-2', `storybook-button--${size}`, mode].join(' ')} {...props}>
+    <Button className={'bg-primary'} size={'4'}>
       {label}
-    </button>
+    </Button>
   );
 };
-
-export default Button;

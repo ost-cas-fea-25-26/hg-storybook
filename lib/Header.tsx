@@ -1,5 +1,4 @@
 import Button from './Button.tsx';
-import './header.css';
 import React from 'react';
 
 type User = {

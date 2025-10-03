@@ -1,5 +1,4 @@
 import Header from './Header.tsx';
-import './page.css';
 import React from 'react';
 
 type User = {
