@@ -1,5 +1,5 @@
 {
-  "name": "hg-storybook2",
+  "name": "hg-storybook",
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.umd.js",
