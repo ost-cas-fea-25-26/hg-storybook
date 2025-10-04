@@ -1,16 +1,14 @@
 {
-  "name": "hg-storybook2",
-  "version": "0.0.0",
+  "name": "hg-storybook",
+  "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist",
     "lint": "eslint lib --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
@@ -22,13 +20,24 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
-    }
+      "require": "./dist/index.umd.js",
+      "default": "./dist/index.es.js"
+    },
+    "./style": "./dist/hg-storybook.css"
   },
+  "style": "./dist/hg-storybook.css",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.4",
+    "react": "^19",
+    "react-dom": "^19",
+    "tailwindcss": "^4",
     "clsx": "^2.1.1",
     "@headlessui/react": "^2.2.9"
   },
@@ -76,6 +85,20 @@
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4"
   },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "storybook",
+    "tailwind"
+  ],
+  "description": "A small library of React UI components styled with Tailwind CSS.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ost-cas-fea-25-26/hg-storybook.git"
+  },
+  "license": "MIT",
+  "author": "",
   "lint-staged": {
     "*.ts|tsx": "eslint --cache --fix"
   },
