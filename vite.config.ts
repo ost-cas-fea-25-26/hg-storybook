@@ -1,34 +1,34 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
-import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   build: {
+    outDir: 'dist',
     lib: {
       entry: resolve(__dirname, './lib/index.ts'),
-      name: 'react-beautiful-timeline',
-      fileName: (format) => `index.${format}.ts`,
+      name: 'hg-storybook',
+      formats: ['es', 'umd'],
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'tailwindcss'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          tailwindcss: 'tailwindcss',
         },
       },
     },
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react(), dts({ rollupTypes: true }), tailwindcss()],
+  plugins: [react(), tailwindcss(), dts({ rollupTypes: true })],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'lib'),
+      '@': resolve(__dirname, 'lib'),
     },
   },
 });

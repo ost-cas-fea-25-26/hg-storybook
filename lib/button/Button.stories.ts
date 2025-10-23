@@ -16,3 +16,21 @@ export const Primary: Story = {
     circle: false,
   },
 };
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    size: 'medium',
+    children: 'Button Label',
+    circle: false,
+  },
+};
+
+export const Gradient: Story = {
+  args: {
+    variant: 'gradient',
+    size: 'medium',
+    children: 'Button Label',
+    circle: false,
+  },
+};

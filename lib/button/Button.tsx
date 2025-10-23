@@ -1,6 +1,7 @@
 import { Button as HeadlessButton } from '@headlessui/react';
 import clsx from 'clsx';
-import React, { ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
+import React from 'react';
 
 interface Props {
   variant: 'primary' | 'secondary' | 'gradient';
@@ -27,10 +28,10 @@ export default function Button({ children, size, variant, onClick, circle }: Pro
   const sizeClassname = useMemo(() => {
     if (size === 'small') {
       return 'p-2';
-    } else if (size === 'medium') {
-      return 'p-3';
     } else if (size === 'large') {
       return 'py-4 px-5';
+    } else {
+      return 'p-3';
     }
   }, [size]);
 
