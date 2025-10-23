@@ -1,3 +1,4 @@
+@import 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet';
 @import 'tailwindcss';
 
 @theme static {
@@ -37,8 +38,7 @@
   --color-pink-100: #fce7f3;
   --color-pink-50: #fdf2f8;
 
-
-  --font-sans: 'Poppins';
+  --font-sans: Poppins, sans-serif;
 
   --text-xs: 12px;
   --text-sm: 14px;
@@ -61,7 +61,6 @@
   --spacing-6: 32px;
   --spacing-7: 48px;
   --spacing-8: 64px;
-
 
   --radius-sm: 4px;
   --radius: 8px;

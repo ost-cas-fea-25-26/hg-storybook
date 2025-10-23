@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   build: {
@@ -25,7 +26,16 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react(), tailwindcss(), dts({ rollupTypes: true })],
+  plugins: [
+    react(),
+    tailwindcss(),
+    dts({ rollupTypes: true }),
+    svgr({
+      svgrOptions: {
+        // svgr options
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'lib'),
