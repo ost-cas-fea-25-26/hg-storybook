@@ -1,5 +1,8 @@
 name: automatic npm publishing workflow
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 env: 
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
   NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
