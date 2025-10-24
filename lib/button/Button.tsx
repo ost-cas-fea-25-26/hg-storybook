@@ -20,7 +20,7 @@ export default function Button({ children, size = 'medium', variant, onClick, ro
     } else if (variant === 'secondary') {
       return 'bg-secondary hover:bg-secondary-700 active:bg-secondary-800 focus:outline-secondary-200';
     } else if (variant === 'gradient') {
-      return 'bg-gradient-to-r from-pink-500 to-primary hover:from-[-12%] hover:to-[62%] active:from-[-15%] active:to-[40%] focus:outline-primary-200';
+      return 'bg-linear-(--gradient-50-50) hover:bg-linear-(--gradient-30-70) active:bg-linear-(--gradient-20-80) focus:outline-primary-200';
     }
   }, [variant]);
 
