@@ -23,6 +23,6 @@ export default defineConfig([
       reactHooks,
     },
     ignores: ['/dist', '.idea', '/node_modules/*', '/storybook-static/*'],
-    files: ['*.ts, *.tsx'],
+    files: ['**/*.ts', '**/*.tsx'],
   },
 ]);

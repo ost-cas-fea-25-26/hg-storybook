@@ -13,8 +13,7 @@
     "lint": "eslint lib --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o ./docs",
-    "prepare": "husky",
+    "build-storybook": "storybook build",
     "format": "prettier --write ."
   },
   "exports": {
@@ -47,7 +46,6 @@
     "@eslint/js": "^9.35.0",
     "@storybook/addon-a11y": "^9.1.7",
     "@storybook/addon-docs": "^9.1.7",
-    "@storybook/addon-onboarding": "^9.1.7",
     "@storybook/addon-vitest": "^9.1.7",
     "@storybook/cli": "^9.1.7",
     "@storybook/react-vite": "^9.1.7",
@@ -70,7 +68,6 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-storybook": "^9.1.7",
     "globals": "^16.4.0",
-    "husky": "^9.1.7",
     "jiti": "^2.5.1",
     "jsdom": "^27.0.0",
     "lint-staged": "^16.1.6",
@@ -87,7 +84,8 @@
     "vite": "^7.1.6",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-svgr": "^4.5.0",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "@storybook/builder-vite": "^9.1.13"
   },
   "keywords": [
     "react",
@@ -103,9 +101,6 @@
   },
   "license": "MIT",
   "author": "",
-  "lint-staged": {
-    "*.ts|tsx": "eslint --cache --fix"
-  },
   "prettier": {
     "plugins": [
       "@trivago/prettier-plugin-sort-imports"
