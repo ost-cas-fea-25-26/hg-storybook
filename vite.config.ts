@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     lib: {
-      entry: resolve(__dirname, './lib/index.tsx'),
+      entry: resolve(__dirname, './lib/index.ts'),
       name: 'hg-storybook',
       formats: ['es', 'umd'],
       fileName: (format) => `index.${format}.js`,
