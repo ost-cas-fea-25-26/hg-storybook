@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     lib: {
-      entry: resolve(__dirname, './lib/index.ts'),
+      entry: resolve(__dirname, './lib/index.tsx'),
       name: 'hg-storybook',
       formats: ['es', 'umd'],
       fileName: (format) => `index.${format}.js`,
@@ -32,7 +32,29 @@ export default defineConfig({
     dts({ rollupTypes: true }),
     svgr({
       svgrOptions: {
-        // svgr options
+        template: ({ imports, interfaces, componentName, props, jsx, exports }, { tpl }) => {
+          return tpl`
+            ${imports}
+            import PropTypes from 'prop-types';
+            ${interfaces}
+
+            function ${componentName}(${props}) {
+              return ${jsx};
+            }
+
+            ${componentName}.propTypes = {
+              title: PropTypes.string,
+            };
+
+            ${exports}
+            `;
+        },
+        expandProps: 'start',
+        svgProps: {
+          color: '{props.color}',
+          width: '{props.width}',
+          height: '{props.height}',
+        },
       },
     }),
   ],

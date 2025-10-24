@@ -1,8 +1,5 @@
 import Button from './Button';
-import { Size } from '@/common';
-import { Variant } from '@/common/Variant.ts';
-import Icon from '@/icon/Icon.tsx';
-import { IconType } from '@/icon/icons';
+import { Mumble } from '@/icon';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
@@ -15,33 +12,33 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    variant: Variant.PRIMARY,
-    size: Size.SMALL,
+    variant: 'primary',
+    size: 'small',
     children: 'Button Label',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    variant: Variant.SECONDARY,
-    size: Size.MEDIUM,
+    variant: 'secondary',
+    size: 'medium',
     children: 'Button Label',
   },
 };
 
 export const Gradient: Story = {
   args: {
-    variant: Variant.GRADIENT,
-    size: Size.LARGE,
+    variant: 'gradient',
+    size: 'large',
     children: 'Button Label',
   },
 };
 
 export const Rounded: Story = {
   args: {
-    variant: Variant.PRIMARY,
-    size: Size.SMALL,
+    variant: 'primary',
+    size: 'small',
     rounded: true,
-    children: <Icon iconType={IconType.PLACEHOLDER_PANDA} size={Size.MEDIUM} color={'white'} />,
+    children: <Mumble color={'red'} />,
   },
 };
