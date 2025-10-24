@@ -3,11 +3,7 @@ on:
   push:
     branches:
       - main
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-env: 
+env:
   NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
@@ -38,6 +34,10 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
