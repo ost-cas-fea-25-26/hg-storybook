@@ -1,4 +1,4 @@
-name: Build and Publish Storybook to GitHub Pages
+name: Lint and Build on Pull Request
 
 on: pull_request
 permissions:

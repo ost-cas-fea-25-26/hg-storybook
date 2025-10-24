@@ -1,4 +1,4 @@
-name: automatic npm publishing workflow
+name: automatic npm publishing workflow and storybook deployment
 on: 
   push:
     branches:
