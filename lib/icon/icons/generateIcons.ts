@@ -22,7 +22,7 @@ const pascalCase = (s: string) =>
 let output = '/** generated file, do not edit manually - run "npm run generate" instead */\n';
 output += "import React from 'react'\n";
 output += "type Size = 'xs' | 's' | 'm' | 'l' | 'xl';\n";
-output += 'export type IconProps = { size?: Size; color?: string }\n';
+output += 'export type IconProps = { size?: Size; color?: string, className?: string }\n';
 output += `const sizes: Record<Size, number> = {xs: ${iconSizeXS}, s:${iconSizeS}, m:${iconSizeM}, l:${iconSizeL}, xl:${iconSizeXL}};\n`;
 
 for (const svg of svgs) {
