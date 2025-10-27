@@ -45,7 +45,7 @@ export default function Toggle({
         disabled={disabled}
         className={clsx(
           enabled ? colors[color].enabled : colors[color].default,
-          'data-disabled:opacity-50 rounded-full p-1 pl-2 pr-2 flex not:data-disabled:font-bold items-center gap-1'
+          'data-disabled:opacity-50 rounded-full p-1 pl-2 pr-2 flex not-data-disabled:font-bold items-center gap-1'
         )}
         checked={enabled}
         onChange={() => {
