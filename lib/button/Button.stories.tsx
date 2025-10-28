@@ -1,5 +1,7 @@
 import Button from './Button';
+import { Mumble } from '@/icon';
 import { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
 
 const meta = {
   component: Button,
@@ -11,9 +13,8 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    size: 'medium',
+    size: 'small',
     children: 'Button Label',
-    circle: false,
   },
 };
 
@@ -22,15 +23,22 @@ export const Secondary: Story = {
     variant: 'secondary',
     size: 'medium',
     children: 'Button Label',
-    circle: false,
   },
 };
 
 export const Gradient: Story = {
   args: {
     variant: 'gradient',
-    size: 'medium',
+    size: 'large',
     children: 'Button Label',
-    circle: false,
+  },
+};
+
+export const Rounded: Story = {
+  args: {
+    variant: 'primary',
+    size: 'small',
+    rounded: true,
+    children: <Mumble color={'red'} />,
   },
 };
