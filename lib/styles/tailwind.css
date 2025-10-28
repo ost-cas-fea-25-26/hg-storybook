@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import 'tailwindcss';
 
 @theme static {
@@ -29,7 +30,7 @@
   --color-contrast-800: #9d174d;
   --color-contrast-700: #be185d;
   --color-contrast-600: #db2777;
-  --color-contrast-500: #EC4899;
+  --color-contrast-500: #ec4899;
   --color-contrast-400: #f9a8d4;
   --color-contrast-300: #fbcfe8;
   --color-contrast-200: #fce7f3;
