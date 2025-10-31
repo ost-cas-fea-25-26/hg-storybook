@@ -26,7 +26,7 @@ import UploadSvg from './icons/upload.svg?react';
 import React from 'react';
 
 type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
-export type IconProps = { size?: Size; color?: string };
+export type IconProps = { size?: Size; color?: string; className?: string };
 const sizes: Record<Size, number> = { xs: 16, s: 28, m: 40, l: 64, xl: 80 };
 
 export function ArrowDown({ size = 'm', color = '#475569' }: IconProps) {

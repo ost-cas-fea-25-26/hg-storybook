@@ -54,6 +54,7 @@ export default defineConfig({
           color: '{props.color}',
           width: '{props.width}',
           height: '{props.height}',
+          className: '{props.className}',
         },
       },
     }),
