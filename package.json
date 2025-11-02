@@ -9,11 +9,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist",
+    "generate": "npx tsx  lib/icon/icons/generateIcons.ts && npx prettier --write  lib/icon/index.tsx",
     "lint": "eslint lib --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "npx generate"
   },
   "exports": {
     ".": {
@@ -43,11 +45,15 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
     "@eslint/js": "^9.35.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/npm": "^13.1.1",
     "@storybook/addon-a11y": "^9.1.7",
     "@storybook/addon-docs": "^9.1.7",
     "@storybook/addon-vitest": "^9.1.7",
+    "@storybook/builder-vite": "^9.1.13",
     "@storybook/cli": "^9.1.7",
     "@storybook/react-vite": "^9.1.7",
+    "@svgr/cli": "^8.1.0",
     "@tailwindcss/vite": "^4.1.14",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
@@ -72,16 +78,19 @@
     "playwright": "^1.55.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
+    "prop-types": "^15.8.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "semantic-release": "^25.0.1",
     "storybook": "^9.1.7",
     "tailwindcss": "^4.1.14",
+    "tsx": "^4.20.6",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.44.0",
     "vite": "^7.1.6",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^3.2.4",
-    "@storybook/builder-vite": "^9.1.13"
+    "vite-plugin-svgr": "^4.5.0",
+    "vitest": "^3.2.4"
   },
   "keywords": [
     "react",
