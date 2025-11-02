@@ -17,7 +17,7 @@ export const Basic: Story = {
   args: {
     placeholder: 'Type here...',
     value: '',
-    type: 'regular',
+    type: 'text',
     icon: 'x',
   },
   render: (args) => {
@@ -30,7 +30,7 @@ export const Error: Story = {
   args: {
     placeholder: 'Type here...',
     value: '',
-    type: 'regular',
+    type: 'text',
     icon: 'x',
     error: 'This is an error message',
   },
@@ -44,11 +44,23 @@ export const Disabled: Story = {
   args: {
     placeholder: 'Type here...',
     value: '',
-    type: 'regular',
+    type: 'text',
     icon: 'x',
     disabled: true,
   },
   render: (args) => {
     return <Input {...args} value="" />;
+  },
+};
+
+export const Date: Story = {
+  args: {
+    placeholder: 'Type here...',
+    value: '',
+    type: 'date',
+  },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
   },
 };
