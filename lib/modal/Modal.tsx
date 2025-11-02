@@ -28,13 +28,9 @@ export default function Modal<T = unknown, E = T>({
   children,
 }: Props<T, E>) {
   const [pending, setPending] = useState<boolean>(false);
-
   useEffect(() => {
     onOpen();
   }, []);
-
-  // primary buttons to the left
-  actions.sort((a) => (a.variant === 'primary' ? 1 : -1));
 
   const hasButtons = Boolean(actions.length);
   return (
@@ -61,28 +57,24 @@ export default function Modal<T = unknown, E = T>({
           <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
             {hasButtons &&
               actions.map(({ text, action, onSuccess, onError, variant }) => {
+                const onClick = () => {
+                  const maybePromise = action();
+                  if (typeof maybePromise?.then === 'function') {
+                    setPending(true);
+                    maybePromise
+                      .then((result: T) => {
+                        setPending(false);
+                        onSuccess?.(result);
+                      })
+                      .catch((error: E) => {
+                        setPending(false);
+                        onError?.(error);
+                      });
+                  }
+                };
+
                 return (
-                  <Button
-                    variant={variant || 'primary'}
-                    size={'small'}
-                    onClick={() => {
-                      const maybePromise = action();
-                      if (typeof maybePromise?.then === 'function') {
-                        {
-                          setPending(true);
-                          maybePromise
-                            .then((result: T) => {
-                              setPending(false);
-                              onSuccess?.(result);
-                            })
-                            .catch((error: E) => {
-                              setPending(false);
-                              onError?.(error);
-                            });
-                        }
-                      }
-                    }}
-                  >
+                  <Button variant={variant || 'primary'} size={'small'} onClick={onClick}>
                     {pending ? 'loading animation' : text}
                   </Button>
                 );
