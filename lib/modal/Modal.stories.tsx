@@ -29,9 +29,12 @@ export const Simple: Story = {
     );
   },
   play: async ({ canvasElement, userEvent }) => {
-    const button = within(canvasElement.parentNode as HTMLElement).getByRole('button', { name: 'Open Modal' });
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const button = document.getByRole('button', { name: 'Open Modal' });
     await userEvent.click(button);
-    await expect(await within(canvasElement.parentNode as HTMLElement).findByText('Simple Sample Modal')).toBeVisible();
+    await expect(await document.findByText('Simple Sample Modal')).toBeVisible();
+    const closeButton = await document.findByTestId('modal-close');
+    await userEvent.click(closeButton);
   },
 };
 
@@ -91,6 +94,8 @@ export const AsyncAction: Story = {
       async () => expect(await document.findByText('Einstellungen erfolgreich gespeichert!!')).toBeVisible(),
       { timeout: 5000 }
     );
+    const closeButton = await document.findByTestId('modal-close');
+    await userEvent.click(closeButton);
   },
 };
 
@@ -150,6 +155,8 @@ export const AsyncActionWithError: Story = {
       async () => expect(await document.findByText('Einstellungen konnten nicht gespeichert werden!!')).toBeVisible(),
       { timeout: 5000 }
     );
+    const closeButton = await document.findByTestId('modal-close');
+    await userEvent.click(closeButton);
   },
 };
 
