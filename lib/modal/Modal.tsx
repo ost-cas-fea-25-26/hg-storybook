@@ -1,5 +1,6 @@
 import Button from '@/button/Button.tsx';
 import { Cross } from '@/icon';
+import { Loader } from '@/index.ts';
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
 import clsx from 'clsx';
 import React, { ReactNode, useEffect, useState } from 'react';
@@ -64,6 +65,7 @@ export default function Modal<T = unknown, E = T>({
         >
           {children}
         </div>
+        {hasButtons && (
         <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
           {hasButtons &&
             actions.map(({ text, action, onSuccess, onError, variant }) => {
@@ -85,11 +87,12 @@ export default function Modal<T = unknown, E = T>({
 
               return (
                 <Button variant={variant || 'primary'} size={'small'} onClick={onClick}>
-                  {pending ? 'loading animation' : text}
+                  {pending ? <Loader size={'small'} color={'white'} /> : text}
                 </Button>
               );
             })}
         </div>
+        )}
       </DialogPanel>
     </Dialog>
   );

@@ -73,4 +73,18 @@
 
   --breakpoint-*: initial;
   --breakpoint-desktop: 800px;
+
+  --animate-loader-1: grow 1.5s ease-in-out infinite;
+  --animate-loader-2: grow 1.5s ease-in-out infinite 0.1s;
+  --animate-loader-3: grow 1.5s ease-in-out infinite 0.2s;
+  --animate-loader-4: grow 1.5s ease-in-out infinite 0.3s;
+
+  @keyframes grow {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+  }
 }
