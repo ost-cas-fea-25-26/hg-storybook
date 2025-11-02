@@ -55,15 +55,18 @@ export default function Toggle({
       >
         {enabled
           ? React.cloneElement(checkedProps.icon, {
+              'data-testid': 'checkbox-icon-on',
               color: actualColor,
               className: clsx(colors[color].enabled),
             })
           : uncheckedProps
             ? React.cloneElement(uncheckedProps.icon, {
+                'data-testid': 'checkbox-icon-off',
                 color: actualColor,
                 className: clsx(colors[color].default),
               })
             : React.cloneElement(checkedProps.icon, {
+                'data-testid': 'checkbox-icon-off',
                 color: actualColor,
                 className: clsx(colors[color].default),
               })}

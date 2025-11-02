@@ -1,8 +1,8 @@
 import { Button } from '@/index.ts';
 import Modal, { ModalAction } from '@/modal/Modal.tsx';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useMemo } from 'react';
-import { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { expect, waitFor, within } from 'storybook/test';
 
 const meta = {
   component: Modal,
@@ -27,6 +27,11 @@ export const Simple: Story = {
         {showModal && <Modal {...args} onClose={() => setShowModal(false)}></Modal>}
       </>
     );
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const button = within(canvasElement.parentNode as HTMLElement).getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(button);
+    await expect(await within(canvasElement.parentNode as HTMLElement).findByText('Simple Sample Modal')).toBeVisible();
   },
 };
 
@@ -75,6 +80,18 @@ export const AsyncAction: Story = {
       </>
     );
   },
+  play: async ({ canvasElement, userEvent }) => {
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const openButton = document.getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(openButton);
+    await expect(await document.findByText('Async Action Modal')).toBeVisible();
+    const saveButton = await document.findByText('Speichern');
+    await userEvent.click(saveButton);
+    await waitFor(
+      async () => expect(await document.findByText('Einstellungen erfolgreich gespeichert!!')).toBeVisible(),
+      { timeout: 5000 }
+    );
+  },
 };
 
 export const AsyncActionWithError: Story = {
@@ -120,6 +137,18 @@ export const AsyncActionWithError: Story = {
           </Modal>
         )}
       </>
+    );
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const openButton = document.getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(openButton);
+    await expect(await document.findByText('Async Action Error')).toBeVisible();
+    const saveButton = await document.findByText('Speichern');
+    await userEvent.click(saveButton);
+    await waitFor(
+      async () => expect(await document.findByText('Einstellungen konnten nicht gespeichert werden!!')).toBeVisible(),
+      { timeout: 5000 }
     );
   },
 };
@@ -237,5 +266,15 @@ export const MultiAction: Story = {
         )}
       </>
     );
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const openButton = document.getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(openButton);
+    const header = await document.findByText('Multi Action Modal');
+    await expect(header).toBeVisible();
+    const closeButton = await document.findByTestId('modal-close');
+    await userEvent.click(closeButton);
+    await expect(header).not.toBeVisible();
   },
 };

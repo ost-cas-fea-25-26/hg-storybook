@@ -1,21 +1,14 @@
-name: automatic npm publishing workflow and storybook deployment
-on: 
-  push:
-    branches:
-      - main
+name: Build
+on:
+  workflow_run:
+    workflows: ["Run Tests"]
+    branches: [main]
+    types:
+      - completed
 env:
   NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{vars.NODE_VERSION}}
-      - run: npm i
-      - run: npm run build
   deploy:
     permissions:
       contents: read
@@ -36,7 +29,6 @@ jobs:
           path: storybook-static
           checkout: false
   publish-npm:
-    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write

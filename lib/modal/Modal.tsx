@@ -34,54 +34,63 @@ export default function Modal<T = unknown, E = T>({
 
   const hasButtons = Boolean(actions.length);
   return (
-    <Dialog open autoFocus transition onClose={onClose}>
-      <DialogBackdrop className={`fixed inset-0 bg-black/70 w-screen flex items-center justify-center`}>
-        <DialogPanel className={clsx(`box-border w-1/2 bg-white opacity-100 rounded-md`)}>
-          {title && (
-            <DialogTitle
-              className={`flex items-center justify-between w-full rounded-t-md p-4 bg-primary text-white font-semibold`}
-            >
-              <h2>{title}</h2>
-              <CloseButton className={`cursor-pointer`}>
-                <Cross color="white" size={'xs'} />
-              </CloseButton>
-            </DialogTitle>
-          )}
-          <div
-            className={clsx(`p-4 border-l-1 border-r-1 border-gray-300`, {
-              [`rounded-b-md border-b-1`]: !hasButtons,
-            })}
+    <Dialog
+      open
+      data-testid={'modal-container'}
+      autoFocus
+      transition
+      onClose={onClose}
+      className={'fixed inset-0 w-screen flex items-center justify-center'}
+    >
+      <DialogBackdrop className={`fixed inset-0 bg-black/70`} />
+      <DialogPanel
+        data-testid={'modal'}
+        className={clsx(`autofocus box-border z-10 w-1/2 bg-white opacity-100 rounded-md`)}
+      >
+        {title && (
+          <DialogTitle
+            className={`flex items-center justify-between w-full rounded-t-md p-4 bg-primary text-white font-semibold`}
           >
-            {children}
-          </div>
-          <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
-            {hasButtons &&
-              actions.map(({ text, action, onSuccess, onError, variant }) => {
-                const onClick = () => {
-                  const maybePromise = action();
-                  if (typeof maybePromise?.then === 'function') {
-                    setPending(true);
-                    maybePromise
-                      .then((result: T) => {
-                        setPending(false);
-                        onSuccess?.(result);
-                      })
-                      .catch((error: E) => {
-                        setPending(false);
-                        onError?.(error);
-                      });
-                  }
-                };
+            <>{title}</>
+            <CloseButton data-testid={'modal-close'} className={`cursor-pointer`}>
+              <Cross color="white" size={'xs'} />
+            </CloseButton>
+          </DialogTitle>
+        )}
+        <div
+          className={clsx(`p-4 border-l-1 border-r-1 border-gray-300`, {
+            [`rounded-b-md border-b-1`]: !hasButtons,
+          })}
+        >
+          {children}
+        </div>
+        <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
+          {hasButtons &&
+            actions.map(({ text, action, onSuccess, onError, variant }) => {
+              const onClick = () => {
+                const maybePromise = action();
+                if (typeof maybePromise?.then === 'function') {
+                  setPending(true);
+                  maybePromise
+                    .then((result: T) => {
+                      setPending(false);
+                      onSuccess?.(result);
+                    })
+                    .catch((error: E) => {
+                      setPending(false);
+                      onError?.(error);
+                    });
+                }
+              };
 
-                return (
-                  <Button variant={variant || 'primary'} size={'small'} onClick={onClick}>
-                    {pending ? 'loading animation' : text}
-                  </Button>
-                );
-              })}
-          </div>
-        </DialogPanel>
-      </DialogBackdrop>
+              return (
+                <Button variant={variant || 'primary'} size={'small'} onClick={onClick}>
+                  {pending ? 'loading animation' : text}
+                </Button>
+              );
+            })}
+        </div>
+      </DialogPanel>
     </Dialog>
   );
 }
