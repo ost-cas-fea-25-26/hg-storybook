@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { ComponentProps, ReactNode } from 'react';
 
-type Props = {
+
+export interface Props extends ComponentProps<'a'> {
   url: string;
-  label: string;
-} & React.ComponentPropsWithoutRef<'a'>;
+  children: ReactNode;
+}
 
-export default function Link({ url, label, ...props }: Props) {
+export default function Link({ url, children, ...props }: Props) {
   return (
     <a className="text-primary font-semibold cursor-pointer hover:underline underline-offset-4 focus:outline-primary focus:outline-solid focus:outline-1" href={url} {...props}>
-      {label}
+          { children }
     </a>
   );
 }
