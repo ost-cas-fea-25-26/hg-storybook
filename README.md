@@ -44,3 +44,8 @@ Install hg-storybook with npm
 - [@Vendrix](https://github.com/ckVendrix)
 - [@JannikJost](https://github.com/JannikJost)
 
+
+## Contributing:
+
+Read the Guidelines here:
+[Guidelines](GUIDELINES.md)
