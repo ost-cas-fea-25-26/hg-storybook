@@ -32,45 +32,34 @@ export default function TimedButton({
   const [animating, setAnimating] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
+  const onClickInternal = () => {
+    if (disabled) return;
+    setAnimating(true);
+    const maybePromise = onClick();
+    if (typeof maybePromise?.then === 'function') {
+      return maybePromise
+        .then(() => setAnimating(false))
+        .catch(() => {
+          setAnimating(false);
+          setError(true);
+          setTimeout(() => setError(false), animationDuration);
+        });
+    } else {
+      setTimeout(() => {
+        setAnimating(false);
+      }, animationDuration);
+    }
+  };
+
   const disabledClassName = 'cursor-not-allowed opacity-50';
 
   return (
     <HeadlessButton
       className={clsx(
-        `
-        focus:outline-secondary-200
-         focus:outline-2
-         cursor-pointer
-         duration-200 
-         font-semibold 
-         flex 
-         justify-center 
-         items-center 
-         gap-2 
-         text-secondary
-         `,
-        {
-          [disabledClassName]: disabled,
-        }
+        `focus:outline-secondary-200 focus:outline-2 cursor-pointer duration-200 font-semibold flex justify-center items-center gap-2 text-secondary`,
+        { [disabledClassName]: disabled }
       )}
-      onClick={() => {
-        if (disabled) return;
-        setAnimating(true);
-        const maybePromise = onClick();
-        if (typeof maybePromise?.then === 'function') {
-          return maybePromise
-            .then(() => setAnimating(false))
-            .catch(() => {
-              setAnimating(false);
-              setError(true);
-              setTimeout(() => setError(false), animationDuration);
-            });
-        } else {
-          setTimeout(() => {
-            setAnimating(false);
-          }, animationDuration);
-        }
-      }}
+      onClick={onClickInternal}
     >
       {error ? childrenOnError : animating ? childrenOnClick : children}
     </HeadlessButton>
