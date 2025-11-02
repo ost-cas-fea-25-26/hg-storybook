@@ -7,5 +7,6 @@ export { default as TimedButton } from './timedButton/TimedButton';
 export { default as Modal } from './modal/Modal';
 export { default as Input } from './input/Input';
 export { default as Textarea } from './textarea/Textarea';
+export { default as Loader } from './loader/Loader';
 export { default as Label } from './label/Label';
 export { Field } from '@headlessui/react';
