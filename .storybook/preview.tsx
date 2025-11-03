@@ -10,6 +10,10 @@ const preview = {
         date: /Date$/i,
       },
     },
+
+    a11y: {
+      test: 'error',
+    },
   },
   decorators: [
     (Story: React.FC) => {
