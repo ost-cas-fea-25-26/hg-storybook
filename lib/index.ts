@@ -27,6 +27,7 @@ export {
   Upload,
 } from './icon';
 export { default as Button } from './button/Button';
+export { default as IconButton } from './button/IconButton';
 export { default as Link } from './link/Link';
 export { default as Toggle } from './toggle/Toggle';
 export { default as TimedButton } from './timedButton/TimedButton';
