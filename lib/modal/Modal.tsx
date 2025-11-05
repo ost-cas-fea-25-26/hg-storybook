@@ -19,6 +19,7 @@ type Props<T = unknown, E = T> = {
   onOpen?: () => void;
   actions?: ModalAction<T, E>[];
   title?: string;
+  'data-testid'?: string;
 };
 
 export default function Modal<T = unknown, E = T>({
@@ -27,6 +28,7 @@ export default function Modal<T = unknown, E = T>({
   actions = [],
   title,
   children,
+  'data-testid': testId,
 }: Props<T, E>) {
   const [pending, setPending] = useState<boolean>(false);
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function Modal<T = unknown, E = T>({
   return (
     <Dialog
       open
-      data-testid={'modal-container'}
+      data-testid={testId}
       autoFocus
       transition
       onClose={onClose}
@@ -45,7 +47,7 @@ export default function Modal<T = unknown, E = T>({
     >
       <DialogBackdrop className={`fixed inset-0 bg-black/70`} />
       <DialogPanel
-        data-testid={'modal'}
+        data-testid={`${testId}-modal`}
         className={clsx(`autofocus box-border z-10 w-1/2 bg-white opacity-100 rounded-md`)}
       >
         {title && (
@@ -53,7 +55,7 @@ export default function Modal<T = unknown, E = T>({
             className={`flex items-center justify-between w-full rounded-t-md p-4 bg-primary text-white font-semibold`}
           >
             <>{title}</>
-            <CloseButton data-testid={'modal-close'} className={`cursor-pointer`}>
+            <CloseButton data-testid={`${testId}-close-button`} className={`cursor-pointer`}>
               <Cross color="white" size={'xs'} />
             </CloseButton>
           </DialogTitle>
@@ -66,32 +68,32 @@ export default function Modal<T = unknown, E = T>({
           {children}
         </div>
         {hasButtons && (
-        <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
-          {hasButtons &&
-            actions.map(({ text, action, onSuccess, onError, variant }) => {
-              const onClick = () => {
-                const maybePromise = action();
-                if (typeof maybePromise?.then === 'function') {
-                  setPending(true);
-                  maybePromise
-                    .then((result: T) => {
-                      setPending(false);
-                      onSuccess?.(result);
-                    })
-                    .catch((error: E) => {
-                      setPending(false);
-                      onError?.(error);
-                    });
-                }
-              };
+          <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
+            {hasButtons &&
+              actions.map(({ text, action, onSuccess, onError, variant }) => {
+                const onClick = () => {
+                  const maybePromise = action();
+                  if (typeof maybePromise?.then === 'function') {
+                    setPending(true);
+                    maybePromise
+                      .then((result: T) => {
+                        setPending(false);
+                        onSuccess?.(result);
+                      })
+                      .catch((error: E) => {
+                        setPending(false);
+                        onError?.(error);
+                      });
+                  }
+                };
 
-              return (
-                <Button variant={variant || 'primary'} size={'small'} onClick={onClick}>
-                  {pending ? <Loader size={'small'} color={'white'} /> : text}
-                </Button>
-              );
-            })}
-        </div>
+                return (
+                  <Button variant={variant || 'primary'} size={'small'} onClick={onClick}>
+                    {pending ? <Loader size={'small'} color={'white'} /> : text}
+                  </Button>
+                );
+              })}
+          </div>
         )}
       </DialogPanel>
     </Dialog>

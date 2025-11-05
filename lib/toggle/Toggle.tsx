@@ -7,6 +7,7 @@ type Props = {
   onChange?: () => void;
   disabled?: boolean;
   color: 'primary' | 'contrast';
+  'data-testid'?: string;
   checkedProps: {
     icon: ReactElement<IconProps>;
     label: string;
@@ -23,6 +24,7 @@ export default function Toggle({
   onChange = () => {},
   disabled = false,
   color = 'primary',
+  'data-testid': testId,
 }: Props) {
   const [enabled, setEnabled] = useState(false);
 
@@ -42,6 +44,7 @@ export default function Toggle({
   return (
     <Field disabled={disabled} className={clsx(hoverClasses, 'max-w-fit')}>
       <Checkbox
+        data-testid={testId}
         disabled={disabled}
         className={clsx(
           enabled ? colors[color].enabled : colors[color].default,
@@ -55,18 +58,18 @@ export default function Toggle({
       >
         {enabled
           ? React.cloneElement(checkedProps.icon, {
-              'data-testid': 'checkbox-icon-on',
+              'data-testid': `${testId}-icon-on`,
               color: actualColor,
               className: clsx(colors[color].enabled),
             })
           : uncheckedProps
             ? React.cloneElement(uncheckedProps.icon, {
-                'data-testid': 'checkbox-icon-off',
+                'data-testid': `${testId}-icon-off`,
                 color: actualColor,
                 className: clsx(colors[color].default),
               })
             : React.cloneElement(checkedProps.icon, {
-                'data-testid': 'checkbox-icon-off',
+                'data-testid': `${testId}-icon-off`,
                 color: actualColor,
                 className: clsx(colors[color].default),
               })}

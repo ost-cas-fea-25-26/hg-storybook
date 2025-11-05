@@ -16,6 +16,7 @@ export const Simple: Story = {
     title: 'Simple Sample Modal',
     onClose: () => {},
     children: <div>This is a simple placeholder text to display a modal component without anything else in it</div>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -33,7 +34,7 @@ export const Simple: Story = {
     const button = document.getByRole('button', { name: 'Open Modal' });
     await userEvent.click(button);
     await expect(await document.findByText('Simple Sample Modal')).toBeVisible();
-    const closeButton = await document.findByTestId('modal-close');
+    const closeButton = await document.findByTestId('sampleModal-close-button');
     await userEvent.click(closeButton);
   },
 };
@@ -43,6 +44,7 @@ export const AsyncAction: Story = {
     title: 'Async Action Modal',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -94,7 +96,7 @@ export const AsyncAction: Story = {
       async () => expect(await document.findByText('Einstellungen erfolgreich gespeichert!!')).toBeVisible(),
       { timeout: 5000 }
     );
-    const closeButton = await document.findByTestId('modal-close');
+    const closeButton = await document.findByTestId('sampleModal-close-button');
     await userEvent.click(closeButton);
   },
 };
@@ -104,6 +106,7 @@ export const AsyncActionWithError: Story = {
     title: 'Async Action Error',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -155,7 +158,7 @@ export const AsyncActionWithError: Story = {
       async () => expect(await document.findByText('Einstellungen konnten nicht gespeichert werden!!')).toBeVisible(),
       { timeout: 5000 }
     );
-    const closeButton = await document.findByTestId('modal-close');
+    const closeButton = await document.findByTestId('sampleModal-close-button');
     await userEvent.click(closeButton);
   },
 };
@@ -174,6 +177,7 @@ export const TypedAsyncAction: Story = {
     title: 'Typed Action Error',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -233,6 +237,7 @@ export const MultiAction: Story = {
     title: 'Multi Action Modal',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -280,7 +285,7 @@ export const MultiAction: Story = {
     await userEvent.click(openButton);
     const header = await document.findByText('Multi Action Modal');
     await expect(header).toBeVisible();
-    const closeButton = await document.findByTestId('modal-close');
+    const closeButton = await document.findByTestId('sampleModal-close-button');
     await userEvent.click(closeButton);
     await expect(header).not.toBeVisible();
   },

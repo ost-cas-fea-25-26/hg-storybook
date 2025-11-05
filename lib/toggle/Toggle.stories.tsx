@@ -23,6 +23,7 @@ export const Contrast: Story = {
     },
     onChange: () => console.log('hello world'),
     color: 'contrast',
+    'data-testid': 'checkbox',
   },
   play: async ({ canvas, userEvent }) => {
     const button = canvas.getByRole('checkbox', { name: 'Toggled off' });
