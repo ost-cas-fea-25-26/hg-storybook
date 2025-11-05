@@ -37,8 +37,11 @@ export const Gradient: Story = {
 export const Rounded: Story = {
   args: {
     variant: 'primary',
-    size: 'small',
+    size: 'medium',
     rounded: true,
-    children: <Mumble color={'red'} />,
+    children: <Mumble size={'s'} color={'white'} />,
+  },
+  render: (args) => {
+    return <Button {...args}>{args.children}</Button>;
   },
 };

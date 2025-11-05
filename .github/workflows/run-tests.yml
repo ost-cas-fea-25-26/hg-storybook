@@ -1,0 +1,19 @@
+name: Run Tests
+on:
+  workflow_run:
+    workflows: ['Build']
+    branches: [main]
+    types:
+      - completed
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{vars.NODE_VERSION}}
+      - run: npm i
+      - run: npm run test

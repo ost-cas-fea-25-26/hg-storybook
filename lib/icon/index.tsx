@@ -26,78 +26,78 @@ import UploadSvg from './icons/upload.svg?react';
 import React from 'react';
 
 type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
-export type IconProps = { size?: Size; color?: string; className?: string };
+export type IconProps = { size?: Size; color?: string; className?: string; 'data-testid'?: string };
 const sizes: Record<Size, number> = { xs: 16, s: 28, m: 40, l: 64, xl: 80 };
 
-export function ArrowDown({ size = 'm', color = '#475569' }: IconProps) {
-  return <ArrowDownSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function ArrowDown({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <ArrowDownSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function ArrowLeft({ size = 'm', color = '#475569' }: IconProps) {
-  return <ArrowLeftSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function ArrowLeft({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <ArrowLeftSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function ArrowRight({ size = 'm', color = '#475569' }: IconProps) {
-  return <ArrowRightSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function ArrowRight({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <ArrowRightSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function ArrowUp({ size = 'm', color = '#475569' }: IconProps) {
-  return <ArrowUpSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function ArrowUp({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <ArrowUpSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Calendar({ size = 'm', color = '#475569' }: IconProps) {
-  return <CalendarSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Calendar({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <CalendarSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Cross({ size = 'm', color = '#475569' }: IconProps) {
-  return <CrossSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Cross({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <CrossSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Eye({ size = 'm', color = '#475569' }: IconProps) {
-  return <EyeSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Eye({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <EyeSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Fullscreen({ size = 'm', color = '#475569' }: IconProps) {
-  return <FullscreenSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Fullscreen({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <FullscreenSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Heart({ size = 'm', color = '#475569' }: IconProps) {
-  return <HeartSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Heart({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <HeartSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function HeartEmpty({ size = 'm', color = '#475569' }: IconProps) {
-  return <HeartEmptySvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function HeartEmpty({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <HeartEmptySvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Location({ size = 'm', color = '#475569' }: IconProps) {
-  return <LocationSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Location({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <LocationSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Logout({ size = 'm', color = '#475569' }: IconProps) {
-  return <LogoutSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Logout({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <LogoutSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Mumble({ size = 'm', color = '#475569' }: IconProps) {
-  return <MumbleSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Mumble({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <MumbleSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Pen({ size = 'm', color = '#475569' }: IconProps) {
-  return <PenSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Pen({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <PenSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Profile({ size = 'm', color = '#475569' }: IconProps) {
-  return <ProfileSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Profile({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <ProfileSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Repost({ size = 'm', color = '#475569' }: IconProps) {
-  return <RepostSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Repost({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <RepostSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Send({ size = 'm', color = '#475569' }: IconProps) {
-  return <SendSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Send({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <SendSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Settings({ size = 'm', color = '#475569' }: IconProps) {
-  return <SettingsSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Settings({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <SettingsSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Share({ size = 'm', color = '#475569' }: IconProps) {
-  return <ShareSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Share({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <ShareSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function SpeechBubble({ size = 'm', color = '#475569' }: IconProps) {
-  return <SpeechBubbleSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function SpeechBubble({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <SpeechBubbleSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function SpeechBubbleEmpty({ size = 'm', color = '#475569' }: IconProps) {
-  return <SpeechBubbleEmptySvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function SpeechBubbleEmpty({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <SpeechBubbleEmptySvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Tick({ size = 'm', color = '#475569' }: IconProps) {
-  return <TickSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Tick({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <TickSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Time({ size = 'm', color = '#475569' }: IconProps) {
-  return <TimeSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Time({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <TimeSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }
-export function Upload({ size = 'm', color = '#475569' }: IconProps) {
-  return <UploadSvg width={sizes[size]} height={sizes[size]} color={color} />;
+export function Upload({ size = 'm', color = '#475569', ...rest }: IconProps) {
+  return <UploadSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;
 }

@@ -1,7 +1,8 @@
 import { Heart, HeartEmpty, SpeechBubble, SpeechBubbleEmpty } from '@/icon';
-import Toggle from '@/toggle/Toggle.tsx';
+import Toggle from '@/toggle/Toggle';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
+import { expect } from 'storybook/test';
 
 const meta = {
   component: Toggle,
@@ -22,6 +23,13 @@ export const Contrast: Story = {
     },
     onChange: () => console.log('hello world'),
     color: 'contrast',
+    'data-testid': 'checkbox',
+  },
+  play: async ({ canvas, userEvent }) => {
+    const button = canvas.getByRole('checkbox', { name: 'Toggled off' });
+    await userEvent.click(button);
+    await expect(canvas.getByRole('checkbox', { name: 'Toggled on' })).toBeVisible();
+    await expect(await canvas.findByTestId('checkbox-icon-on')).toBeVisible();
   },
 };
 
