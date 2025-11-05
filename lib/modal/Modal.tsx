@@ -1,4 +1,5 @@
 import Button from '@/button/Button.tsx';
+import { ButtonVariant } from '@/button/common/types.ts';
 import { Cross } from '@/icon';
 import { Loader } from '@/index.ts';
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
@@ -7,7 +8,10 @@ import React, { ReactNode, useEffect, useState } from 'react';
 
 export type ModalAction<T = unknown, E = T> = {
   text: string;
-  variant?: 'primary' | 'secondary' | 'gradient';
+  button: {
+    background: ButtonVariant;
+    textColor: ButtonVariant;
+  };
   action: () => void | Promise<T>;
   onSuccess?: (promiseResult: T) => void;
   onError?: (promiseResult: E) => void;
@@ -70,7 +74,7 @@ export default function Modal<T = unknown, E = T>({
         {hasButtons && (
           <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
             {hasButtons &&
-              actions.map(({ text, action, onSuccess, onError, variant }) => {
+              actions.map(({ text, action, onSuccess, onError, button }) => {
                 const onClick = () => {
                   const maybePromise = action();
                   if (typeof maybePromise?.then === 'function') {
@@ -88,7 +92,12 @@ export default function Modal<T = unknown, E = T>({
                 };
 
                 return (
-                  <Button variant={variant || 'primary'} size={'small'} onClick={onClick}>
+                  <Button
+                    background={button.background || 'primary'}
+                    textColor={button.textColor || 'white'}
+                    size={'small'}
+                    onClick={onClick}
+                  >
                     {pending ? <Loader size={'small'} color={'white'} /> : text}
                   </Button>
                 );
