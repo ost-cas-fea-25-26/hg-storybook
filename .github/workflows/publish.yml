@@ -1,4 +1,4 @@
-name: NPM Publish & deploy Storybook
+name: NPM Publish and deploy Storybook
 on:
   workflow_run:
     workflows: ["Run Tests"]
