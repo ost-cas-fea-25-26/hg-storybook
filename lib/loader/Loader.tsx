@@ -1,8 +1,9 @@
+import { ComponentSize } from '@/common/types.ts';
 import clsx from 'clsx';
 import React from 'react';
 
 type Props = {
-  size: 'small' | 'medium' | 'large';
+  size: ComponentSize;
   color: 'primary' | 'secondary' | 'white';
 };
 

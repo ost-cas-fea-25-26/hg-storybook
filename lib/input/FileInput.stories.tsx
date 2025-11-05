@@ -1,3 +1,4 @@
+import { Upload } from '@/icon';
 import FileInput from '@/input/dragAndDrop/FileInput.tsx';
 import { Field } from '@headlessui/react';
 import { Meta, StoryObj } from '@storybook/react-vite';
@@ -10,11 +11,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const File: Story = {
+export const Small: Story = {
   args: {
     label: 'Datei hierhin ziehen',
     description: 'PNG oder JPG',
-    size: 'medium',
+    size: 'small',
     files: [],
     setFiles: () => [],
   },
@@ -41,9 +42,42 @@ export const File: Story = {
   },
 };
 
-export const Loading: Story = {
+export const SmallLoading: Story = {
   //@ts-ignore
   args: {
     loading: true,
+    size: 'small',
+  },
+};
+
+export const MediumWithButton: Story = {
+  args: {
+    label: 'Datei hierhin ziehen',
+    description: 'PNG oder JPG',
+    size: 'medium',
+    files: [],
+    setFiles: () => [],
+    buttonContent: (
+      <span className={'flex items-center gap-2'}>
+        <span>Or Click Here, son</span>
+        <Upload size={'xs'} color={'currentColor'} />
+      </span>
+    ),
+  },
+};
+
+export const LargeWithButton: Story = {
+  args: {
+    label: 'Datei hierhin ziehen',
+    description: 'PNG oder JPG',
+    size: 'large',
+    files: [],
+    setFiles: () => [],
+    buttonContent: (
+      <span className={'flex items-center gap-2'}>
+        <span>Or Click Here, son</span>
+        <Upload size={'xs'} color={'currentColor'} />
+      </span>
+    ),
   },
 };

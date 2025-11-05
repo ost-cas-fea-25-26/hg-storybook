@@ -1,8 +1,8 @@
 import { Button } from '@/index.ts';
+import FileInput from '@/input/dragAndDrop/FileInput.tsx';
 import Modal, { ModalAction } from '@/modal/Modal.tsx';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useMemo } from 'react';
-import { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 const meta = {
   component: Modal,
@@ -15,7 +15,11 @@ export const Simple: Story = {
   args: {
     title: 'Simple Sample Modal',
     onClose: () => {},
-    children: <div>This is a simple placeholder text to display a modal component without anything else in it</div>,
+    children: (
+      <div className={'max-w-prose'}>
+        This is a simple placeholder text to display a modal component without anything else in it
+      </div>
+    ),
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -233,6 +237,51 @@ export const MultiAction: Story = {
         {showModal && (
           <Modal {...args} actions={actions} onOpen={() => setMessage('')} onClose={() => setShowModal(false)}>
             <span>Bestätigen Sie das Modal wenn Sie wollen</span>
+          </Modal>
+        )}
+      </>
+    );
+  },
+};
+
+export const FileUploadModal: Story = {
+  args: {
+    title: 'Laden Sie hier eine Datei hoch',
+    onClose: () => {},
+    children: <></>,
+  },
+  render: (args) => {
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [files, setFiles] = useState<File[]>([]);
+
+    const actions: ModalAction[] = [
+      {
+        text: 'Bestätigen',
+        disabled: files.length === 0,
+        action: () => {
+          setShowModal(false);
+        },
+      },
+    ];
+
+    return (
+      <>
+        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+          Open Modal
+        </Button>
+        {files.map((f) => (
+          <div key={f.name}>{f.name}</div>
+        ))}
+        {showModal && (
+          <Modal {...args} onClose={() => setShowModal(false)} actions={actions}>
+            <FileInput
+              label={'Drag and Drop here'}
+              description={'alles erlaubt'}
+              size={'large'}
+              onDrop={setFiles}
+              files={files}
+              setFiles={setFiles}
+            />
           </Modal>
         )}
       </>

@@ -21,9 +21,9 @@ const pascalCase = (s: string) =>
     : s.charAt(0).toUpperCase() + s.slice(1);
 let output = '/** generated file, do not edit manually - run "npm run generate" instead */\n';
 output += "import React from 'react'\n";
-output += "type Size = 'xs' | 's' | 'm' | 'l' | 'xl';\n";
-output += 'export type IconProps = { size?: Size; color?: string, className?: string }\n';
-output += `const sizes: Record<Size, number> = {xs: ${iconSizeXS}, s:${iconSizeS}, m:${iconSizeM}, l:${iconSizeL}, xl:${iconSizeXL}};\n`;
+output += "import { IconSize } from '@/common/types.ts';\n";
+output += 'export type IconProps = { size?: IconSize; color?: string, className?: string }\n';
+output += `const sizes: Record<IconSize, number> = {xs: ${iconSizeXS}, s:${iconSizeS}, m:${iconSizeM}, l:${iconSizeL}, xl:${iconSizeXL}};\n`;
 
 for (const svg of svgs) {
   output += `import ${pascalCase(extentionless(svg))}Svg from "./icons/${svg}?react";\n`;
