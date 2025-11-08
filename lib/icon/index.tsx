@@ -25,9 +25,9 @@ import TimeSvg from './icons/time.svg?react';
 import UploadSvg from './icons/upload.svg?react';
 import React from 'react';
 
-type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
-export type IconProps = { size?: Size; color?: string; className?: string; 'data-testid'?: string };
-const sizes: Record<Size, number> = { xs: 16, s: 28, m: 40, l: 64, xl: 80 };
+export type IconSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+export type IconProps = { size?: IconSize; color?: string; className?: string; 'data-testid'?: string };
+const sizes: Record<IconSize, number> = { xs: 16, s: 28, m: 40, l: 64, xl: 80 };
 
 export function ArrowDown({ size = 'm', color = '#475569', ...rest }: IconProps) {
   return <ArrowDownSvg width={sizes[size]} height={sizes[size]} color={color} {...rest} />;

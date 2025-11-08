@@ -22,7 +22,7 @@ export const Simple: Story = {
     const [showModal, setShowModal] = useState<boolean>(false);
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && <Modal {...args} onClose={() => setShowModal(false)}></Modal>}
@@ -54,7 +54,10 @@ export const AsyncAction: Story = {
       () => [
         {
           text: 'Speichern',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             setShowSuccessMessage(false);
             return new Promise<void>((resolve) => {
@@ -73,7 +76,7 @@ export const AsyncAction: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && (
@@ -116,7 +119,10 @@ export const AsyncActionWithError: Story = {
       () => [
         {
           text: 'Speichern',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             setShowErrorMessage(false);
             return new Promise<void>((_, reject) => {
@@ -135,7 +141,7 @@ export const AsyncActionWithError: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && (
@@ -186,7 +192,10 @@ export const TypedAsyncAction: Story = {
       () => [
         {
           text: 'Speichern',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             return new Promise<SampleResponseType>((resolve) => {
               const sampleResponse: SampleResponseType = {
@@ -213,7 +222,7 @@ export const TypedAsyncAction: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {data && (
@@ -247,7 +256,10 @@ export const MultiAction: Story = {
       () => [
         {
           text: 'Bestätigen',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             setShowModal(false);
             setMessage('Bestätigt');
@@ -255,7 +267,10 @@ export const MultiAction: Story = {
         },
         {
           text: 'Abbrechen',
-          variant: 'secondary',
+          button: {
+            background: 'secondary',
+            textColor: 'white',
+          },
           action: () => {
             setShowModal(false);
             setMessage('Abgebrochen');
@@ -267,7 +282,7 @@ export const MultiAction: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {message}
