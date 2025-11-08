@@ -1,5 +1,6 @@
 import Button from './Button';
-import { Mumble } from '@/icon';
+import IconButton from '@/button/IconButton.tsx';
+import { Mumble, Upload } from '@/icon';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
@@ -10,35 +11,40 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Standard: Story = {
   args: {
-    variant: 'primary',
+    background: 'primary',
+    textColor: 'white',
     size: 'small',
-    children: 'Button Label',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    size: 'medium',
-    children: 'Button Label',
-  },
-};
-
-export const Gradient: Story = {
-  args: {
-    variant: 'gradient',
-    size: 'large',
     children: 'Button Label',
   },
 };
 
 export const Rounded: Story = {
   args: {
-    variant: 'primary',
-    size: 'small',
+    background: 'primary',
+    textColor: 'white',
+    size: 'medium',
     rounded: true,
-    children: <Mumble color={'red'} />,
+    children: <Mumble size={'s'} color={'white'} />,
+  },
+  render: (args) => {
+    return <Button {...args}>{args.children}</Button>;
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    background: 'primary',
+    textColor: 'white',
+    size: 'medium',
+    children: 'Label',
+  },
+  render: (args) => {
+    return (
+      <IconButton icon={<Upload />} {...args}>
+        {args.children}
+      </IconButton>
+    );
   },
 };

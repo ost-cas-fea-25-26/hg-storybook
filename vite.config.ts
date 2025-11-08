@@ -32,36 +32,20 @@ export default defineConfig({
     dts({ rollupTypes: true }),
     svgr({
       svgrOptions: {
-        template: ({ imports, interfaces, componentName, props, jsx, exports }, { tpl }) => {
-          return tpl`
-            ${imports}
-            import PropTypes from 'prop-types';
-            ${interfaces}
-
-            function ${componentName}(${props}) {
-              return ${jsx};
-            }
-
-            ${componentName}.propTypes = {
-              title: PropTypes.string,
-            };
-
-            ${exports}
-            `;
-        },
         expandProps: 'start',
         svgProps: {
           color: '{props.color}',
           width: '{props.width}',
           height: '{props.height}',
           className: '{props.className}',
+          'data-testid': '{props["data-testid"]}',
         },
       },
     }),
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'lib'),
+      '@': resolve(__dirname, './lib'),
     },
   },
 });
