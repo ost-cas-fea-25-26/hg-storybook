@@ -4,6 +4,15 @@ import React from 'react';
 
 const meta = {
   component: Link,
+  argTypes: {
+    target: {
+      options: ['default', 'new Tab'],
+      mapping: {
+        default: null,
+        'new Tab': '_blank',
+      },
+    },
+  },
 } satisfies Meta<typeof Link>;
 
 export default meta;
@@ -14,9 +23,7 @@ export const Default: Story = {
     url: '/?path=/story/button',
     children: 'Link Label',
   },
-  render: (args) => (
-    <Link {...args}>{args.children}</Link>
-  ),
+  render: (args) => <Link {...args}>{args.children}</Link>,
 };
 
 export const NewTab: Story = {
@@ -25,7 +32,5 @@ export const NewTab: Story = {
     children: 'Link Label',
     target: '_blank',
   },
-  render: (args) => (
-    <Link {...args}>{args.children}</Link>
-  ),
+  render: (args) => <Link {...args}>{args.children}</Link>,
 };

@@ -1,5 +1,6 @@
 import { ButtonProps } from '@/button/Button.tsx';
 import { VARIANTS } from '@/button/common/styleMappings.ts';
+import { TEXT } from '@/common/constants.ts';
 import { ComponentSize, IconSize } from '@/common/types.ts';
 import { IconProps } from '@/icon';
 import { Button as HeadlessButton } from '@headlessui/react';
@@ -35,7 +36,7 @@ export default function IconButton({
   disabled,
 }: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer custom-focus-black disabled:custom-disabled';
+    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer  disabled:custom-disabled';
 
   return (
     <HeadlessButton
@@ -44,11 +45,11 @@ export default function IconButton({
         if (disabled) return;
         onClick?.(e);
       }}
-      className={clsx(defaultStyle, VARIANTS.background[background], VARIANTS.text[textColor], sizes[size].class)}
+      className={clsx(defaultStyle, VARIANTS.background[background], TEXT[textColor], sizes[size].class)}
     >
       <div>
         {React.cloneElement(icon, {
-          color: VARIANTS.icon[textColor],
+          color: TEXT[textColor],
           size: sizes[size].icon,
         })}
       </div>

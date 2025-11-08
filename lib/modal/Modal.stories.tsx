@@ -7,6 +7,11 @@ import { expect, waitFor, within } from 'storybook/test';
 
 const meta = {
   component: Modal,
+  parameters: {
+    controls: {
+      exclude: ['data-testid', 'children', 'onClose', 'onOpen', 'actions'],
+    },
+  },
 } satisfies Meta<typeof Modal>;
 
 export default meta;

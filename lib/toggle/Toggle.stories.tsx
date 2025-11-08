@@ -1,4 +1,4 @@
-import { Heart, HeartEmpty, SpeechBubble, SpeechBubbleEmpty } from '@/icon';
+import { Heart, HeartEmpty } from '@/icon';
 import Toggle from '@/toggle/Toggle';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
@@ -12,6 +12,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Contrast: Story = {
+  parameters: {
+    controls: {
+      exclude: ['checkedProps', 'uncheckedProps', 'onChange'],
+    },
+  },
   args: {
     checkedProps: {
       icon: <Heart size={'xs'} />,
@@ -22,7 +27,8 @@ export const Contrast: Story = {
       label: 'Toggled off',
     },
     onChange: () => console.log('hello world'),
-    color: 'contrast',
+    disabled: false,
+    color: 'primary',
     'data-testid': 'checkbox',
   },
   play: async ({ canvas, userEvent }) => {
@@ -30,43 +36,5 @@ export const Contrast: Story = {
     await userEvent.click(button);
     await expect(canvas.getByRole('checkbox', { name: 'Toggled on' })).toBeVisible();
     await expect(await canvas.findByTestId('checkbox-icon-on')).toBeVisible();
-  },
-};
-
-export const Primary: Story = {
-  args: {
-    checkedProps: {
-      icon: <SpeechBubble size={'xs'} />,
-      label: 'Toggled on',
-    },
-    uncheckedProps: {
-      icon: <SpeechBubbleEmpty size={'xs'} />,
-      label: 'Toggled off',
-    },
-    onChange: () => console.log('hello world'),
-    color: 'primary',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    checkedProps: {
-      icon: <SpeechBubbleEmpty size={'xs'} />,
-      label: 'Disabled',
-    },
-    onChange: () => console.log('hello world'),
-    color: 'primary',
-    disabled: true,
-  },
-};
-
-export const OnlyOneIcon: Story = {
-  args: {
-    checkedProps: {
-      icon: <Heart size={'xs'} />,
-      label: 'One Icon Only',
-    },
-    onChange: () => console.log('hello world'),
-    color: 'primary',
   },
 };

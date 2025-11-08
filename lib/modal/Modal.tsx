@@ -1,6 +1,6 @@
 import Button from '@/button/Button.tsx';
 import { ButtonVariant } from '@/button/common/types.ts';
-import { ComponentSize } from '@/common/types.ts';
+import { TextColor } from '@/common/types.ts';
 import { Cross } from '@/icon';
 import { Loader } from '@/index.ts';
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
@@ -11,7 +11,7 @@ export type ModalAction<T = unknown, E = T> = {
   text: string;
   button: {
     background: ButtonVariant;
-    textColor: ButtonVariant;
+    textColor: TextColor;
   };
   action: () => void | Promise<T>;
   disabled?: boolean;
@@ -27,7 +27,6 @@ type Props<T = unknown, E = T> = {
   actions?: ModalAction<T, E>[];
   title?: string;
   'data-testid'?: string;
-  size?: ComponentSize;
 };
 
 export default function Modal<T = unknown, E = T>({
@@ -58,7 +57,7 @@ export default function Modal<T = unknown, E = T>({
         autoFocus
         data-testid={`${testId}-modal`}
         className={clsx(
-          `autofocus box-border z-10 w-9/10 @min-sm:w-2/3 @min-lg:max-w-prose @min-lg:w-120 bg-white opacity-100 rounded-md`
+          `autofocus z-10 w-9/10 @min-sm:w-2/3 @min-lg:max-w-prose @min-lg:w-120 bg-white opacity-100 rounded-md`
         )}
       >
         {title && (

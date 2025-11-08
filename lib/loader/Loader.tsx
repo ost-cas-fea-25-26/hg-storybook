@@ -16,7 +16,6 @@ export default function Loader({ size = 'medium', color }: Props) {
   const colors = {
     primary: 'bg-primary',
     secondary: 'bg-secondary',
-    gradient: 'bg-gradient',
     white: 'bg-white',
   };
 

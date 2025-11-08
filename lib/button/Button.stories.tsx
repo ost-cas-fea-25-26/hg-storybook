@@ -49,7 +49,7 @@ export const Icon: Story = {
     textColor: 'white',
     size: 'medium',
     children: 'Label',
-    disabled: true,
+    disabled: false,
   },
   render: (args) => {
     return (

@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600');
 @import 'tailwindcss';
 
-@utility custom-focus-* {
-  @apply focus:outline-2 focus:outline-solid;
-  outline-color: --value(--color-*);
+@utility custom-placeholder {
+  @apply placeholder:text-slate-400 placeholder:font-medium;
 }
 
 /*on elements with 'disabled' attribute, use: disabled:custom-disabled ; otherwise conditionally add the class*/
 @utility custom-disabled {
-  @apply opacity-50 hover:cursor-not-allowed focus:outline-2 focus:outline-secondary-600;
+  @apply opacity-50 hover:cursor-not-allowed;
 }
 
 @theme static {

@@ -69,11 +69,11 @@ export default function FileInput({
   const showDisabledClasses = loading || disabled;
 
   return (
-    <div className={clsx('w-fit max-w-full overflow-hidden')}>
+    <div className={clsx('w-fit max-w-full')}>
       <div
         className={clsx(
-          `rounded-md border-dashed border-1 border-secondary/30  text-secondary/80 
-          flex items-center justify-center relative p-3 text-center`,
+          `rounded-md border-dashed border-1 border-slate-400  text-secondary/80 
+          flex items-center justify-center relative p-3 text-center `,
           showDisabledClasses ? 'custom-disabled focus:outline-0' : 'hover:bg-secondary/20 cursor-pointer',
           hasButton && 'mb-2',
           sizes[size].container

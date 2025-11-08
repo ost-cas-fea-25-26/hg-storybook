@@ -1,13 +1,14 @@
 import { VARIANTS } from '@/button/common/styleMappings.ts';
 import { ButtonVariant } from '@/button/common/types.ts';
-import { ComponentSize } from '@/common/types.ts';
+import { TEXT } from '@/common/constants.ts';
+import { ComponentSize, TextColor } from '@/common/types.ts';
 import { Button as HeadlessButton } from '@headlessui/react';
 import clsx from 'clsx';
 import React, { MouseEventHandler, ReactNode } from 'react';
 
 export type ButtonProps = {
   background: ButtonVariant;
-  textColor?: ButtonVariant;
+  textColor?: TextColor;
   size: ComponentSize;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   children?: ReactNode;
@@ -33,7 +34,7 @@ export default function Button({
   disabled,
 }: ButtonProps) {
   const defaultStyle =
-    'transition-all duration-500 font-medium font-sans font-600 flex items-center justify-center gap-2 cursor-pointer custom-focus';
+    'transition-all duration-500 font-medium font-sans font-600 flex items-center justify-center gap-2 cursor-pointer ';
 
   const roundedClassName = rounded ? 'rounded-full' : 'rounded-md';
   return (
@@ -42,7 +43,7 @@ export default function Button({
       className={clsx(
         defaultStyle,
         VARIANTS.background[background],
-        VARIANTS.text[textColor],
+        TEXT[textColor],
         width,
         roundedClassName,
         sizes[size],
