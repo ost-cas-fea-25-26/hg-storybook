@@ -16,7 +16,7 @@ export default function Input({ icon, error, ...props }: Props) {
   const hasIconClassNames = icon ? 'pr-10' : '';
   const hasErrorClassNames = error
     ? 'outline-2 outline-red-600'
-    : 'outline-1 outline-slate-200 hover:outline-primary-600 focus:outline-2 focus:outline-primary-600';
+    : 'outline-1 outline-slate-200 hover:outline-primary-600';
 
   return (
     <div className="w-max">

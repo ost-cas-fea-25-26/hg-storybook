@@ -28,8 +28,7 @@ export default function Button({
   onClick,
   rounded,
 }: Props) {
-  const defaultStyle =
-    'transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer focus:outline focus:outline-4';
+  const defaultStyle = 'transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
 
   const roundedClassName = rounded ? 'rounded-full' : 'rounded-md';
   return (
