@@ -36,7 +36,7 @@ export default function IconButton({
   disabled,
 }: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer  disabled:custom-disabled';
+    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
 
   return (
     <HeadlessButton

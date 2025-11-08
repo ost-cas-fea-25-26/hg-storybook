@@ -15,7 +15,9 @@ export default function Input({ icon, error, iconAction, ...props }: Props) {
     'border-secondary-300 focus:border-transparent border-2 border-solid rounded-md p-4 text-slate-700 text-base font-semibold custom-placeholder disabled:custom-disabled';
 
   const hasIconClassNames = icon ? 'pr-10' : '';
-  const hasErrorClassNames = error ? 'outline-3 outline-red-600' : '';
+  const hasErrorClassNames = error
+    ? 'outline-2 outline-red-600'
+    : 'outline-1 outline-slate-200 hover:outline-primary-600';
 
   return (
     <div className="w-max">

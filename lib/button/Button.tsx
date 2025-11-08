@@ -30,11 +30,10 @@ export default function Button({
   textColor = 'white',
   onClick,
   rounded,
-  width,
-  disabled,
-}: ButtonProps) {
-  const defaultStyle =
-    'transition-all duration-500 font-medium font-sans font-600 flex items-center justify-center gap-2 cursor-pointer ';
+                                 width,
+                                 disabled,
+                               }: ButtonProps) {
+  const defaultStyle = 'transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
 
   const roundedClassName = rounded ? 'rounded-full' : 'rounded-md';
   return (

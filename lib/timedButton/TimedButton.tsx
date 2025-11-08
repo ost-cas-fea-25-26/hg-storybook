@@ -56,7 +56,7 @@ export default function TimedButton({
   return (
     <HeadlessButton
       className={clsx(
-        ` cursor-pointer duration-200 font-semibold flex justify-center items-center gap-2 text-secondary`,
+        `cursor-pointer duration-200 font-semibold flex justify-center items-center gap-2 text-secondary`,
         { [disabledClassName]: disabled }
       )}
       onClick={onClickInternal}
