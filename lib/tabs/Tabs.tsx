@@ -21,9 +21,9 @@ export function Tabs({
     <Tab className="
       font-semibold rounded-sm leading-none text-lg 
       px-3 py-2.5
-      text-nowrap text-secondary 
+      text-nowrap text-slate-600 
       data-selected:bg-white data-selected:text-primary
-      group-hover:text-secondary-700 
+      hover:text-slate-800 
       first:group-hover:data-selected:pr-4
       first:group-hover:data-selected:mr-1
       first:mr-2
