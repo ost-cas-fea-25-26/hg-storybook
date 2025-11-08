@@ -23,7 +23,7 @@ export const Basic: Story = {
   render: (args) => {
     const [value, setValue] = useState('');
     return (
-      <Field>
+      <Field className={'max-w-60'}>
         <Label>{args.children}</Label>
         <Input placeholder={'Type something...'} value={value} onChange={(e) => setValue(e.target.value)} />
       </Field>

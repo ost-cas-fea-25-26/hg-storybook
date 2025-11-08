@@ -15,16 +15,14 @@ export default function Input({ icon, error, iconAction, type, ...props }: Props
   const id = useId();
   const errorId = error ? `${id}-error` : undefined;
   const defaultStyle =
-    'border-secondary-300 focus:border-transparent border-2 border-solid rounded-md p-4 text-slate-700 text-base font-semibold custom-placeholder disabled:custom-disabled';
+    'w-full border-secondary-300 focus:border-transparent border-2 border-solid rounded-md pt-2 pb-2 p-4 text-slate-700 font-semibold custom-placeholder disabled:custom-disabled';
 
   const hasIconClassNames = icon ? 'pr-10' : '';
-  const hasErrorClassNames = error
-    ? 'outline-2 outline-red-600'
-    : 'outline-1 outline-slate-200 hover:outline-primary-600';
+  const hasErrorClassNames = error ? 'outline-2 outline-red-600' : 'hover:outline-2 hover:outline-primary-600';
 
   return (
-    <div className="w-max">
-      <div className="relative w-max">
+    <div className="w-full">
+      <div className="relative w-full">
         <HeadlessInput
           className={clsx(defaultStyle, hasIconClassNames, hasErrorClassNames)}
           aria-invalid={!!error}
