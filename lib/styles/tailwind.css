@@ -6,8 +6,9 @@
   outline-color: --value(--color-*);
 }
 
+/*on elements with 'disabled' attribute, use: disabled:custom-disabled ; otherwise conditionally add the class*/
 @utility custom-disabled {
-  @apply disabled:opacity-50 disabled:hover:cursor-not-allowed disabled:focus:outline-2 disabled:focus:outline-secondary-600;
+  @apply opacity-50 hover:cursor-not-allowed focus:outline-2 focus:outline-secondary-600;
 }
 
 @theme static {

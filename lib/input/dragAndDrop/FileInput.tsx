@@ -23,8 +23,8 @@ export interface Props {
 
 type FileInputSizeMapping = {
   container: string;
-  h1: string;
-  h2: string;
+  title: string;
+  subtitle: string;
   icon: IconSize;
 };
 
@@ -32,20 +32,20 @@ const sizes: Record<ComponentSize, FileInputSizeMapping> = {
   small: {
     container: 'min-w-48 min-h-28',
     icon: 's',
-    h1: 'text-s',
-    h2: 'text-xs',
+    title: 'text-s',
+    subtitle: 'text-xs',
   },
   medium: {
     container: 'min-w-60 min-h-34',
     icon: 'm',
-    h1: 'text-l',
-    h2: 'text-m',
+    title: 'text-l',
+    subtitle: 'text-m',
   },
   large: {
     container: 'min-w-72 w-full min-h-40',
     icon: 'l',
-    h1: 'text-xl',
-    h2: 'text-l',
+    title: 'text-xl',
+    subtitle: 'text-l',
   },
 };
 
@@ -66,14 +66,15 @@ export default function FileInput({
   const { getRootProps, open, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const hasButton = Boolean(buttonContent);
+  const showDisabledClasses = loading || disabled;
 
   return (
     <div className={clsx('w-fit max-w-full overflow-hidden')}>
       <div
         className={clsx(
-          `cursor-pointer rounded-md border-dashed border-1 border-secondary/30  text-secondary/80 
-          flex items-center justify-center hover:not-disabled:bg-secondary/50 relative p-3 text-center`,
-          (loading || disabled) && 'cursor-not-allowed opacity-70',
+          `rounded-md border-dashed border-1 border-secondary/30  text-secondary/80 
+          flex items-center justify-center relative p-3 text-center`,
+          showDisabledClasses ? 'custom-disabled focus:outline-0' : 'hover:bg-secondary/20 cursor-pointer',
           hasButton && 'mb-2',
           sizes[size].container
         )}
@@ -83,14 +84,14 @@ export default function FileInput({
           <Loader size={size} color={'secondary'} />
         ) : (
           <>
-            <Input {...props} {...getInputProps()} />
+            <Input disabled={disabled} {...props} {...getInputProps()} />
             {files?.length ? (
               <div className={'flex items-center justify-center gap-2 flex-col max-w-full overflow-hidden'}>
                 <Upload size={sizes[size].icon} color={'secondary'} />
                 {files.map((f, i) => (
-                  <h1 key={f.name + i} className={clsx('font-bold max-w-100 truncate', sizes[size].h1)}>
+                  <span key={f.name + i} className={clsx('font-bold max-w-100 truncate', sizes[size].title)}>
                     {f.name}
-                  </h1>
+                  </span>
                 ))}
               </div>
             ) : isDragActive ? (
@@ -98,8 +99,8 @@ export default function FileInput({
             ) : (
               <div className={'flex items-center justify-center gap-2 flex-col'}>
                 <Upload size={sizes[size].icon} color={'secondary'} />
-                {label && <h1 className={clsx(sizes[size].h1, 'font-bold max-w-100 truncate')}>{label}</h1>}
-                {description && <h2 className={clsx(sizes[size].h2)}>{description}</h2>}
+                {label && <span className={clsx(sizes[size].title, 'font-bold max-w-100 truncate')}>{label}</span>}
+                {description && <span className={clsx(sizes[size].subtitle)}>{description}</span>}
               </div>
             )}
           </>

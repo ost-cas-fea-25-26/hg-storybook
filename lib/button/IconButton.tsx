@@ -35,7 +35,7 @@ export default function IconButton({
   disabled,
 }: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
+    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer custom-focus-black disabled:custom-disabled';
 
   return (
     <HeadlessButton
@@ -44,13 +44,7 @@ export default function IconButton({
         if (disabled) return;
         onClick?.(e);
       }}
-      className={clsx(
-        defaultStyle,
-        VARIANTS.background[background],
-        VARIANTS.text[textColor],
-        sizes[size].class,
-        'custom-focus-black custom-disabled'
-      )}
+      className={clsx(defaultStyle, VARIANTS.background[background], VARIANTS.text[textColor], sizes[size].class)}
     >
       <div>
         {React.cloneElement(icon, {
