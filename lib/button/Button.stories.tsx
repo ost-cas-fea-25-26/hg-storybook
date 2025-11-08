@@ -4,8 +4,26 @@ import { Mumble, Upload } from '@/icon';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 
+const sampleChildren = {
+  Text: 'Sample Label',
+  Icon: <Mumble size={'s'} color={'currentColor'} />,
+  Both: (
+    <>
+      <span>Sample Label</span>
+      <Mumble size={'s'} color={'currentColor'} />
+    </>
+  ),
+};
+
 const meta = {
   component: Button,
+  argTypes: {
+    size: { options: ['small', 'medium', 'large'] },
+    children: {
+      options: Object.keys(sampleChildren),
+      mapping: sampleChildren,
+    },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -17,28 +35,23 @@ export const Standard: Story = {
     textColor: 'white',
     size: 'small',
     children: 'Button Label',
-  },
-};
-
-export const Rounded: Story = {
-  args: {
-    background: 'primary',
-    textColor: 'white',
-    size: 'medium',
-    rounded: true,
-    children: <Mumble size={'s'} color={'white'} />,
-  },
-  render: (args) => {
-    return <Button {...args}>{args.children}</Button>;
+    disabled: false,
+    rounded: false,
   },
 };
 
 export const Icon: Story = {
+  parameters: {
+    controls: {
+      exclude: ['children', 'rounded', 'onClick', 'width'],
+    },
+  },
   args: {
     background: 'primary',
     textColor: 'white',
     size: 'medium',
     children: 'Label',
+    disabled: false,
   },
   render: (args) => {
     return (

@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600');
 @import 'tailwindcss';
 
+@utility custom-placeholder {
+  @apply placeholder:text-slate-400 placeholder:font-medium;
+}
+
+/*on elements with 'disabled' attribute, use: disabled:custom-disabled ; otherwise conditionally add the class*/
+@utility custom-disabled {
+  @apply opacity-50 hover:cursor-not-allowed;
+}
+
 @theme static {
   --color-primary: #7c3aed;
   --color-primary-900: #4c1d95;
@@ -31,7 +40,7 @@
   --color-contrast-800: #9d174d;
   --color-contrast-700: #be185d;
   --color-contrast-600: #db2777;
-  --color-contrast-500: #EC4899;
+  --color-contrast-500: #ec4899;
   --color-contrast-400: #f9a8d4;
   --color-contrast-300: #fbcfe8;
   --color-contrast-200: #fce7f3;
@@ -80,7 +89,8 @@
   --animate-loader-4: grow 1.5s ease-in-out infinite 0.3s;
 
   @keyframes grow {
-    0%, 100% {
+    0%,
+    100% {
       transform: scale(1);
     }
     50% {

@@ -1,23 +1,17 @@
+import { ButtonProps } from '@/button/Button.tsx';
 import { VARIANTS } from '@/button/common/styleMappings.ts';
-import { IconProps, IconSize } from '@/icon';
+import { TEXT } from '@/common/constants.ts';
+import { ComponentSize, IconSize } from '@/common/types.ts';
+import { IconProps } from '@/icon';
 import { Button as HeadlessButton } from '@headlessui/react';
 import clsx from 'clsx';
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement } from 'react';
 
-type Variant = 'primary' | 'secondary' | 'gradient' | 'white' | 'black';
-
-type Size = 'medium' | 'small' | 'large';
-type Props = {
-  background: Variant;
-  textColor?: Variant;
-  size: Size;
+interface Props extends ButtonProps {
   icon: ReactElement<IconProps>;
-  onClick?: () => void;
-  children?: ReactNode;
-  rounded?: boolean;
-};
+}
 
-const sizes: Record<Size, { icon: IconSize; class: string }> = {
+const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
   small: {
     class: 'p-1 px-2 gap-2 rounded-md',
     icon: 'xs',
@@ -34,23 +28,31 @@ const sizes: Record<Size, { icon: IconSize; class: string }> = {
 
 export default function IconButton({
   icon,
+  name,
   children,
   size = 'medium',
   background,
   textColor = 'white',
   onClick,
+  disabled,
 }: Props) {
   const defaultStyle =
     'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
 
   return (
     <HeadlessButton
-      onClick={onClick}
-      className={clsx(defaultStyle, VARIANTS.background[background], VARIANTS.text[textColor], sizes[size].class)}
+      name={name}
+      aria-label={name}
+      disabled={disabled}
+      onClick={(e) => {
+        if (disabled) return;
+        onClick?.(e);
+      }}
+      className={clsx(defaultStyle, VARIANTS.background[background], TEXT[textColor], sizes[size].class)}
     >
       <div>
         {React.cloneElement(icon, {
-          color: VARIANTS.icon[textColor],
+          color: TEXT[textColor],
           size: sizes[size].icon,
         })}
       </div>

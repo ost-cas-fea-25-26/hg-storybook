@@ -40,6 +40,7 @@ export default function Toggle({
       default: `text-secondary hover:not-data-disabled:bg-contrast-50 hover:not-disabled:text-contrast-700`,
     },
   };
+
   const hoverClasses = `group-data-disabled:hover:cursor-not-allowed hover:not-data-disabled:cursor-pointer`;
   return (
     <Field disabled={disabled} className={clsx(hoverClasses, 'max-w-fit')}>
@@ -48,7 +49,8 @@ export default function Toggle({
         disabled={disabled}
         className={clsx(
           enabled ? colors[color].enabled : colors[color].default,
-          'data-disabled:opacity-50 rounded-full p-1 pl-2 pr-2 flex not-data-disabled:font-bold items-center gap-1'
+          disabled ? 'custom-disabled' : 'font-bold',
+          ' rounded-full p-1 pl-2 pr-2 flex items-center gap-1'
         )}
         checked={enabled}
         onChange={() => {

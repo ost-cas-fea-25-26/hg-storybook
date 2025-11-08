@@ -1,4 +1,5 @@
 import { Button } from '@/index.ts';
+import FileInput from '@/input/dragAndDrop/FileInput.tsx';
 import Modal, { ModalAction } from '@/modal/Modal.tsx';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useMemo, useState } from 'react';
@@ -6,6 +7,11 @@ import { expect, waitFor, within } from 'storybook/test';
 
 const meta = {
   component: Modal,
+  parameters: {
+    controls: {
+      exclude: ['data-testid', 'children', 'onClose', 'onOpen', 'actions'],
+    },
+  },
 } satisfies Meta<typeof Modal>;
 
 export default meta;
@@ -303,5 +309,54 @@ export const MultiAction: Story = {
     const closeButton = await document.findByTestId('sampleModal-close-button');
     await userEvent.click(closeButton);
     await expect(header).not.toBeVisible();
+  },
+};
+
+export const FileUploadModal: Story = {
+  args: {
+    title: 'Laden Sie hier eine Datei hoch',
+    onClose: () => {},
+    children: <></>,
+  },
+  render: (args) => {
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [files, setFiles] = useState<File[]>([]);
+
+    const actions: ModalAction[] = [
+      {
+        text: 'Bestätigen',
+        button: {
+          background: 'white',
+          textColor: 'secondary',
+        },
+        disabled: files.length === 0,
+        action: () => {
+          setShowModal(false);
+        },
+      },
+    ];
+
+    return (
+      <>
+        <Button size={'medium'} background={'primary'} textColor={'white'} onClick={() => setShowModal(true)}>
+          Open Modal
+        </Button>
+        {files.map((f) => (
+          <div key={f.name}>{f.name}</div>
+        ))}
+        {showModal && (
+          <Modal {...args} onClose={() => setShowModal(false)} actions={actions}>
+            <FileInput
+              label={'Drag and Drop here'}
+              description={'alles erlaubt'}
+              size={'large'}
+              onDrop={setFiles}
+              files={files}
+              setFiles={setFiles}
+            />
+          </Modal>
+        )}
+      </>
+    );
   },
 };

@@ -1,66 +1,100 @@
 import Input from './Input.tsx';
+import { Cross, Eye, Pen, SpeechBubble } from '@/icon';
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
+
+const icons = {
+  Cross: <Cross size={'xs'} />,
+  SpeechBubble: <SpeechBubble size={'xs'} />,
+  Pen: <Pen size={'xs'} />,
+  None: <></>,
+};
 
 const meta = {
   component: Input,
   argTypes: {
-    onChange: { action: 'changed' },
+    type: {
+      options: ['text', 'date', 'password', 'email'],
+      mapping: icons,
+      control: {
+        type: 'select',
+      },
+    },
   },
 } satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {
+export const Clearable: Story = {
+  parameters: {
+    controls: {
+      exclude: ['iconAction', 'onChange'],
+    },
+  },
   args: {
-    placeholder: 'Type here...',
-    value: '',
     type: 'text',
-    icon: 'x',
+    icon: <Cross size={'xs'} />,
+    disabled: false,
+    error: '',
+  },
+  argTypes: {
+    icon: {
+      options: Object.keys(icons),
+      mapping: icons,
+      control: {
+        type: 'select',
+      },
+    },
   },
   render: (args) => {
-    const [value, setValue] = useState(args.value);
-    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+    const [value, setValue] = useState<string>('');
+    const clear = () => setValue('');
+
+    return (
+      <Input
+        {...args}
+        placeholder={'Type here...'}
+        value={value}
+        iconAction={{
+          name: 'Clear input',
+          action: clear,
+        }}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    );
   },
 };
 
-export const Error: Story = {
+export const Password: Story = {
+  parameters: {
+    controls: {
+      exclude: ['type', 'iconAction', 'icon'],
+    },
+  },
   args: {
-    placeholder: 'Type here...',
-    value: '',
-    type: 'text',
-    icon: 'x',
-    error: 'This is an error message',
+    type: 'password',
+    icon: <Eye size={'xs'} />,
+    disabled: false,
+    error: '',
   },
   render: (args) => {
-    const [value, setValue] = useState(args.value);
-    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
-  },
-};
+    const [value, setValue] = useState<string>('');
+    const [type, setType] = useState<'text' | 'password'>('password');
+    const toggleShowPassword = () => setType(type === 'password' ? 'text' : 'password');
 
-export const Disabled: Story = {
-  args: {
-    placeholder: 'Type here...',
-    value: '',
-    type: 'text',
-    icon: 'x',
-    disabled: true,
-  },
-  render: (args) => {
-    return <Input {...args} value="" />;
-  },
-};
-
-export const Date: Story = {
-  args: {
-    placeholder: 'Type here...',
-    value: '',
-    type: 'date',
-  },
-  render: (args) => {
-    const [value, setValue] = useState(args.value);
-    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+    return (
+      <Input
+        {...args}
+        placeholder={'Type here...'}
+        type={type}
+        value={value}
+        iconAction={{
+          name: 'toggle password visibility',
+          action: toggleShowPassword,
+        }}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    );
   },
 };

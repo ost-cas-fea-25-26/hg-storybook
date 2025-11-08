@@ -25,7 +25,7 @@ export const Basic: Story = {
     return (
       <Field>
         <Label>{args.children}</Label>
-        <Input value={value} onChange={(e) => setValue(e.target.value)} />
+        <Input placeholder={'Type something...'} value={value} onChange={(e) => setValue(e.target.value)} />
       </Field>
     );
   },

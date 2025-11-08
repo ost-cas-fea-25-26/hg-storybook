@@ -1,8 +1,9 @@
+import { ComponentSize } from '@/common/types.ts';
 import clsx from 'clsx';
 import React from 'react';
 
 type Props = {
-  size: 'small' | 'medium' | 'large';
+  size: ComponentSize;
   color: 'primary' | 'secondary' | 'white';
 };
 
@@ -15,7 +16,6 @@ export default function Loader({ size = 'medium', color }: Props) {
   const colors = {
     primary: 'bg-primary',
     secondary: 'bg-secondary',
-    gradient: 'bg-gradient',
     white: 'bg-white',
   };
 
