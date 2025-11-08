@@ -41,7 +41,7 @@ export default function IconButton({
   onClick,
 }: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer focus:outline focus:outline-4';
+    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
 
   return (
     <HeadlessButton
