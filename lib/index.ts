@@ -1,6 +1,33 @@
 import './styles/index.css';
 
+export {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  Calendar,
+  Cross,
+  Eye,
+  Fullscreen,
+  Heart,
+  HeartEmpty,
+  Location,
+  Logout,
+  Mumble,
+  Pen,
+  Profile,
+  Repost,
+  Send,
+  Settings,
+  Share,
+  SpeechBubble,
+  SpeechBubbleEmpty,
+  Tick,
+  Time,
+  Upload,
+} from './icon';
 export { default as Button } from './button/Button';
+export { default as IconButton } from './button/IconButton';
 export { default as Link } from './link/Link';
 export { default as Toggle } from './toggle/Toggle';
 export { default as TimedButton } from './timedButton/TimedButton';

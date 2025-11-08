@@ -29,7 +29,7 @@ for (const svg of svgs) {
   output += `import ${pascalCase(extentionless(svg))}Svg from "./icons/${svg}?react";\n`;
 }
 for (const svg of svgs) {
-  output += `export function ${pascalCase(extentionless(svg))}({size = '${iconSizeDefault}', color = '${iconColorDefault}'}: IconProps){`;
-  output += `  return <${pascalCase(extentionless(svg))}Svg width={sizes[size]} height={sizes[size]} color={color} />;}\n`;
+  output += `export function ${pascalCase(extentionless(svg))}({size = '${iconSizeDefault}', color = '${iconColorDefault}', ...rest}: IconProps){`;
+  output += `  return <${pascalCase(extentionless(svg))}Svg width={sizes[size]} height={sizes[size]} color={color} {...rest}/>;}\n`;
 }
 fs.writeFileSync(path.resolve(process.cwd(), 'lib/icon/index.tsx'), output);

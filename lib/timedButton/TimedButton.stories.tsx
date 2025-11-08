@@ -1,5 +1,5 @@
+import TimedButton from './TimedButton';
 import { Cross, Repost, Tick } from '@/icon';
-import TimedButton from '@/timedButton/TimedButton.tsx';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 

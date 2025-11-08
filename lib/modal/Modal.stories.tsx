@@ -3,6 +3,7 @@ import FileInput from '@/input/dragAndDrop/FileInput.tsx';
 import Modal, { ModalAction } from '@/modal/Modal.tsx';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useMemo, useState } from 'react';
+import { expect, waitFor, within } from 'storybook/test';
 
 const meta = {
   component: Modal,
@@ -15,22 +16,27 @@ export const Simple: Story = {
   args: {
     title: 'Simple Sample Modal',
     onClose: () => {},
-    children: (
-      <div className={'max-w-prose'}>
-        This is a simple placeholder text to display a modal component without anything else in it
-      </div>
-    ),
+    children: <div>This is a simple placeholder text to display a modal component without anything else in it</div>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && <Modal {...args} onClose={() => setShowModal(false)}></Modal>}
       </>
     );
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const button = document.getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(button);
+    await expect(await document.findByText('Simple Sample Modal')).toBeVisible();
+    const closeButton = await document.findByTestId('sampleModal-close-button');
+    await userEvent.click(closeButton);
   },
 };
 
@@ -39,6 +45,7 @@ export const AsyncAction: Story = {
     title: 'Async Action Modal',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -48,7 +55,10 @@ export const AsyncAction: Story = {
       () => [
         {
           text: 'Speichern',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             setShowSuccessMessage(false);
             return new Promise<void>((resolve) => {
@@ -67,7 +77,7 @@ export const AsyncAction: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && (
@@ -79,6 +89,20 @@ export const AsyncAction: Story = {
       </>
     );
   },
+  play: async ({ canvasElement, userEvent }) => {
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const openButton = document.getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(openButton);
+    await expect(await document.findByText('Async Action Modal')).toBeVisible();
+    const saveButton = await document.findByText('Speichern');
+    await userEvent.click(saveButton);
+    await waitFor(
+      async () => expect(await document.findByText('Einstellungen erfolgreich gespeichert!!')).toBeVisible(),
+      { timeout: 5000 }
+    );
+    const closeButton = await document.findByTestId('sampleModal-close-button');
+    await userEvent.click(closeButton);
+  },
 };
 
 export const AsyncActionWithError: Story = {
@@ -86,6 +110,7 @@ export const AsyncActionWithError: Story = {
     title: 'Async Action Error',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -95,7 +120,10 @@ export const AsyncActionWithError: Story = {
       () => [
         {
           text: 'Speichern',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             setShowErrorMessage(false);
             return new Promise<void>((_, reject) => {
@@ -114,7 +142,7 @@ export const AsyncActionWithError: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && (
@@ -125,6 +153,20 @@ export const AsyncActionWithError: Story = {
         )}
       </>
     );
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const openButton = document.getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(openButton);
+    await expect(await document.findByText('Async Action Error')).toBeVisible();
+    const saveButton = await document.findByText('Speichern');
+    await userEvent.click(saveButton);
+    await waitFor(
+      async () => expect(await document.findByText('Einstellungen konnten nicht gespeichert werden!!')).toBeVisible(),
+      { timeout: 5000 }
+    );
+    const closeButton = await document.findByTestId('sampleModal-close-button');
+    await userEvent.click(closeButton);
   },
 };
 
@@ -142,6 +184,7 @@ export const TypedAsyncAction: Story = {
     title: 'Typed Action Error',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -150,7 +193,10 @@ export const TypedAsyncAction: Story = {
       () => [
         {
           text: 'Speichern',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             return new Promise<SampleResponseType>((resolve) => {
               const sampleResponse: SampleResponseType = {
@@ -177,7 +223,7 @@ export const TypedAsyncAction: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {data && (
@@ -201,6 +247,7 @@ export const MultiAction: Story = {
     title: 'Multi Action Modal',
     onClose: () => {},
     children: <></>,
+    'data-testid': 'sampleModal',
   },
   render: (args) => {
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -210,7 +257,10 @@ export const MultiAction: Story = {
       () => [
         {
           text: 'Bestätigen',
-          variant: 'primary',
+          button: {
+            background: 'primary',
+            textColor: 'white',
+          },
           action: () => {
             setShowModal(false);
             setMessage('Bestätigt');
@@ -218,7 +268,10 @@ export const MultiAction: Story = {
         },
         {
           text: 'Abbrechen',
-          variant: 'secondary',
+          button: {
+            background: 'secondary',
+            textColor: 'white',
+          },
           action: () => {
             setShowModal(false);
             setMessage('Abgebrochen');
@@ -230,7 +283,7 @@ export const MultiAction: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {message}
@@ -241,6 +294,16 @@ export const MultiAction: Story = {
         )}
       </>
     );
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const document = within(canvasElement.parentNode as HTMLElement);
+    const openButton = document.getByRole('button', { name: 'Open Modal' });
+    await userEvent.click(openButton);
+    const header = await document.findByText('Multi Action Modal');
+    await expect(header).toBeVisible();
+    const closeButton = await document.findByTestId('sampleModal-close-button');
+    await userEvent.click(closeButton);
+    await expect(header).not.toBeVisible();
   },
 };
 
