@@ -7,9 +7,10 @@ export interface Props {
   size?: 'small' | 'medium' | 'large';
   editButton?: boolean;
   onEdit?: () => void;
+  editAriaLabel?: string;
 }
 
-export default function Avatar({ src, size = 'medium', editButton, onEdit }: Props) {
+export default function Avatar({ src, size = 'medium', editButton, onEdit, editAriaLabel }: Props) {
   const defaultClassNames =
     'rounded-full object-cover bg-gray-200 outline-slate-100 outline-[6px] bg-primary-200 relative';
   const sizeClasses = {
@@ -37,6 +38,7 @@ export default function Avatar({ src, size = 'medium', editButton, onEdit }: Pro
         <button
           className={clsx(editButtonSizeClasses[size], 'absolute bottom-0 right-0 bg-slate-600 rounded-full')}
           onClick={onEdit}
+          aria-label={editAriaLabel || 'Edit Avatar'}
         >
           <Pen color="white" className={editIconSizeClasses[size]} />
         </button>
