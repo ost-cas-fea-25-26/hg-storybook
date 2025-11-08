@@ -22,14 +22,14 @@ const pascalCase = (s: string) =>
 let output = '/** generated file, do not edit manually - run "npm run generate" instead */\n';
 output += "import React from 'react'\n";
 output += "import { IconSize } from '@/common/types.ts';\n";
-output += 'export type IconProps = { size?: IconSize; color?: string, className?: string }\n';
+output += "export type IconProps = { size?: IconSize; color?: string, className?: string, 'data-testid'?: string }\n";
 output += `const sizes: Record<IconSize, number> = {xs: ${iconSizeXS}, s:${iconSizeS}, m:${iconSizeM}, l:${iconSizeL}, xl:${iconSizeXL}};\n`;
 
 for (const svg of svgs) {
   output += `import ${pascalCase(extentionless(svg))}Svg from "./icons/${svg}?react";\n`;
 }
 for (const svg of svgs) {
-  output += `export function ${pascalCase(extentionless(svg))}({size = '${iconSizeDefault}', color = '${iconColorDefault}', ...rest}: IconProps){`;
-  output += `  return <${pascalCase(extentionless(svg))}Svg width={sizes[size]} height={sizes[size]} color={color} {...rest}/>;}\n`;
+  output += `export function ${pascalCase(extentionless(svg))}({size = '${iconSizeDefault}', color = '${iconColorDefault}', 'data-testid': testId, ...rest}: IconProps){`;
+  output += `  return <${pascalCase(extentionless(svg))}Svg width={sizes[size]} height={sizes[size]} data-testid={testId} color={color} {...rest}/>;}\n`;
 }
 fs.writeFileSync(path.resolve(process.cwd(), 'lib/icon/index.tsx'), output);

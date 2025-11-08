@@ -8,10 +8,11 @@ import { useDropzone } from 'react-dropzone';
 
 export interface Props {
   label: string;
-  description?: string;
   size: ComponentSize;
   files: File[];
   setFiles: (files: File[]) => void;
+
+  description?: string;
   dragAndDrop?: boolean;
   onDrop?: (files: File[]) => void;
   reset?: () => void;
@@ -62,18 +63,18 @@ export default function FileInput({
   dragAndDrop = true,
   ...props
 }: Props) {
-  const { getRootProps, open, getInputProps, isDragActive, isDragReject } = useDropzone({ onDrop });
+  const { getRootProps, open, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const hasButton = Boolean(buttonContent);
+
   return (
     <div className={clsx('w-fit max-w-full overflow-hidden')}>
       <div
         className={clsx(
-          'cursor-pointer rounded-md border-dashed border-1 border-secondary/30 bg-secondary/10 text-secondary/80 flex items-center justify-center',
-          'bg-card hover:bg-accent/50 relative cursor-pointer rounded-lg border-2 border-dashed p-3 text-center focus:outline-none',
-          (loading || disabled) && 'border-border bg-muted pointer-events-none opacity-70',
-          isDragActive && !isDragReject && !files?.length && !loading && !disabled && 'border-primary bg-primary/10',
-          isDragReject && !loading && !disabled && 'border-destructive bg-destructive/10',
-          !isDragActive && !files?.length && !isDragReject && !loading && !disabled && 'border-border',
-          buttonContent && 'mb-2',
+          `cursor-pointer rounded-md border-dashed border-1 border-secondary/30  text-secondary/80 
+          flex items-center justify-center hover:not-disabled:bg-secondary/50 relative p-3 text-center`,
+          (loading || disabled) && 'cursor-not-allowed opacity-70',
+          hasButton && 'mb-2',
           sizes[size].container
         )}
         {...getRootProps()}
@@ -87,10 +88,7 @@ export default function FileInput({
               <div className={'flex items-center justify-center gap-2 flex-col max-w-full overflow-hidden'}>
                 <Upload size={sizes[size].icon} color={'secondary'} />
                 {files.map((f, i) => (
-                  <h1
-                    key={f.name + i}
-                    className={clsx('font-bold max-w-full overflow-hidden text-ellipsis', sizes[size].h1)}
-                  >
+                  <h1 key={f.name + i} className={clsx('font-bold max-w-100 truncate', sizes[size].h1)}>
                     {f.name}
                   </h1>
                 ))}
@@ -100,7 +98,7 @@ export default function FileInput({
             ) : (
               <div className={'flex items-center justify-center gap-2 flex-col'}>
                 <Upload size={sizes[size].icon} color={'secondary'} />
-                {label && <h1 className={clsx(sizes[size].h1, 'font-bold')}>{label}</h1>}
+                {label && <h1 className={clsx(sizes[size].h1, 'font-bold max-w-100 truncate')}>{label}</h1>}
                 {description && <h2 className={clsx(sizes[size].h2)}>{description}</h2>}
               </div>
             )}
@@ -108,7 +106,7 @@ export default function FileInput({
         )}
       </div>
       {buttonContent && (
-        <Button variant={'secondary'} size={'medium'} onClick={open} width={'w-full'}>
+        <Button background={'secondary'} size={'medium'} onClick={open} width={'w-full'}>
           {buttonContent}
         </Button>
       )}

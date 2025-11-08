@@ -320,6 +320,10 @@ export const FileUploadModal: Story = {
     const actions: ModalAction[] = [
       {
         text: 'Bestätigen',
+        button: {
+          background: 'white',
+          textColor: 'secondary',
+        },
         disabled: files.length === 0,
         action: () => {
           setShowModal(false);
@@ -329,7 +333,7 @@ export const FileUploadModal: Story = {
 
     return (
       <>
-        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} background={'primary'} textColor={'white'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {files.map((f) => (

@@ -4,20 +4,51 @@ import { Field } from '@headlessui/react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useCallback, useState } from 'react';
 
+const buttonOptions = {
+  NoButton: null,
+  SimpleButton: () => (
+    <span className={'flex items-center gap-2'}>
+      <span>Or Click Here, son</span>
+      <Upload size={'xs'} color={'currentColor'} />
+    </span>
+  ),
+};
+
 const meta = {
   component: FileInput,
+  argTypes: {
+    size: {
+      //by default size options are ordered alphabetically s > m > l makes more sense
+      options: ['small', 'medium', 'large'],
+    },
+    buttonContent: {
+      options: Object.keys(buttonOptions),
+      mapping: buttonOptions,
+      control: {
+        type: 'select',
+      },
+    },
+  },
 } satisfies Meta<typeof FileInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Small: Story = {
+  parameters: {
+    controls: {
+      exclude: ['files', 'setFiles', 'onDrop', 'reset'],
+    },
+  },
   args: {
     label: 'Datei hierhin ziehen',
     description: 'PNG oder JPG',
     size: 'small',
+    disabled: false,
+    loading: false,
+    dragAndDrop: true,
     files: [],
-    setFiles: () => [],
+    setFiles: () => {},
   },
   render: (args) => {
     const [files, setFiles] = useState<File[]>([]);
@@ -27,7 +58,7 @@ export const Small: Story = {
     return (
       <>
         <Field>
-          <FileInput {...args} files={files} reset={() => setFiles([])} onDrop={onDrop} />
+          <FileInput {...args} setFiles={setFiles} files={files} reset={() => setFiles([])} onDrop={onDrop} />
         </Field>
         <div className={'h-5'}></div>
         {files.map((f) => {
@@ -39,45 +70,5 @@ export const Small: Story = {
         })}
       </>
     );
-  },
-};
-
-export const SmallLoading: Story = {
-  //@ts-ignore
-  args: {
-    loading: true,
-    size: 'small',
-  },
-};
-
-export const MediumWithButton: Story = {
-  args: {
-    label: 'Datei hierhin ziehen',
-    description: 'PNG oder JPG',
-    size: 'medium',
-    files: [],
-    setFiles: () => [],
-    buttonContent: (
-      <span className={'flex items-center gap-2'}>
-        <span>Or Click Here, son</span>
-        <Upload size={'xs'} color={'currentColor'} />
-      </span>
-    ),
-  },
-};
-
-export const LargeWithButton: Story = {
-  args: {
-    label: 'Datei hierhin ziehen',
-    description: 'PNG oder JPG',
-    size: 'large',
-    files: [],
-    setFiles: () => [],
-    buttonContent: (
-      <span className={'flex items-center gap-2'}>
-        <span>Or Click Here, son</span>
-        <Upload size={'xs'} color={'currentColor'} />
-      </span>
-    ),
   },
 };

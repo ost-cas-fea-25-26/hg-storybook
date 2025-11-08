@@ -11,7 +11,7 @@ export default function Input({ icon, error, ...props }: Props) {
   const id = useId();
   const errorId = error ? `${id}-error` : undefined;
   const defaultStyle =
-    'border-none rounded-md p-4 text-slate-700 text-base placeholder:text-slate-300 placeholder:font-medium font-semibold disabled:bg-slate-50 disabled:cursor-not-allowed disabled:hover:outline-slate-200';
+    'border-none rounded-md p-4 text-slate-700 text-base placeholder:text-slate-300 placeholder:font-medium font-semibold custom-disabled';
 
   const hasIconClassNames = icon ? 'pr-10' : '';
   const hasErrorClassNames = error
