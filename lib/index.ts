@@ -31,6 +31,7 @@ export { default as IconButton } from './button/IconButton';
 export { default as Link } from './link/Link';
 export { default as Toggle } from './toggle/Toggle';
 export { default as TimedButton } from './timedButton/TimedButton';
+export { default as Avatar } from './avatar/Avatar';
 export { default as Modal } from './modal/Modal';
 export { default as Input } from './input/Input';
 export { default as Textarea } from './textarea/Textarea';
