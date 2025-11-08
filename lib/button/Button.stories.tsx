@@ -6,11 +6,11 @@ import React from 'react';
 
 const sampleChildren = {
   Text: 'Sample Label',
-  Icon: <Mumble size={'m'} />,
+  Icon: <Mumble size={'s'} color={'currentColor'} />,
   Both: (
     <>
       <span>Sample Label</span>
-      <Mumble size={'m'} color={'currentColor'} />
+      <Mumble size={'s'} color={'currentColor'} />
     </>
   ),
 };
@@ -35,6 +35,8 @@ export const Standard: Story = {
     textColor: 'white',
     size: 'small',
     children: 'Button Label',
+    disabled: false,
+    rounded: false,
   },
 };
 

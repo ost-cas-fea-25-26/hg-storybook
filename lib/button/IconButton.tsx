@@ -28,6 +28,7 @@ const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
 
 export default function IconButton({
   icon,
+  name,
   children,
   size = 'medium',
   background,
@@ -40,6 +41,8 @@ export default function IconButton({
 
   return (
     <HeadlessButton
+      name={name}
+      aria-label={name}
       disabled={disabled}
       onClick={(e) => {
         if (disabled) return;

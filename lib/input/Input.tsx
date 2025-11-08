@@ -4,11 +4,14 @@ import React, { ComponentProps, MouseEventHandler, ReactNode, useId } from 'reac
 
 export interface Props extends ComponentProps<'input'> {
   icon?: ReactNode;
-  iconAction?: MouseEventHandler<HTMLButtonElement>;
+  iconAction?: {
+    name: string;
+    action: MouseEventHandler<HTMLButtonElement>;
+  };
   error?: string;
 }
 
-export default function Input({ icon, error, iconAction, ...props }: Props) {
+export default function Input({ icon, error, iconAction, type, ...props }: Props) {
   const id = useId();
   const errorId = error ? `${id}-error` : undefined;
   const defaultStyle =
@@ -26,15 +29,16 @@ export default function Input({ icon, error, iconAction, ...props }: Props) {
           className={clsx(defaultStyle, hasIconClassNames, hasErrorClassNames)}
           aria-invalid={!!error}
           aria-describedby={errorId}
+          type={type}
           {...props}
         />
         {icon && (
           <Button
-            aria-label="input field icon button"
+            aria-label={iconAction?.name}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              iconAction?.(e);
+              iconAction?.action(e);
             }}
             className={clsx(
               'border-0 p-0 m-0 bg-transparent absolute top-1/2 right-4 -translate-y-1/2  rounded-sm',

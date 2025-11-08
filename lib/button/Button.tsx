@@ -8,6 +8,7 @@ import React, { MouseEventHandler, ReactNode } from 'react';
 
 export type ButtonProps = {
   background: ButtonVariant;
+  name?: string;
   textColor?: TextColor;
   size: ComponentSize;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
@@ -25,20 +26,24 @@ const sizes: Record<ComponentSize, string> = {
 
 export default function Button({
   children,
+  name,
   size = 'medium',
   background,
   textColor = 'white',
   onClick,
   rounded,
-                                 width,
-                                 disabled,
-                               }: ButtonProps) {
-  const defaultStyle = 'transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
+  width,
+  disabled,
+}: ButtonProps) {
+  const defaultStyle = 'transition-all duration-500 font-medium font-sans font-600 flex items-center gap-2';
 
   const roundedClassName = rounded ? 'rounded-full' : 'rounded-md';
   return (
     <HeadlessButton
-      onClick={(e) => !disabled && onClick?.(e)}
+      name={name}
+      aria-label={name}
+      disabled={disabled}
+      onClick={(e) => onClick?.(e)}
       className={clsx(
         defaultStyle,
         VARIANTS.background[background],
@@ -46,7 +51,7 @@ export default function Button({
         width,
         roundedClassName,
         sizes[size],
-        disabled ? 'cursor-not-allowed opacity-50 ' : 'cursor-pointer'
+        disabled ? 'custom-disabled' : 'cursor-pointer'
       )}
     >
       {children}

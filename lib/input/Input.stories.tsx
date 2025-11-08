@@ -56,7 +56,10 @@ export const Clearable: Story = {
         {...args}
         placeholder={'Type here...'}
         value={value}
-        iconAction={clear}
+        iconAction={{
+          name: 'Clear input',
+          action: clear,
+        }}
         onChange={(e) => setValue(e.target.value)}
       />
     );
@@ -86,7 +89,10 @@ export const Password: Story = {
         placeholder={'Type here...'}
         type={type}
         value={value}
-        iconAction={toggleShowPassword}
+        iconAction={{
+          name: 'toggle password visibility',
+          action: toggleShowPassword,
+        }}
         onChange={(e) => setValue(e.target.value)}
       />
     );
