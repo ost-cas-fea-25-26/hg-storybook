@@ -47,9 +47,9 @@
   --color-contrast-100: #fce7f3;
   --color-contrast-50: #fdf2f8;
 
-  --gradient-50-50: 90deg, var(--color-contrast-500) 0%, var(--color-primary-600) 100%;
-  --gradient-30-70: 90deg, var(--color-contrast-500) -12.56%, var(--color-primary-600) 62.92%;
-  --gradient-20-80: 90deg, var(--color-contrast-500) -15.33%, var(--color-primary-600) 38.87%;
+  --gradient-50-50: 90deg, var(--color-contrast-600) 0%, var(--color-primary-600) 100%;
+  --gradient-30-70: 90deg, var(--color-contrast-600) -12.56%, var(--color-primary-600) 62.92%;
+  --gradient-20-80: 90deg, var(--color-contrast-600) -15.33%, var(--color-primary-600) 38.87%;
 
   --font-sans: 'Poppins';
 
