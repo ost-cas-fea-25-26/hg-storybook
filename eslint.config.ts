@@ -1,8 +1,8 @@
-import tsEslintParser from '@typescript-eslint/parser';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import { defineConfig, globalIgnores } from 'eslint/config';
-import globals from 'globals';
+import tsEslintParser from '@typescript-eslint/parser'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import globals from 'globals'
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -25,4 +25,4 @@ export default defineConfig([
     ignores: ['/dist', '.idea', '/node_modules/*', '/storybook-static/*'],
     files: ['**/*.ts', '**/*.tsx'],
   },
-]);
+])

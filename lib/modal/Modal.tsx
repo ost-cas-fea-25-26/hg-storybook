@@ -1,34 +1,32 @@
-import Button from '@/button/Button.tsx';
-import { ButtonVariant } from '@/button/common/types.ts';
-import { TextColor } from '@/common/types.ts';
-import { Cross } from '@/icon';
-import { Loader } from '@/index.ts';
-import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
-import clsx from 'clsx';
-import React, { ReactNode, useEffect, useState } from 'react';
+import Button from '@/button/Button.tsx'
+import { ButtonVariant } from '@/button/common/types.ts'
+import { Cross } from '@/icon'
+import { Loader } from '@/index.ts'
+import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import clsx from 'clsx'
+import React, { ReactNode, useEffect, useState } from 'react'
 
 export type ModalAction<T = unknown, E = T> = {
-  text: string;
+  text: string
   button: {
-    type?: 'button' | 'submit' | 'reset';
-    background: ButtonVariant;
-    textColor: TextColor;
-  };
-  action?: () => void | Promise<T>;
-  disabled?: boolean;
-  variant?: 'primary' | 'secondary' | 'gradient';
-  onSuccess?: (promiseResult: T) => void;
-  onError?: (promiseResult: E) => void;
-};
+    type?: 'button' | 'submit' | 'reset'
+    variant: ButtonVariant
+  }
+  action?: () => void | Promise<T>
+  disabled?: boolean
+  variant?: 'primary' | 'secondary' | 'gradient'
+  onSuccess?: (promiseResult: T) => void
+  onError?: (promiseResult: E) => void
+}
 
 type Props<T = unknown, E = T> = {
-  onClose: () => void;
-  children: ReactNode;
-  onOpen?: () => void;
-  actions?: ModalAction<T, E>[];
-  title?: string;
-  'data-testid'?: string;
-};
+  onClose: () => void
+  children: ReactNode
+  onOpen?: () => void
+  actions?: ModalAction<T, E>[]
+  title?: string
+  'data-testid'?: string
+}
 
 export default function Modal<T = unknown, E = T>({
   onClose,
@@ -38,12 +36,12 @@ export default function Modal<T = unknown, E = T>({
   children,
   'data-testid': testId,
 }: Props<T, E>) {
-  const [pending, setPending] = useState<boolean>(false);
+  const [pending, setPending] = useState<boolean>(false)
   useEffect(() => {
-    onOpen();
-  }, []);
+    onOpen()
+  }, [])
 
-  const hasButtons = Boolean(actions.length);
+  const hasButtons = Boolean(actions.length)
   return (
     <Dialog
       open
@@ -83,37 +81,36 @@ export default function Modal<T = unknown, E = T>({
             {hasButtons &&
               actions.map(({ text, action, disabled, onSuccess, onError, button }) => {
                 const onClick = () => {
-                  const maybePromise = action?.();
+                  const maybePromise = action?.()
                   if (typeof maybePromise?.then === 'function') {
-                    setPending(true);
+                    setPending(true)
                     maybePromise
                       .then((result: T) => {
-                        setPending(false);
-                        onSuccess?.(result);
+                        setPending(false)
+                        onSuccess?.(result)
                       })
                       .catch((error: E) => {
-                        setPending(false);
-                        onError?.(error);
-                      });
+                        setPending(false)
+                        onError?.(error)
+                      })
                   }
-                };
+                }
 
                 return (
                   <Button
                     key={text}
-                    background={button.background || 'primary'}
-                    textColor={button.textColor || 'white'}
+                    variant={button.variant || 'primary'}
                     size={'small'}
                     onClick={onClick}
                     disabled={disabled}
                   >
                     {pending ? <Loader size={'small'} color={'white'} /> : text}
                   </Button>
-                );
+                )
               })}
           </div>
         )}
       </DialogPanel>
     </Dialog>
-  );
+  )
 }

@@ -1,20 +1,20 @@
-import TimedButton from './TimedButton';
-import { Cross, Repost, Tick } from '@/icon';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+import TimedButton from './TimedButton'
+import { Cross, Repost, Tick } from '@/icon'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 const meta = {
   component: TimedButton,
-} satisfies Meta<typeof TimedButton>;
+} satisfies Meta<typeof TimedButton>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
     animationDuration: 1500,
     onClick: (_e) => {
-      console.log('hello world');
+      console.log('hello world')
     },
     childrenOnClick: (
       <>
@@ -29,7 +29,7 @@ export const Simple: Story = {
       </>
     ),
   },
-};
+}
 
 export const Async: Story = {
   args: {
@@ -37,10 +37,10 @@ export const Async: Story = {
     onClick: async (_e) => {
       return await new Promise((resolve) => {
         setTimeout(() => {
-          console.log('hello world async');
-          resolve();
-        }, 1500);
-      });
+          console.log('hello world async')
+          resolve()
+        }, 1500)
+      })
     },
     childrenOnClick: (
       <>
@@ -55,7 +55,7 @@ export const Async: Story = {
       </>
     ),
   },
-};
+}
 
 export const AsyncWithError: Story = {
   args: {
@@ -63,9 +63,9 @@ export const AsyncWithError: Story = {
     onClick: async (_e) => {
       return await new Promise((_, reject) => {
         setTimeout(() => {
-          reject();
-        }, 1500);
-      });
+          reject()
+        }, 1500)
+      })
     },
     childrenOnError: (
       <span className={'text-red-400 flex items-center gap-2'}>
@@ -86,7 +86,7 @@ export const AsyncWithError: Story = {
       </>
     ),
   },
-};
+}
 
 export const Disabled: Story = {
   args: {
@@ -106,4 +106,4 @@ export const Disabled: Story = {
       </>
     ),
   },
-};
+}

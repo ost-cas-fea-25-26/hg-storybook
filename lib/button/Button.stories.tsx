@@ -1,8 +1,8 @@
-import Button from './Button';
-import IconButton from '@/button/IconButton.tsx';
-import { Mumble, Upload } from '@/icon';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+import Button from './Button'
+import IconButton from '@/button/IconButton.tsx'
+import { Mumble, Upload } from '@/icon'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 const sampleChildren = {
   Text: 'Sample Label',
@@ -13,7 +13,7 @@ const sampleChildren = {
       <Mumble size={'s'} color={'currentColor'} />
     </>
   ),
-};
+}
 
 const meta = {
   component: Button,
@@ -24,21 +24,20 @@ const meta = {
       mapping: sampleChildren,
     },
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Button>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Standard: Story = {
   args: {
-    background: 'primary',
-    textColor: 'white',
+    variant: 'primary',
     size: 'small',
     children: 'Button Label',
     disabled: false,
     rounded: false,
   },
-};
+}
 
 export const Icon: Story = {
   parameters: {
@@ -47,8 +46,7 @@ export const Icon: Story = {
     },
   },
   args: {
-    background: 'primary',
-    textColor: 'white',
+    variant: 'primary',
     size: 'medium',
     children: 'Label',
     disabled: false,
@@ -58,6 +56,6 @@ export const Icon: Story = {
       <IconButton icon={<Upload />} {...args}>
         {args.children}
       </IconButton>
-    );
+    )
   },
-};
+}

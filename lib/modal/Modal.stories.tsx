@@ -1,10 +1,10 @@
-import { Button, Input, Label, Textarea } from '@/index.ts';
-import FileInput from '@/input/dragAndDrop/FileInput.tsx';
-import Modal, { ModalAction } from '@/modal/Modal.tsx';
-import { Field } from '@headlessui/react';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useMemo, useState } from 'react';
-import { expect, waitFor, within } from 'storybook/test';
+import { Button, Input, Label, Textarea } from '@/index.ts'
+import FileInput from '@/input/dragAndDrop/FileInput.tsx'
+import Modal, { ModalAction } from '@/modal/Modal.tsx'
+import { Field } from '@headlessui/react'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React, { useMemo, useState } from 'react'
+import { expect, waitFor, within } from 'storybook/test'
 
 const meta = {
   component: Modal,
@@ -13,10 +13,10 @@ const meta = {
       exclude: ['data-testid', 'children', 'onClose', 'onOpen', 'actions'],
     },
   },
-} satisfies Meta<typeof Modal>;
+} satisfies Meta<typeof Modal>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
@@ -26,25 +26,25 @@ export const Simple: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
     return (
       <>
-        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && <Modal {...args} onClose={() => setShowModal(false)}></Modal>}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const button = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(button);
-    await expect(await document.findByText('Simple Sample Modal')).toBeVisible();
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const button = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(button)
+    await expect(await document.findByText('Simple Sample Modal')).toBeVisible()
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
   },
-};
+}
 
 export const AsyncAction: Story = {
   args: {
@@ -54,36 +54,35 @@ export const AsyncAction: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
 
     const actions: ModalAction<void>[] = useMemo(
       () => [
         {
           text: 'Speichern',
           button: {
-            background: 'primary',
-            textColor: 'white',
+            variant: 'primary',
           },
           action: () => {
-            setShowSuccessMessage(false);
+            setShowSuccessMessage(false)
             return new Promise<void>((resolve) => {
               setTimeout(() => {
-                resolve();
-              }, 1500);
-            });
+                resolve()
+              }, 1500)
+            })
           },
           onSuccess: () => {
-            setShowSuccessMessage(true);
+            setShowSuccessMessage(true)
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
-        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && (
@@ -93,23 +92,23 @@ export const AsyncAction: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const openButton = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(openButton);
-    await expect(await document.findByText('Async Action Modal')).toBeVisible();
-    const saveButton = await document.findByText('Speichern');
-    await userEvent.click(saveButton);
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const openButton = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(openButton)
+    await expect(await document.findByText('Async Action Modal')).toBeVisible()
+    const saveButton = await document.findByText('Speichern')
+    await userEvent.click(saveButton)
     await waitFor(
       async () => expect(await document.findByText('Einstellungen erfolgreich gespeichert!!')).toBeVisible(),
       { timeout: 5000 }
-    );
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
+    )
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
   },
-};
+}
 
 export const AsyncActionWithError: Story = {
   args: {
@@ -119,36 +118,35 @@ export const AsyncActionWithError: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false)
 
     const actions: ModalAction<void>[] = useMemo(
       () => [
         {
           text: 'Speichern',
           button: {
-            background: 'primary',
-            textColor: 'white',
+            variant: 'primary',
           },
           action: () => {
-            setShowErrorMessage(false);
+            setShowErrorMessage(false)
             return new Promise<void>((_, reject) => {
               setTimeout(() => {
-                reject();
-              }, 1500);
-            });
+                reject()
+              }, 1500)
+            })
           },
           onError: () => {
-            setShowErrorMessage(true);
+            setShowErrorMessage(true)
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
-        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && (
@@ -158,32 +156,32 @@ export const AsyncActionWithError: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const openButton = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(openButton);
-    await expect(await document.findByText('Async Action Error')).toBeVisible();
-    const saveButton = await document.findByText('Speichern');
-    await userEvent.click(saveButton);
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const openButton = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(openButton)
+    await expect(await document.findByText('Async Action Error')).toBeVisible()
+    const saveButton = await document.findByText('Speichern')
+    await userEvent.click(saveButton)
     await waitFor(
       async () => expect(await document.findByText('Einstellungen konnten nicht gespeichert werden!!')).toBeVisible(),
       { timeout: 5000 }
-    );
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
+    )
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
   },
-};
+}
 
 type SampleResponseType = {
-  status: number;
+  status: number
   body: {
-    id: string;
-    name: string;
-    value: Object;
-  };
-};
+    id: string
+    name: string
+    value: Object
+  }
+}
 
 export const TypedAsyncAction: Story = {
   args: {
@@ -193,15 +191,14 @@ export const TypedAsyncAction: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [data, setData] = useState<SampleResponseType | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [data, setData] = useState<SampleResponseType | null>(null)
     const actions: ModalAction<SampleResponseType>[] = useMemo(
       () => [
         {
           text: 'Speichern',
           button: {
-            background: 'primary',
-            textColor: 'white',
+            variant: 'primary',
           },
           action: () => {
             return new Promise<SampleResponseType>((resolve) => {
@@ -212,24 +209,24 @@ export const TypedAsyncAction: Story = {
                   name: 'Patrick',
                   value: {},
                 },
-              };
+              }
               setTimeout(() => {
-                resolve(sampleResponse);
-              }, 1500);
-            });
+                resolve(sampleResponse)
+              }, 1500)
+            })
           },
           onSuccess: (result) => {
-            setData(result);
-            setShowModal(false);
+            setData(result)
+            setShowModal(false)
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
-        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {data && (
@@ -244,9 +241,9 @@ export const TypedAsyncAction: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
-};
+}
 
 export const MultiAction: Story = {
   args: {
@@ -256,40 +253,38 @@ export const MultiAction: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>('');
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [message, setMessage] = useState<string>('')
 
     const actions: ModalAction<void>[] = useMemo(
       () => [
         {
           text: 'Bestätigen',
           button: {
-            background: 'primary',
-            textColor: 'white',
+            variant: 'primary',
           },
           action: () => {
-            setShowModal(false);
-            setMessage('Bestätigt');
+            setShowModal(false)
+            setMessage('Bestätigt')
           },
         },
         {
           text: 'Abbrechen',
           button: {
-            background: 'secondary',
-            textColor: 'white',
+            variant: 'secondary',
           },
           action: () => {
-            setShowModal(false);
-            setMessage('Abgebrochen');
+            setShowModal(false)
+            setMessage('Abgebrochen')
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
-        <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} variant={'gradient'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {message}
@@ -299,19 +294,19 @@ export const MultiAction: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const openButton = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(openButton);
-    const header = await document.findByText('Multi Action Modal');
-    await expect(header).toBeVisible();
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
-    await expect(header).not.toBeVisible();
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const openButton = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(openButton)
+    const header = await document.findByText('Multi Action Modal')
+    await expect(header).toBeVisible()
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
+    await expect(header).not.toBeVisible()
   },
-};
+}
 
 export const FormModal: Story = {
   args: {
@@ -320,32 +315,30 @@ export const FormModal: Story = {
     children: <></>,
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
 
     const actions: ModalAction[] = [
       {
         text: 'Abbrechen',
         button: {
-          background: 'secondary',
-          textColor: 'white',
+          variant: 'secondary',
         },
         action: () => {
-          setShowModal(false);
+          setShowModal(false)
         },
       },
       {
         text: 'Bestätigen',
         button: {
           type: 'submit',
-          background: 'primary',
-          textColor: 'white',
+          variant: 'primary',
         },
       },
-    ];
+    ]
 
     return (
       <>
-        <Button size={'medium'} background={'primary'} textColor={'white'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} variant={'primary'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {showModal && (
@@ -387,9 +380,9 @@ export const FormModal: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
-};
+}
 
 export const FileUploadModal: Story = {
   args: {
@@ -398,26 +391,25 @@ export const FileUploadModal: Story = {
     children: <></>,
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [files, setFiles] = useState<File[]>([]);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [files, setFiles] = useState<File[]>([])
 
     const actions: ModalAction[] = [
       {
         text: 'Bestätigen',
         button: {
-          background: 'white',
-          textColor: 'secondary',
+          variant: 'white',
         },
         disabled: files.length === 0,
         action: () => {
-          setShowModal(false);
+          setShowModal(false)
         },
       },
-    ];
+    ]
 
     return (
       <>
-        <Button size={'medium'} background={'primary'} textColor={'white'} onClick={() => setShowModal(true)}>
+        <Button size={'medium'} variant={'primary'} onClick={() => setShowModal(true)}>
           Open Modal
         </Button>
         {files.map((f) => (
@@ -436,6 +428,6 @@ export const FileUploadModal: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
-};
+}

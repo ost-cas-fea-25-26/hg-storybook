@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
-import { Tab, TabGroup, TabList, TabPanel } from './Tabs';
+import { Tab, TabGroup, TabList, TabPanel } from './Tabs'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 const meta = {
   component: TabGroup,
-} satisfies Meta<typeof TabGroup>;
+} satisfies Meta<typeof TabGroup>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
@@ -30,16 +30,16 @@ export const Simple: Story = {
   },
   parameters: {
     controls: {
-      exclude: ['children', 'onChange']
-    }
-  }
-};
+      exclude: ['children', 'onChange'],
+    },
+  },
+}
 
 export const WithOnChangeEvent: Story = {
   args: {
     defaultIndex: 0,
     onChange: (index: number) => {
-      alert(`Tab changed to index: ${index}`);
+      alert(`Tab changed to index: ${index}`)
     },
     children: (
       <>
@@ -66,4 +66,4 @@ export const WithOnChangeEvent: Story = {
       exclude: ['children'],
     },
   },
-};
+}

@@ -1,5 +1,5 @@
-import { withoutVitePlugins } from '@storybook/builder-vite';
-import type { StorybookConfig } from '@storybook/react-vite';
+import { withoutVitePlugins } from '@storybook/builder-vite'
+import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
   stories: ['../lib/**/*.mdx', '../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -8,16 +8,16 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-vitest',
     '@storybook/addon-a11y',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
   ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
   async viteFinal(config) {
-    config.plugins = await withoutVitePlugins(config.plugins, ['vite:dts']);
+    config.plugins = await withoutVitePlugins(config.plugins, ['vite:dts'])
 
-    return config;
+    return config
   },
-};
-export default config;
+}
+export default config
