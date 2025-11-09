@@ -1,14 +1,14 @@
-import { ButtonProps } from '@/button/Button.tsx';
-import { VARIANTS } from '@/button/common/styleMappings.ts';
-import { TEXT } from '@/common/constants.ts';
-import { ComponentSize, IconSize } from '@/common/types.ts';
-import { IconProps } from '@/icon';
-import { Button as HeadlessButton } from '@headlessui/react';
-import clsx from 'clsx';
-import React, { ReactElement } from 'react';
+import { ButtonProps } from '@/button/Button.tsx'
+import { VARIANTS } from '@/button/common/styleMappings.ts'
+import { TEXT } from '@/common/constants.ts'
+import { ComponentSize, IconSize } from '@/common/types.ts'
+import { IconProps } from '@/icon'
+import { Button as HeadlessButton } from '@headlessui/react'
+import clsx from 'clsx'
+import React, { ReactElement } from 'react'
 
 interface Props extends ButtonProps {
-  icon: ReactElement<IconProps>;
+  icon: ReactElement<IconProps>
 }
 
 const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
@@ -24,7 +24,7 @@ const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
     class: 'py-4 px-5 flex-col min-w-25 rounded-md',
     icon: 'm',
   },
-};
+}
 
 export default function IconButton({
   icon,
@@ -37,7 +37,7 @@ export default function IconButton({
   disabled,
 }: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
+    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer'
 
   return (
     <HeadlessButton
@@ -45,8 +45,8 @@ export default function IconButton({
       aria-label={name}
       disabled={disabled}
       onClick={(e) => {
-        if (disabled) return;
-        onClick?.(e);
+        if (disabled) return
+        onClick?.(e)
       }}
       className={clsx(defaultStyle, VARIANTS.background[background], TEXT[textColor], sizes[size].class)}
     >
@@ -58,5 +58,5 @@ export default function IconButton({
       </div>
       {children}
     </HeadlessButton>
-  );
+  )
 }

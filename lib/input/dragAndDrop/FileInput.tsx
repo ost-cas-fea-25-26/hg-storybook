@@ -1,32 +1,32 @@
-import { ComponentSize, IconSize } from '@/common/types.ts';
-import { Upload } from '@/icon';
-import { Button, Loader } from '@/index.ts';
-import Input from '@/input/Input.tsx';
-import clsx from 'clsx';
-import React, { ReactNode } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { ComponentSize, IconSize } from '@/common/types.ts'
+import { Upload } from '@/icon'
+import { Button, Loader } from '@/index.ts'
+import Input from '@/input/Input.tsx'
+import clsx from 'clsx'
+import React, { ReactNode } from 'react'
+import { useDropzone } from 'react-dropzone'
 
 export interface Props {
-  label: string;
-  size: ComponentSize;
-  files: File[];
-  setFiles: (files: File[]) => void;
+  label: string
+  size: ComponentSize
+  files: File[]
+  setFiles: (files: File[]) => void
 
-  description?: string;
-  dragAndDrop?: boolean;
-  onDrop?: (files: File[]) => void;
-  reset?: () => void;
-  disabled?: boolean;
-  loading?: boolean;
-  buttonContent?: ReactNode;
+  description?: string
+  dragAndDrop?: boolean
+  onDrop?: (files: File[]) => void
+  reset?: () => void
+  disabled?: boolean
+  loading?: boolean
+  buttonContent?: ReactNode
 }
 
 type FileInputSizeMapping = {
-  container: string;
-  title: string;
-  subtitle: string;
-  icon: IconSize;
-};
+  container: string
+  title: string
+  subtitle: string
+  icon: IconSize
+}
 
 const sizes: Record<ComponentSize, FileInputSizeMapping> = {
   small: {
@@ -47,7 +47,7 @@ const sizes: Record<ComponentSize, FileInputSizeMapping> = {
     title: 'text-xl',
     subtitle: 'text-l',
   },
-};
+}
 
 export default function FileInput({
   label,
@@ -63,10 +63,10 @@ export default function FileInput({
   dragAndDrop = true,
   ...props
 }: Props) {
-  const { getRootProps, open, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, open, getInputProps, isDragActive } = useDropzone({ onDrop })
 
-  const hasButton = Boolean(buttonContent);
-  const showDisabledClasses = loading || disabled;
+  const hasButton = Boolean(buttonContent)
+  const showDisabledClasses = loading || disabled
 
   return (
     <div className={clsx('w-fit max-w-full')}>
@@ -112,5 +112,5 @@ export default function FileInput({
         </Button>
       )}
     </div>
-  );
+  )
 }

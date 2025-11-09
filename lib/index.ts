@@ -1,4 +1,4 @@
-import './styles/index.css';
+import './styles/index.css'
 
 export {
   ArrowDown,
@@ -25,16 +25,16 @@ export {
   Tick,
   Time,
   Upload,
-} from './icon';
-export { default as Button } from './button/Button';
-export { default as IconButton } from './button/IconButton';
-export { default as Link } from './link/Link';
-export { default as Toggle } from './toggle/Toggle';
-export { default as TimedButton } from './timedButton/TimedButton';
-export { default as Avatar } from './avatar/Avatar';
-export { default as Modal } from './modal/Modal';
-export { default as Input } from './input/Input';
-export { default as Textarea } from './textarea/Textarea';
-export { default as Loader } from './loader/Loader';
-export { default as Label } from './label/Label';
-export { Field } from '@headlessui/react';
+} from './icon'
+export { default as Button } from './button/Button'
+export { default as IconButton } from './button/IconButton'
+export { default as Link } from './link/Link'
+export { default as Toggle } from './toggle/Toggle'
+export { default as TimedButton } from './timedButton/TimedButton'
+export { default as Avatar } from './avatar/Avatar'
+export { default as Modal } from './modal/Modal'
+export { default as Input } from './input/Input'
+export { default as Textarea } from './textarea/Textarea'
+export { default as Loader } from './loader/Loader'
+export { default as Label } from './label/Label'
+export { Field } from '@headlessui/react'

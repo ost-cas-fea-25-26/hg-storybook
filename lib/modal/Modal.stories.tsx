@@ -1,10 +1,10 @@
-import { Button, Input, Label, Textarea } from '@/index.ts';
-import FileInput from '@/input/dragAndDrop/FileInput.tsx';
-import Modal, { ModalAction } from '@/modal/Modal.tsx';
-import { Field } from '@headlessui/react';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useMemo, useState } from 'react';
-import { expect, waitFor, within } from 'storybook/test';
+import { Button, Input, Label, Textarea } from '@/index.ts'
+import FileInput from '@/input/dragAndDrop/FileInput.tsx'
+import Modal, { ModalAction } from '@/modal/Modal.tsx'
+import { Field } from '@headlessui/react'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React, { useMemo, useState } from 'react'
+import { expect, waitFor, within } from 'storybook/test'
 
 const meta = {
   component: Modal,
@@ -13,10 +13,10 @@ const meta = {
       exclude: ['data-testid', 'children', 'onClose', 'onOpen', 'actions'],
     },
   },
-} satisfies Meta<typeof Modal>;
+} satisfies Meta<typeof Modal>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
@@ -26,7 +26,7 @@ export const Simple: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
     return (
       <>
         <Button size={'medium'} background={'gradient'} onClick={() => setShowModal(true)}>
@@ -34,17 +34,17 @@ export const Simple: Story = {
         </Button>
         {showModal && <Modal {...args} onClose={() => setShowModal(false)}></Modal>}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const button = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(button);
-    await expect(await document.findByText('Simple Sample Modal')).toBeVisible();
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const button = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(button)
+    await expect(await document.findByText('Simple Sample Modal')).toBeVisible()
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
   },
-};
+}
 
 export const AsyncAction: Story = {
   args: {
@@ -54,8 +54,8 @@ export const AsyncAction: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false)
 
     const actions: ModalAction<void>[] = useMemo(
       () => [
@@ -66,20 +66,20 @@ export const AsyncAction: Story = {
             textColor: 'white',
           },
           action: () => {
-            setShowSuccessMessage(false);
+            setShowSuccessMessage(false)
             return new Promise<void>((resolve) => {
               setTimeout(() => {
-                resolve();
-              }, 1500);
-            });
+                resolve()
+              }, 1500)
+            })
           },
           onSuccess: () => {
-            setShowSuccessMessage(true);
+            setShowSuccessMessage(true)
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
@@ -93,23 +93,23 @@ export const AsyncAction: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const openButton = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(openButton);
-    await expect(await document.findByText('Async Action Modal')).toBeVisible();
-    const saveButton = await document.findByText('Speichern');
-    await userEvent.click(saveButton);
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const openButton = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(openButton)
+    await expect(await document.findByText('Async Action Modal')).toBeVisible()
+    const saveButton = await document.findByText('Speichern')
+    await userEvent.click(saveButton)
     await waitFor(
       async () => expect(await document.findByText('Einstellungen erfolgreich gespeichert!!')).toBeVisible(),
       { timeout: 5000 }
-    );
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
+    )
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
   },
-};
+}
 
 export const AsyncActionWithError: Story = {
   args: {
@@ -119,8 +119,8 @@ export const AsyncActionWithError: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false)
 
     const actions: ModalAction<void>[] = useMemo(
       () => [
@@ -131,20 +131,20 @@ export const AsyncActionWithError: Story = {
             textColor: 'white',
           },
           action: () => {
-            setShowErrorMessage(false);
+            setShowErrorMessage(false)
             return new Promise<void>((_, reject) => {
               setTimeout(() => {
-                reject();
-              }, 1500);
-            });
+                reject()
+              }, 1500)
+            })
           },
           onError: () => {
-            setShowErrorMessage(true);
+            setShowErrorMessage(true)
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
@@ -158,32 +158,32 @@ export const AsyncActionWithError: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const openButton = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(openButton);
-    await expect(await document.findByText('Async Action Error')).toBeVisible();
-    const saveButton = await document.findByText('Speichern');
-    await userEvent.click(saveButton);
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const openButton = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(openButton)
+    await expect(await document.findByText('Async Action Error')).toBeVisible()
+    const saveButton = await document.findByText('Speichern')
+    await userEvent.click(saveButton)
     await waitFor(
       async () => expect(await document.findByText('Einstellungen konnten nicht gespeichert werden!!')).toBeVisible(),
       { timeout: 5000 }
-    );
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
+    )
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
   },
-};
+}
 
 type SampleResponseType = {
-  status: number;
+  status: number
   body: {
-    id: string;
-    name: string;
-    value: Object;
-  };
-};
+    id: string
+    name: string
+    value: Object
+  }
+}
 
 export const TypedAsyncAction: Story = {
   args: {
@@ -193,8 +193,8 @@ export const TypedAsyncAction: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [data, setData] = useState<SampleResponseType | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [data, setData] = useState<SampleResponseType | null>(null)
     const actions: ModalAction<SampleResponseType>[] = useMemo(
       () => [
         {
@@ -212,20 +212,20 @@ export const TypedAsyncAction: Story = {
                   name: 'Patrick',
                   value: {},
                 },
-              };
+              }
               setTimeout(() => {
-                resolve(sampleResponse);
-              }, 1500);
-            });
+                resolve(sampleResponse)
+              }, 1500)
+            })
           },
           onSuccess: (result) => {
-            setData(result);
-            setShowModal(false);
+            setData(result)
+            setShowModal(false)
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
@@ -244,9 +244,9 @@ export const TypedAsyncAction: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
-};
+}
 
 export const MultiAction: Story = {
   args: {
@@ -256,8 +256,8 @@ export const MultiAction: Story = {
     'data-testid': 'sampleModal',
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>('');
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [message, setMessage] = useState<string>('')
 
     const actions: ModalAction<void>[] = useMemo(
       () => [
@@ -268,8 +268,8 @@ export const MultiAction: Story = {
             textColor: 'white',
           },
           action: () => {
-            setShowModal(false);
-            setMessage('Bestätigt');
+            setShowModal(false)
+            setMessage('Bestätigt')
           },
         },
         {
@@ -279,13 +279,13 @@ export const MultiAction: Story = {
             textColor: 'white',
           },
           action: () => {
-            setShowModal(false);
-            setMessage('Abgebrochen');
+            setShowModal(false)
+            setMessage('Abgebrochen')
           },
         },
       ],
       []
-    );
+    )
 
     return (
       <>
@@ -299,19 +299,19 @@ export const MultiAction: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
   play: async ({ canvasElement, userEvent }) => {
-    const document = within(canvasElement.parentNode as HTMLElement);
-    const openButton = document.getByRole('button', { name: 'Open Modal' });
-    await userEvent.click(openButton);
-    const header = await document.findByText('Multi Action Modal');
-    await expect(header).toBeVisible();
-    const closeButton = await document.findByTestId('sampleModal-close-button');
-    await userEvent.click(closeButton);
-    await expect(header).not.toBeVisible();
+    const document = within(canvasElement.parentNode as HTMLElement)
+    const openButton = document.getByRole('button', { name: 'Open Modal' })
+    await userEvent.click(openButton)
+    const header = await document.findByText('Multi Action Modal')
+    await expect(header).toBeVisible()
+    const closeButton = await document.findByTestId('sampleModal-close-button')
+    await userEvent.click(closeButton)
+    await expect(header).not.toBeVisible()
   },
-};
+}
 
 export const FormModal: Story = {
   args: {
@@ -320,7 +320,7 @@ export const FormModal: Story = {
     children: <></>,
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false)
 
     const actions: ModalAction[] = [
       {
@@ -330,7 +330,7 @@ export const FormModal: Story = {
           textColor: 'white',
         },
         action: () => {
-          setShowModal(false);
+          setShowModal(false)
         },
       },
       {
@@ -341,7 +341,7 @@ export const FormModal: Story = {
           textColor: 'white',
         },
       },
-    ];
+    ]
 
     return (
       <>
@@ -387,9 +387,9 @@ export const FormModal: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
-};
+}
 
 export const FileUploadModal: Story = {
   args: {
@@ -398,8 +398,8 @@ export const FileUploadModal: Story = {
     children: <></>,
   },
   render: (args) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [files, setFiles] = useState<File[]>([]);
+    const [showModal, setShowModal] = useState<boolean>(false)
+    const [files, setFiles] = useState<File[]>([])
 
     const actions: ModalAction[] = [
       {
@@ -410,10 +410,10 @@ export const FileUploadModal: Story = {
         },
         disabled: files.length === 0,
         action: () => {
-          setShowModal(false);
+          setShowModal(false)
         },
       },
-    ];
+    ]
 
     return (
       <>
@@ -436,6 +436,6 @@ export const FileUploadModal: Story = {
           </Modal>
         )}
       </>
-    );
+    )
   },
-};
+}

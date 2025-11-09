@@ -1,1 +1,1 @@
-export type ButtonVariant = 'primary' | 'secondary' | 'gradient' | 'white' | 'black';
+export type ButtonVariant = 'primary' | 'secondary' | 'gradient' | 'white' | 'black'

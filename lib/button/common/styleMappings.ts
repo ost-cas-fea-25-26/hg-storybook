@@ -15,4 +15,4 @@ export const VARIANTS = {
     secondary: 'secondary',
     gradient: 'gradient',
   },
-};
+}

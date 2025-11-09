@@ -24,9 +24,9 @@ import {
   Tick,
   Time,
   Upload,
-} from '@/icon';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+} from '@/icon'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 const IconList = function ({ size = 's', color = '#475569' }: IconProps) {
   return (
@@ -56,19 +56,19 @@ const IconList = function ({ size = 's', color = '#475569' }: IconProps) {
       <Time size={size} color={color} />
       <Upload size={size} color={color} />
     </div>
-  );
-};
+  )
+}
 
 const meta = {
   component: IconList,
-} satisfies Meta<typeof IconList>;
+} satisfies Meta<typeof IconList>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
     color: 'var(--color-primary)',
     size: 'l',
   },
-};
+}
