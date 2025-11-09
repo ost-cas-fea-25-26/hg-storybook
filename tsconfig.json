@@ -23,7 +23,7 @@
       "@/*": ["./lib/*"]
     },
     "types": ["vite/client", "vite-plugin-svgr/client"],
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
   "include": ["lib", "vite.config.ts"]
 }

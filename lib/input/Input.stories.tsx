@@ -1,17 +1,17 @@
-import Input from './Input.tsx';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import React from 'react';
+import Input from './Input.tsx'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import { useState } from 'react'
+import React from 'react'
 
 const meta = {
   component: Input,
   argTypes: {
     onChange: { action: 'changed' },
   },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Input>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Basic: Story = {
   args: {
@@ -21,10 +21,10 @@ export const Basic: Story = {
     icon: 'x',
   },
   render: (args) => {
-    const [value, setValue] = useState(args.value);
-    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+    const [value, setValue] = useState(args.value)
+    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />
   },
-};
+}
 
 export const Error: Story = {
   args: {
@@ -35,10 +35,10 @@ export const Error: Story = {
     error: 'This is an error message',
   },
   render: (args) => {
-    const [value, setValue] = useState(args.value);
-    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+    const [value, setValue] = useState(args.value)
+    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />
   },
-};
+}
 
 export const Disabled: Story = {
   args: {
@@ -49,9 +49,9 @@ export const Disabled: Story = {
     disabled: true,
   },
   render: (args) => {
-    return <Input {...args} value="" />;
+    return <Input {...args} value="" />
   },
-};
+}
 
 export const Date: Story = {
   args: {
@@ -60,7 +60,7 @@ export const Date: Story = {
     type: 'date',
   },
   render: (args) => {
-    const [value, setValue] = useState(args.value);
-    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />;
+    const [value, setValue] = useState(args.value)
+    return <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />
   },
-};
+}

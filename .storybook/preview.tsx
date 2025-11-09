@@ -1,12 +1,12 @@
-import '../lib/styles/index.css';
-import type { Decorator, StoryContext } from '@storybook/react';
-import React from 'react';
+import '../lib/styles/index.css'
+import type { Decorator, StoryContext } from '@storybook/react'
+import React from 'react'
 
 const frameDecorator: Decorator = (Story: React.FC, context: StoryContext) => {
-  const storyName = context.name;
-  const autoDescription = `This preview shows the “${storyName}” variant of the component.`;
-  document.body.style.margin = '0';
-  document.body.style.padding = '0';
+  const storyName = context.name
+  const autoDescription = `This preview shows the “${storyName}” variant of the component.`
+  document.body.style.margin = '0'
+  document.body.style.padding = '0'
 
   return (
     <div className="w-full flex justify-center p-10 bg-gray-100 min-h-[100dvh] h-auto">
@@ -16,8 +16,8 @@ const frameDecorator: Decorator = (Story: React.FC, context: StoryContext) => {
         <Story />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const preview = {
   parameters: {
@@ -37,6 +37,6 @@ const preview = {
   },
 
   decorators: [frameDecorator],
-};
+}
 
-export default preview;
+export default preview

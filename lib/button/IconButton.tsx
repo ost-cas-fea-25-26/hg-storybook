@@ -1,21 +1,21 @@
-import { VARIANTS } from '@/button/common/styleMappings.ts';
-import { IconProps, IconSize } from '@/icon';
-import { Button as HeadlessButton } from '@headlessui/react';
-import clsx from 'clsx';
-import React, { ReactElement, ReactNode } from 'react';
+import { VARIANTS } from '@/button/common/styleMappings.ts'
+import { IconProps, IconSize } from '@/icon'
+import { Button as HeadlessButton } from '@headlessui/react'
+import clsx from 'clsx'
+import React, { ReactElement, ReactNode } from 'react'
 
-type Variant = 'primary' | 'secondary' | 'gradient' | 'white' | 'black';
+type Variant = 'primary' | 'secondary' | 'gradient' | 'white' | 'black'
 
-type Size = 'medium' | 'small' | 'large';
+type Size = 'medium' | 'small' | 'large'
 type Props = {
-  background: Variant;
-  textColor?: Variant;
-  size: Size;
-  icon: ReactElement<IconProps>;
-  onClick?: () => void;
-  children?: ReactNode;
-  rounded?: boolean;
-};
+  variant: Variant
+  textColor?: Variant
+  size?: Size
+  icon: ReactElement<IconProps>
+  onClick?: () => void
+  children?: ReactNode
+  rounded?: boolean
+}
 
 const sizes: Record<Size, { icon: IconSize; class: string }> = {
   small: {
@@ -30,31 +30,21 @@ const sizes: Record<Size, { icon: IconSize; class: string }> = {
     class: 'py-4 px-5 flex-col min-w-25 rounded-md',
     icon: 'm',
   },
-};
+}
 
-export default function IconButton({
-  icon,
-  children,
-  size = 'medium',
-  background,
-  textColor = 'white',
-  onClick,
-}: Props) {
+export default function IconButton({ icon, children, size = 'medium', variant, textColor = 'white', onClick }: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer';
+    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer'
 
   return (
-    <HeadlessButton
-      onClick={onClick}
-      className={clsx(defaultStyle, VARIANTS.background[background], VARIANTS.text[textColor], sizes[size].class)}
-    >
+    <HeadlessButton onClick={onClick} className={clsx(defaultStyle, VARIANTS.button[variant], sizes[size].class)}>
       <div>
         {React.cloneElement(icon, {
-          color: VARIANTS.icon[textColor],
+          color: VARIANTS.iconButton[textColor],
           size: sizes[size].icon,
         })}
       </div>
       {children}
     </HeadlessButton>
-  );
+  )
 }

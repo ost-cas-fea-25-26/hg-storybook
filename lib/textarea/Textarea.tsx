@@ -1,20 +1,20 @@
-import { Textarea as HeadlessTextarea } from '@headlessui/react';
-import clsx from 'clsx';
-import React, { ComponentProps, useId } from 'react';
+import { Textarea as HeadlessTextarea } from '@headlessui/react'
+import clsx from 'clsx'
+import React, { ComponentProps, useId } from 'react'
 
 export interface Props extends ComponentProps<'textarea'> {
-  error?: string;
+  error?: string
 }
 
 export default function Textarea({ error, ...props }: Props) {
-  const id = useId();
-  const errorId = error ? `${id}-error` : undefined;
+  const id = useId()
+  const errorId = error ? `${id}-error` : undefined
   const defaultStyle =
-    'border-none rounded-md p-4 text-slate-700 text-base placeholder:text-slate-300 placeholder:font-medium font-medium bg-slate-100 disabled:cursor-not-allowed disabled:hover:outline-slate-200 min-h-[60px]';
+    'border-none rounded-md p-4 text-slate-700 text-base placeholder:text-slate-300 placeholder:font-medium font-medium bg-slate-100 disabled:cursor-not-allowed disabled:hover:outline-slate-200 min-h-[60px]'
 
   const hasErrorClassNames = error
     ? 'outline-2 outline-red-600'
-    : 'outline-1 outline-slate-200 hover:outline-primary-600';
+    : 'outline-1 outline-slate-200 hover:outline-primary-600'
 
   return (
     <div className="w-max">
@@ -32,5 +32,5 @@ export default function Textarea({ error, ...props }: Props) {
         </p>
       )}
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import React, { ComponentProps, ReactNode } from 'react';
+import React, { ComponentProps, ReactNode } from 'react'
 
 export interface Props extends ComponentProps<'a'> {
-  url: string;
-  children: ReactNode;
+  url: string
+  children: ReactNode
 }
 
 export default function Link({ url, children, ...props }: Props) {
@@ -10,5 +10,5 @@ export default function Link({ url, children, ...props }: Props) {
     <a className="text-primary font-semibold cursor-pointer hover:underline underline-offset-4" href={url} {...props}>
       {children}
     </a>
-  );
+  )
 }

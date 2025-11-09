@@ -1,5 +1,6 @@
 {
   "name": "hg-storybook",
+  "description": "HG Storybook Component Library for Mumble",
   "version": "0.1.1",
   "type": "module",
   "main": "./dist/index.umd.js",
@@ -101,7 +102,6 @@
     "storybook",
     "tailwind"
   ],
-  "description": "A small library of React UI components styled with Tailwind CSS.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ost-cas-fea-25-26/hg-storybook.git"
@@ -114,7 +114,7 @@
     ],
     "trailingComma": "es5",
     "tabWidth": 2,
-    "semi": true,
+    "semi": false,
     "singleQuote": true,
     "printWidth": 120,
     "endOfLine": "auto",
