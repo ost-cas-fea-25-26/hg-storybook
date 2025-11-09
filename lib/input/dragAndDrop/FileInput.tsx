@@ -72,9 +72,9 @@ export default function FileInput({
     <div className={clsx('w-fit max-w-full')}>
       <div
         className={clsx(
-          `rounded-md border-dashed border-1 border-slate-400  text-secondary/80 
+          `rounded border-dashed border-1 border-slate-400  text-slate-600/80 
           flex items-center justify-center relative p-3 text-center `,
-          showDisabledClasses ? 'custom-disabled focus:outline-0' : 'hover:bg-secondary/20 cursor-pointer',
+          showDisabledClasses ? 'custom-disabled focus:outline-0' : 'hover:bg-slate-600/20 cursor-pointer',
           hasButton && 'mb-2',
           sizes[size].container
         )}

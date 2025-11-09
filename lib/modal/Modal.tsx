@@ -51,14 +51,14 @@ export default function Modal<T = unknown, E = T>({
       autoFocus
       transition
       onClose={onClose}
-      className={'@container fixed inset-0 w-screen flex items-center justify-center'}
+      className={'container fixed inset-0 w-screen flex items-center justify-center'}
     >
       <DialogBackdrop className={`fixed inset-0 bg-black/70`} />
       <DialogPanel
         autoFocus
         data-testid={`${testId}-modal`}
         className={clsx(
-          `autofocus z-10 w-9/10 @min-sm:w-2/3 @min-lg:max-w-prose @min-lg:w-120 bg-white opacity-100 rounded-md`
+          `autofocus z-10 w-9/10 min-sm:w-2/3 min-lg:max-w-prose min-lg:w-120 bg-white opacity-100 rounded-md`
         )}
       >
         {title && (

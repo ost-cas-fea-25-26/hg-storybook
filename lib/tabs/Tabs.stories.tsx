@@ -1,6 +1,6 @@
+import { Tab, TabGroup, TabList, TabPanel } from './Tabs';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { Tab, TabGroup, TabList, TabPanel } from './Tabs';
 
 const meta = {
   component: TabGroup,
@@ -30,9 +30,9 @@ export const Simple: Story = {
   },
   parameters: {
     controls: {
-      exclude: ['children', 'onChange']
-    }
-  }
+      exclude: ['children', 'onChange'],
+    },
+  },
 };
 
 export const WithOnChangeEvent: Story = {

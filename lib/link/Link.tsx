@@ -12,7 +12,7 @@ export interface Props extends ComponentProps<'a'> {
 export default function Link({ url, children, color = 'primary', ...props }: Props) {
   return (
     <a
-      className={clsx('font-semibold cursor-pointer hover:underline underline-offset-4 rounded-sm', TEXT[color])}
+      className={clsx('font-semibold cursor-pointer hover:underline underline-offset-4 rounded', TEXT[color])}
       href={url}
       {...props}
     >

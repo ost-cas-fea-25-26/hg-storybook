@@ -15,7 +15,7 @@ export default function Input({ icon, error, iconAction, type, ...props }: Props
   const id = useId();
   const errorId = error ? `${id}-error` : undefined;
   const defaultStyle =
-    'w-full border-secondary-300 focus:border-transparent border-2 border-solid rounded-md pt-2 pb-2 p-4 text-slate-700 font-semibold custom-placeholder disabled:custom-disabled';
+    'w-full border-secondary-300 focus:border-transparent border-2 border-solid rounded pt-2 pb-2 p-4 text-slate-700 font-semibold custom-placeholder disabled:custom-disabled';
 
   const hasIconClassNames = icon ? 'pr-10' : '';
   const hasErrorClassNames = error ? 'outline-2 outline-red-600' : 'hover:outline-2 hover:outline-primary-600';
@@ -39,7 +39,7 @@ export default function Input({ icon, error, iconAction, type, ...props }: Props
               iconAction?.action(e);
             }}
             className={clsx(
-              'border-0 p-0 m-0 bg-transparent absolute top-1/2 right-4 -translate-y-1/2  rounded-sm',
+              'border-0 p-0 m-0 bg-transparent absolute top-1/2 right-4 -translate-y-1/2 rounded-sm',
               Boolean(iconAction) && 'cursor-pointer'
             )}
           >

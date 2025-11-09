@@ -1,4 +1,9 @@
-import { Tab as HeadlessTab, TabGroup as HeadlessTabGroup, TabList as HeadlessTabList, TabPanel as HeadlessTabPanel } from '@headlessui/react';
+import {
+  Tab as HeadlessTab,
+  TabGroup as HeadlessTabGroup,
+  TabList as HeadlessTabList,
+  TabPanel as HeadlessTabPanel,
+} from '@headlessui/react';
 import React from 'react';
 
 export interface TabProps {
@@ -8,26 +13,36 @@ export interface TabProps {
 }
 
 export function TabGroup({ defaultIndex = 0, children, onChange }: TabProps) {
-  return <HeadlessTabGroup defaultIndex={defaultIndex} onChange={(index) => {
-    if (onChange) onChange(index);
-  }}>{children}</HeadlessTabGroup>;
+  return (
+    <HeadlessTabGroup
+      defaultIndex={defaultIndex}
+      onChange={(index) => {
+        if (onChange) onChange(index);
+      }}
+    >
+      {children}
+    </HeadlessTabGroup>
+  );
 }
 
 export function TabList({ children }: { children: React.ReactNode }) {
-  return <HeadlessTabList className="flex flex-row p-1 group transition-all duration-300 ease-in-out rounded-sm w-fit bg-secondary-200">{children}</HeadlessTabList>;
+  return (
+    <HeadlessTabList className="flex flex-row p-1 group transition-all duration-300 ease-in-out rounded w-fit bg-secondary-200">
+      {children}
+    </HeadlessTabList>
+  );
 }
 
-export function Tab({
-  children
-}: { children: React.ReactNode }) {
+export function Tab({ children }: { children: React.ReactNode }) {
   return (
-    <HeadlessTab className="
-      font-semibold rounded-sm leading-none text-lg 
+    <HeadlessTab
+      className="
+      font-semibold rounded leading-none text-lg 
       px-3 py-2.5
       cursor-pointer
-      text-nowrap text-slate-600 
+      text-nowrap text-slate-500 
       data-selected:bg-white data-selected:text-primary
-      hover:text-slate-800 
+      hover:text-slate-700 
       first:group-hover:data-selected:pr-4
       first:group-hover:data-selected:mr-1
       first:mr-2
@@ -38,7 +53,8 @@ export function Tab({
       last:group-hover:data-selected:ml-1
       last:ml-2
       transition-all duration-300 ease-in-out
-    ">
+    "
+    >
       {children}
     </HeadlessTab>
   );
