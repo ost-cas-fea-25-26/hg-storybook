@@ -32,7 +32,7 @@ export { default as Link } from './link/Link';
 export { default as Toggle } from './toggle/Toggle';
 export { default as TimedButton } from './timedButton/TimedButton';
 export { default as Modal } from './modal/Modal';
-export { TabsGroup, TabsList, Tabs, TabsContent } from './tabs/Tabs';
+export { TabGroup, TabList, Tab, TabPanel } from './tabs/Tabs';
 export { default as Input } from './input/Input';
 export { default as Textarea } from './textarea/Textarea';
 export { default as Loader } from './loader/Loader';

@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
-import { Tabs, TabsContent, TabsGroup, TabsList, } from './Tabs';
+import { Tab, TabGroup, TabList, TabPanel } from './Tabs';
 
 const meta = {
-  component: TabsGroup,
-} satisfies Meta<typeof TabsGroup>;
+  component: TabGroup,
+} satisfies Meta<typeof TabGroup>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -14,18 +14,56 @@ export const Simple: Story = {
     defaultIndex: 0,
     children: (
       <>
-        <TabsList>
-          <Tabs>Deine Mumbles</Tabs>
-          <Tabs>Deine Likes</Tabs>
-        </TabsList>
+        <TabList>
+          <Tab>Deine Mumbles</Tab>
+          <Tab>Deine Likes</Tab>
+        </TabList>
 
-        <TabsContent>
-          <div className="p-4">Content for first tab</div>
-        </TabsContent>
-        <TabsContent>
-          <div className="p-4">Content for second tab</div>
-        </TabsContent>
+        <TabPanel>
+          <div className="p-4">Mumbles</div>
+        </TabPanel>
+        <TabPanel>
+          <div className="p-4">Likes</div>
+        </TabPanel>
       </>
     ),
+  },
+  parameters: {
+    controls: {
+      exclude: ['children', 'onChange']
+    }
+  }
+};
+
+export const WithOnChangeEvent: Story = {
+  args: {
+    defaultIndex: 0,
+    onChange: (index: number) => {
+      alert(`Tab changed to index: ${index}`);
+    },
+    children: (
+      <>
+        <TabList>
+          <Tab>Deine Mumbles</Tab>
+          <Tab>Deine Likes</Tab>
+          <Tab>Deine Follower</Tab>
+        </TabList>
+
+        <TabPanel>
+          <div className="p-4">Mumbles</div>
+        </TabPanel>
+        <TabPanel>
+          <div className="p-4">Likes</div>
+        </TabPanel>
+        <TabPanel>
+          <div className="p-4">Follower</div>
+        </TabPanel>
+      </>
+    ),
+  },
+  parameters: {
+    controls: {
+      exclude: ['children'],
+    },
   },
 };
