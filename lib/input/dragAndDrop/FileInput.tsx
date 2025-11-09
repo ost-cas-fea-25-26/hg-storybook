@@ -107,7 +107,7 @@ export default function FileInput({
         )}
       </div>
       {buttonContent && (
-        <Button background={'secondary'} size={'medium'} onClick={open} width={'w-full'}>
+        <Button variant={'secondary'} size={'medium'} onClick={open} width={'w-full'}>
           {buttonContent}
         </Button>
       )}
