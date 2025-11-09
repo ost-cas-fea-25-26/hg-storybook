@@ -1,6 +1,5 @@
 import Button from '@/button/Button.tsx'
 import { ButtonVariant } from '@/button/common/types.ts'
-import { TextColor } from '@/common/types.ts'
 import { Cross } from '@/icon'
 import { Loader } from '@/index.ts'
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
@@ -11,8 +10,7 @@ export type ModalAction<T = unknown, E = T> = {
   text: string
   button: {
     type?: 'button' | 'submit' | 'reset'
-    background: ButtonVariant
-    textColor: TextColor
+    variant: ButtonVariant
   }
   action?: () => void | Promise<T>
   disabled?: boolean
@@ -101,8 +99,7 @@ export default function Modal<T = unknown, E = T>({
                 return (
                   <Button
                     key={text}
-                    background={button.background || 'primary'}
-                    textColor={button.textColor || 'white'}
+                    variant={button.variant || 'primary'}
                     size={'small'}
                     onClick={onClick}
                     disabled={disabled}

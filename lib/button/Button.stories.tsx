@@ -31,8 +31,7 @@ type Story = StoryObj<typeof meta>
 
 export const Standard: Story = {
   args: {
-    background: 'primary',
-    textColor: 'white',
+    variant: 'primary',
     size: 'small',
     children: 'Button Label',
     disabled: false,
@@ -47,8 +46,7 @@ export const Icon: Story = {
     },
   },
   args: {
-    background: 'primary',
-    textColor: 'white',
+    variant: 'primary',
     size: 'medium',
     children: 'Label',
     disabled: false,
