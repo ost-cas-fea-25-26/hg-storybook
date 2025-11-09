@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 
 @utility custom-placeholder {
-  @apply placeholder:text-slate-400 placeholder:font-medium;
+  @apply placeholder:font-medium placeholder:text-slate-400;
 }
 
 /*on elements with 'disabled' attribute, use: disabled:custom-disabled ; otherwise conditionally add the class*/

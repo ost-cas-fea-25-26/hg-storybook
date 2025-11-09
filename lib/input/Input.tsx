@@ -39,7 +39,7 @@ export default function Input({ icon, error, iconAction, type, ...props }: Props
               iconAction?.action(e)
             }}
             className={clsx(
-              'border-0 p-0 m-0 bg-transparent absolute top-1/2 right-4 -translate-y-1/2 rounded-sm',
+              'absolute top-1/2 right-4 m-0 -translate-y-1/2 rounded-sm border-0 bg-transparent p-0',
               Boolean(iconAction) && 'cursor-pointer'
             )}
           >
@@ -48,7 +48,7 @@ export default function Input({ icon, error, iconAction, type, ...props }: Props
         )}
       </div>
       {error && (
-        <p className="mt-1 text-sm text-red-600 text-right font-medium" role="alert" id={errorId}>
+        <p className="mt-1 text-right text-sm font-medium text-red-600" role="alert" id={errorId}>
           {error}
         </p>
       )}

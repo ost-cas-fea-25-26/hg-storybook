@@ -26,11 +26,11 @@ export default function Loader({ size = 'medium', color }: Props) {
   }
 
   return (
-    <div className={clsx(gaps[size], 'w-full h-full min-h-5 min-w-8 flex items-center justify-center')}>
-      <div className={clsx(sizes[size], colors[color], `rounded-full animate-loader-1`)}></div>
-      <div className={clsx(sizes[size], colors[color], `rounded-full animate-loader-2`)}></div>
-      <div className={clsx(sizes[size], colors[color], `rounded-full animate-loader-4`)}></div>
-      <div className={clsx(sizes[size], colors[color], `rounded-full animate-loader-3`)}></div>
+    <div className={clsx(gaps[size], 'flex h-full min-h-5 w-full min-w-8 items-center justify-center')}>
+      <div className={clsx(sizes[size], colors[color], `animate-loader-1 rounded-full`)}></div>
+      <div className={clsx(sizes[size], colors[color], `animate-loader-2 rounded-full`)}></div>
+      <div className={clsx(sizes[size], colors[color], `animate-loader-4 rounded-full`)}></div>
+      <div className={clsx(sizes[size], colors[color], `animate-loader-3 rounded-full`)}></div>
     </div>
   )
 }

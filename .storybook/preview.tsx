@@ -9,10 +9,10 @@ const frameDecorator: Decorator = (Story: React.FC, context: StoryContext) => {
   document.body.style.padding = '0'
 
   return (
-    <div className="w-full flex justify-center p-10 bg-gray-100 min-h-[100dvh] h-auto">
-      <div className="w-full max-w-3xl bg-white rounded-2xl p-8 border border-gray-200">
-        <h2 className="text-xl font-semibold text-gray-800 mb-2">{storyName}</h2>
-        <p className="text-sm text-gray-500 mb-6">{autoDescription}</p>
+    <div className="flex h-auto min-h-[100dvh] w-full justify-center bg-gray-100 p-10">
+      <div className="w-full max-w-3xl rounded-2xl border border-gray-200 bg-white p-8">
+        <h2 className="mb-2 text-xl font-semibold text-gray-800">{storyName}</h2>
+        <p className="mb-6 text-sm text-gray-500">{autoDescription}</p>
         <Story />
       </div>
     </div>

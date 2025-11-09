@@ -46,7 +46,7 @@ export default function TimedButton({
   return (
     <HeadlessButton
       className={clsx(
-        `cursor-pointer duration-200 font-semibold px-3 py-1 flex justify-center hover:bg-slate-100 items-center gap-2 text-slate-600 rounded-full`,
+        `flex cursor-pointer items-center justify-center gap-2 rounded-full px-3 py-1 font-semibold text-slate-600 duration-200 hover:bg-slate-100`,
         { [disabledClassName]: disabled }
       )}
       onClick={onClickInternal}

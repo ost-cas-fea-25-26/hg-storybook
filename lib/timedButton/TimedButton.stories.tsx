@@ -2,7 +2,7 @@ import TimedButton from './TimedButton'
 import { Cross, Repost, Tick } from '@/icon'
 import { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
-import { within, userEvent, waitFor, expect } from 'storybook/test'
+import { expect, userEvent, waitFor, within } from 'storybook/test'
 
 const meta = {
   component: TimedButton,
@@ -99,7 +99,7 @@ export const AsyncWithError: Story = {
       })
     },
     childrenOnError: (
-      <span className={'text-red-400 flex items-center gap-2'}>
+      <span className={'flex items-center gap-2 text-red-400'}>
         <Cross color={'text-red-400'} size={'xs'} />
         <span>Button Error</span>
       </span>

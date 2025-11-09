@@ -32,12 +32,12 @@ export default function Avatar({ src, size = 'medium', editButton, onEdit, editA
 
   return (
     <div className={clsx(defaultClassNames, sizeClasses[size])}>
-      {src ? <img src={src} alt="Avatar" className="w-full h-full rounded-full object-cover" /> : <div />}
+      {src ? <img src={src} alt="Avatar" className="h-full w-full rounded-full object-cover" /> : <div />}
       {editButton && (
         <button
           className={clsx(
             editButtonSizeClasses[size],
-            'absolute bottom-0 right-0 bg-secondary rounded-full cursor-pointer'
+            'bg-secondary absolute right-0 bottom-0 cursor-pointer rounded-full'
           )}
           onClick={onEdit}
           aria-label={editAriaLabel || 'Edit Avatar'}

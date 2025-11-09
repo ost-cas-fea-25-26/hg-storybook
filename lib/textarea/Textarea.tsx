@@ -25,7 +25,7 @@ export default function Textarea({ error, ...props }: Props) {
         />
       </div>
       {error && (
-        <p className="mt-1 text-sm text-right font-medium" role="alert" id={errorId}>
+        <p className="mt-1 text-right text-sm font-medium" role="alert" id={errorId}>
           {error}
         </p>
       )}

@@ -49,19 +49,19 @@ export default function Modal<T = unknown, E = T>({
       autoFocus
       transition
       onClose={onClose}
-      className={'container fixed inset-0 w-screen flex items-center justify-center'}
+      className={'fixed inset-0 container flex w-screen items-center justify-center'}
     >
       <DialogBackdrop className={`fixed inset-0 bg-black/70`} />
       <DialogPanel
         autoFocus
         data-testid={`${testId}-modal`}
         className={clsx(
-          `autofocus z-10 w-9/10 min-sm:w-2/3 min-lg:max-w-prose min-lg:w-120 bg-white opacity-100 rounded-md`
+          `autofocus z-10 w-9/10 rounded-md bg-white opacity-100 min-sm:w-2/3 min-lg:w-120 min-lg:max-w-prose`
         )}
       >
         {title && (
           <DialogTitle
-            className={`flex items-center justify-between w-full rounded-t-md p-4 bg-primary text-white font-semibold`}
+            className={`bg-primary flex w-full items-center justify-between rounded-t-md p-4 font-semibold text-white`}
           >
             <>{title}</>
             <CloseButton data-testid={`${testId}-close-button`} className={`cursor-pointer`}>
@@ -70,14 +70,14 @@ export default function Modal<T = unknown, E = T>({
           </DialogTitle>
         )}
         <div
-          className={clsx(`p-4 border-l-1 border-r-1 border-gray-300`, {
+          className={clsx(`border-r-1 border-l-1 border-gray-300 p-4`, {
             [`rounded-b-md border-b-1`]: !hasButtons,
           })}
         >
           {children}
         </div>
         {hasButtons && (
-          <div className={`rounded-b-md p-4 flex justify-end gap-2`}>
+          <div className={`flex justify-end gap-2 rounded-b-md p-4`}>
             {hasButtons &&
               actions.map(({ text, action, disabled, onSuccess, onError, button }) => {
                 const onClick = () => {

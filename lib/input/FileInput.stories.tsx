@@ -4,7 +4,7 @@ import Label from '@/label/Label'
 import { Field } from '@headlessui/react'
 import { Meta, StoryObj } from '@storybook/react-vite'
 import React, { useCallback, useState } from 'react'
-import { userEvent, waitFor, expect } from 'storybook/test'
+import { expect, userEvent, waitFor } from 'storybook/test'
 
 const buttonOptions = {
   NoButton: null,

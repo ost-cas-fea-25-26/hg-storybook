@@ -50,7 +50,7 @@ export default function Toggle({
         className={clsx(
           enabled ? colors[color].enabled : colors[color].default,
           disabled ? 'custom-disabled' : 'font-bold',
-          'rounded-full py-1 px-3 flex items-center gap-1'
+          'flex items-center gap-1 rounded-full px-3 py-1'
         )}
         checked={enabled}
         onChange={() => {
