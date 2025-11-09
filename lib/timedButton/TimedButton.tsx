@@ -41,7 +41,7 @@ export default function TimedButton({
     }
   }
 
-  const disabledClassName = 'cursor-not-allowed opacity-80 hover:bg-white';
+  const disabledClassName = 'cursor-not-allowed opacity-80 hover:bg-white'
 
   return (
     <HeadlessButton

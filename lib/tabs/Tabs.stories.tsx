@@ -1,7 +1,7 @@
-import { Tab, TabGroup, TabList, TabPanel } from './Tabs';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
-import { expect } from 'storybook/test';
+import { Tab, TabGroup, TabList, TabPanel } from './Tabs'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
+import { expect } from 'storybook/test'
 
 const meta = {
   component: TabGroup,
@@ -35,19 +35,19 @@ export const Simple: Story = {
     },
   },
   play: async ({ canvas, userEvent }) => {
-    const mumblesTab = canvas.getByRole('tab', { name: 'Deine Mumbles' });
-    const likeTab = canvas.getByRole('tab', { name: 'Deine Likes' });
+    const mumblesTab = canvas.getByRole('tab', { name: 'Deine Mumbles' })
+    const likeTab = canvas.getByRole('tab', { name: 'Deine Likes' })
 
-    await expect(await canvas.findByText('Mumbles-Content')).toBeVisible();
-    await userEvent.click(likeTab);
-    await expect(await canvas.findByText('Likes-Content')).toBeVisible();
+    await expect(await canvas.findByText('Mumbles-Content')).toBeVisible()
+    await userEvent.click(likeTab)
+    await expect(await canvas.findByText('Likes-Content')).toBeVisible()
 
-    await userEvent.click(mumblesTab);
-    await expect(await canvas.findByText('Mumbles-Content')).toBeVisible();
-    await userEvent.keyboard('{ArrowRight}');
-    await expect(await canvas.findByText('Likes-Content')).toBeVisible();
+    await userEvent.click(mumblesTab)
+    await expect(await canvas.findByText('Mumbles-Content')).toBeVisible()
+    await userEvent.keyboard('{ArrowRight}')
+    await expect(await canvas.findByText('Likes-Content')).toBeVisible()
   },
-};
+}
 
 export const WithOnChangeEvent: Story = {
   args: {
@@ -77,18 +77,18 @@ export const WithOnChangeEvent: Story = {
   },
 
   play: async ({ canvas, userEvent }) => {
-    const originalAlert = window.alert;
-    let alertMessage = null;
+    const originalAlert = window.alert
+    let alertMessage = null
 
     window.alert = (msg) => {
-      alertMessage = msg;
-    };
+      alertMessage = msg
+    }
 
-    await expect(await canvas.findByText('Mumbles-Content')).toBeVisible();
-    const likeTab = canvas.getByRole('tab', { name: 'Deine Likes' });
-    await userEvent.click(likeTab);
-    await expect(await canvas.findByText('Likes-Content')).toBeVisible();
-    await expect(alertMessage).toBe('Tab changed to index: 1');
-    window.alert = originalAlert;
+    await expect(await canvas.findByText('Mumbles-Content')).toBeVisible()
+    const likeTab = canvas.getByRole('tab', { name: 'Deine Likes' })
+    await userEvent.click(likeTab)
+    await expect(await canvas.findByText('Likes-Content')).toBeVisible()
+    await expect(alertMessage).toBe('Tab changed to index: 1')
+    window.alert = originalAlert
   },
 }

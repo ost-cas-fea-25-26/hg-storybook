@@ -26,7 +26,8 @@ const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
 }
 
 export default function IconButton({ icon, name, children, size = 'medium', variant, onClick, disabled }: Props) {
-  const defaultStyle = 'flex truncate items-center transition-all duration-500 font-sans font-600 flex gap-2 cursor-pointer'
+  const defaultStyle =
+    'flex truncate items-center transition-all duration-500 font-sans font-600 flex gap-2 cursor-pointer'
 
   return (
     <HeadlessButton

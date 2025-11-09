@@ -1,10 +1,10 @@
-import { Upload } from '@/icon';
-import FileInput from '@/input/dragAndDrop/FileInput.tsx';
-import Label from '@/label/Label';
-import { Field } from '@headlessui/react';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useCallback, useState } from 'react';
-import { userEvent, waitFor, expect } from 'storybook/test';
+import { Upload } from '@/icon'
+import FileInput from '@/input/dragAndDrop/FileInput.tsx'
+import Label from '@/label/Label'
+import { Field } from '@headlessui/react'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React, { useCallback, useState } from 'react'
+import { userEvent, waitFor, expect } from 'storybook/test'
 
 const buttonOptions = {
   NoButton: null,
@@ -60,7 +60,14 @@ export const Small: Story = {
       <>
         <Field>
           <Label>Upload</Label>
-          <FileInput {...args} setFiles={setFiles} data-testid={'upload-input'} files={files} reset={() => setFiles([])} onDrop={onDrop} />
+          <FileInput
+            {...args}
+            setFiles={setFiles}
+            data-testid={'upload-input'}
+            files={files}
+            reset={() => setFiles([])}
+            onDrop={onDrop}
+          />
         </Field>
         <div className={'h-5'}></div>
         {files.map((f) => {
@@ -74,11 +81,11 @@ export const Small: Story = {
     )
   },
   play: async ({ canvas }) => {
-    const input = canvas.getByTestId('upload-input') as HTMLInputElement 
-    const file = new File(['dummy-content'], 'test-image.png', { type: 'image/png' });
-    await userEvent.upload(input!, file);
+    const input = canvas.getByTestId('upload-input') as HTMLInputElement
+    const file = new File(['dummy-content'], 'test-image.png', { type: 'image/png' })
+    await userEvent.upload(input!, file)
     await waitFor(() => {
-      expect(canvas.getByText('test-image.png')).toBeVisible();
-    });
+      expect(canvas.getByText('test-image.png')).toBeVisible()
+    })
   },
-};
+}
