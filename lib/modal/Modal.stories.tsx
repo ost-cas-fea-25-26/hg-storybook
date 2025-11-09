@@ -1,6 +1,7 @@
-import { Button } from '@/index.ts';
+import { Button, Input, Label, Textarea } from '@/index.ts';
 import FileInput from '@/input/dragAndDrop/FileInput.tsx';
 import Modal, { ModalAction } from '@/modal/Modal.tsx';
+import { Field } from '@headlessui/react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useMemo, useState } from 'react';
 import { expect, waitFor, within } from 'storybook/test';
@@ -309,6 +310,84 @@ export const MultiAction: Story = {
     const closeButton = await document.findByTestId('sampleModal-close-button');
     await userEvent.click(closeButton);
     await expect(header).not.toBeVisible();
+  },
+};
+
+export const FormModal: Story = {
+  args: {
+    title: 'Erfassen Sie hier Ihre Adresse',
+    onClose: () => {},
+    children: <></>,
+  },
+  render: (args) => {
+    const [showModal, setShowModal] = useState<boolean>(false);
+
+    const actions: ModalAction[] = [
+      {
+        text: 'Abbrechen',
+        button: {
+          background: 'secondary',
+          textColor: 'white',
+        },
+        action: () => {
+          setShowModal(false);
+        },
+      },
+      {
+        text: 'Bestätigen',
+        button: {
+          type: 'submit',
+          background: 'primary',
+          textColor: 'white',
+        },
+      },
+    ];
+
+    return (
+      <>
+        <Button size={'medium'} background={'primary'} textColor={'white'} onClick={() => setShowModal(true)}>
+          Open Modal
+        </Button>
+        {showModal && (
+          <Modal {...args} onClose={() => setShowModal(false)} actions={actions}>
+            <form className={'flex flex-col gap-4'}>
+              <Field>
+                <Label>Name</Label>
+                <Input required type={'text'} />
+              </Field>
+              <div className={'flex items-center justify-between gap-4 flex-nowrap'}>
+                <Field className={'flex-1'}>
+                  <Label>Strasse</Label>
+                  <Input required type={'text'} />
+                </Field>
+                <Field className={'max-w-24'}>
+                  <Label>Nr.</Label>
+                  <Input required type={'text'} />
+                </Field>
+              </div>{' '}
+              <div className={'flex items-center justify-between gap-4 flex-nowrap'}>
+                <Field className={'max-w-28'}>
+                  <Label>PLZ</Label>
+                  <Input required type={'text'} />
+                </Field>
+                <Field className={'flex-1'}>
+                  <Label>Ort</Label>
+                  <Input required type={'text'} />
+                </Field>
+              </div>
+              <Field>
+                <Label>Land</Label>
+                <Input required type={'text'} />
+              </Field>
+              <Field>
+                <Label>Weitere Angaben</Label>
+                <Textarea />
+              </Field>
+            </form>
+          </Modal>
+        )}
+      </>
+    );
   },
 };
 

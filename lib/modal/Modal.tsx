@@ -10,10 +10,11 @@ import React, { ReactNode, useEffect, useState } from 'react';
 export type ModalAction<T = unknown, E = T> = {
   text: string;
   button: {
+    type?: 'button' | 'submit' | 'reset';
     background: ButtonVariant;
     textColor: TextColor;
   };
-  action: () => void | Promise<T>;
+  action?: () => void | Promise<T>;
   disabled?: boolean;
   variant?: 'primary' | 'secondary' | 'gradient';
   onSuccess?: (promiseResult: T) => void;
@@ -82,7 +83,7 @@ export default function Modal<T = unknown, E = T>({
             {hasButtons &&
               actions.map(({ text, action, disabled, onSuccess, onError, button }) => {
                 const onClick = () => {
-                  const maybePromise = action();
+                  const maybePromise = action?.();
                   if (typeof maybePromise?.then === 'function') {
                     setPending(true);
                     maybePromise

@@ -1,5 +1,6 @@
 import Input from './Input.tsx';
 import { Cross, Eye, Pen, SpeechBubble } from '@/icon';
+import { Field } from '@headlessui/react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 
@@ -52,16 +53,18 @@ export const Clearable: Story = {
     const clear = () => setValue('');
 
     return (
-      <Input
-        {...args}
-        placeholder={'Type here...'}
-        value={value}
-        iconAction={{
-          name: 'Clear input',
-          action: clear,
-        }}
-        onChange={(e) => setValue(e.target.value)}
-      />
+      <Field className={'max-w-60'}>
+        <Input
+          {...args}
+          placeholder={'Type here...'}
+          value={value}
+          iconAction={{
+            name: 'Clear input',
+            action: clear,
+          }}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </Field>
     );
   },
 };
@@ -84,17 +87,19 @@ export const Password: Story = {
     const toggleShowPassword = () => setType(type === 'password' ? 'text' : 'password');
 
     return (
-      <Input
-        {...args}
-        placeholder={'Type here...'}
-        type={type}
-        value={value}
-        iconAction={{
-          name: 'toggle password visibility',
-          action: toggleShowPassword,
-        }}
-        onChange={(e) => setValue(e.target.value)}
-      />
+      <Field className={'max-w-60'}>
+        <Input
+          {...args}
+          placeholder={'Type here...'}
+          type={type}
+          value={value}
+          iconAction={{
+            name: 'toggle password visibility',
+            action: toggleShowPassword,
+          }}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </Field>
     );
   },
 };
