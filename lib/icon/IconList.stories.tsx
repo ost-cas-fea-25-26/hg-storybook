@@ -30,7 +30,7 @@ import React from 'react'
 
 const IconList = function ({ size = 's', color = '#475569' }: IconProps) {
   return (
-    <div className={'flex max-w-sm gap-2 flex-wrap'}>
+    <div className={'flex max-w-sm flex-wrap gap-2'}>
       <ArrowDown size={size} color={color} />
       <ArrowLeft size={size} color={color} />
       <ArrowRight size={size} color={color} />

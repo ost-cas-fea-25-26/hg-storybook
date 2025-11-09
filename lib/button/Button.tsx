@@ -34,7 +34,7 @@ export default function Button({
 }: ButtonProps) {
   const defaultStyle = 'transition-all duration-500 font-medium font-sans font-600 flex items-center gap-2'
 
-  const roundedClassName = rounded ? 'rounded-full' : 'rounded-md'
+  const roundedClassName = rounded ? 'rounded-full' : 'rounded'
   return (
     <HeadlessButton
       name={name}

@@ -12,22 +12,22 @@ interface Props extends ButtonProps {
 
 const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
   small: {
-    class: 'p-1 px-2 gap-2 rounded-md',
+    class: 'p-1 px-2 gap-2 rounded',
     icon: 'xs',
   },
   medium: {
-    class: 'p-3 flex-col min-w-20 rounded-md',
+    class: 'p-3 flex-col min-w-20 rounded',
     icon: 's',
   },
   large: {
-    class: 'py-4 px-5 flex-col min-w-25 rounded-md',
+    class: 'py-4 px-5 flex-col min-w-25 rounded',
     icon: 'm',
   },
 }
 
 export default function IconButton({ icon, name, children, size = 'medium', variant, onClick, disabled }: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer'
+    'flex truncate items-center transition-all duration-500 font-sans font-600 flex gap-2 cursor-pointer'
 
   return (
     <HeadlessButton

@@ -6,17 +6,20 @@ HG Storybook is a component library based on Headless UI components.
 
 ## Components
 
-- Button
-- Link
-- Toggle
-- Icon Button
-- Timed Button
-- Label
-- Tabs
-- Input
-- Textarea
 - Avatar
+- Button
+- Icon
+- Input
+- Fileupload
+- Icon Button
+- Label
+- Link
+- Loader
 - Modal
+- Tabs
+- Textarea
+- Timed Button
+- Toggle
 
 ## Installation
 

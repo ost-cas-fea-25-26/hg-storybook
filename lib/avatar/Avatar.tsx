@@ -11,8 +11,7 @@ export interface Props {
 }
 
 export default function Avatar({ src, size = 'medium', editButton, onEdit, editAriaLabel }: Props) {
-  const defaultClassNames =
-    'rounded-full object-cover bg-gray-200 outline-slate-100 outline-[6px] bg-primary-200 relative'
+  const defaultClassNames = 'rounded-full object-cover outline-slate-100 outline-[6px] bg-primary-200 relative'
   const sizeClasses = {
     small: 'size-16',
     medium: 'size-24',
@@ -33,12 +32,12 @@ export default function Avatar({ src, size = 'medium', editButton, onEdit, editA
 
   return (
     <div className={clsx(defaultClassNames, sizeClasses[size])}>
-      {src ? <img src={src} alt="Avatar" className="w-full h-full rounded-full object-cover" /> : <div />}
+      {src ? <img src={src} alt="Avatar" className="h-full w-full rounded-full object-cover" /> : <div />}
       {editButton && (
         <button
           className={clsx(
             editButtonSizeClasses[size],
-            'absolute bottom-0 right-0 bg-slate-600 rounded-full cursor-pointer'
+            'bg-secondary absolute right-0 bottom-0 cursor-pointer rounded-full'
           )}
           onClick={onEdit}
           aria-label={editAriaLabel || 'Edit Avatar'}

@@ -54,8 +54,8 @@
     "@storybook/addon-vitest": "10.0.2",
     "@storybook/builder-vite": "^10.0.2",
     "@storybook/cli": "^10.0.2",
-    "@storybook/react-vite": "^10.0.2",
     "@storybook/react": "^10.0.6",
+    "@storybook/react-vite": "^10.0.2",
     "@svgr/cli": "^8.1.0",
     "@tailwindcss/vite": "^4.1.14",
     "@testing-library/jest-dom": "^6.8.0",
@@ -66,6 +66,7 @@
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",
     "@vitejs/plugin-react-swc": "^4.1.0",
+    "@vitest/browser-playwright": "^4.0.6",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.35.0",
     "eslint-plugin-react": "^7.37.5",
@@ -79,6 +80,7 @@
     "playwright": "^1.55.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.7.1",
     "prop-types": "^15.8.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -90,7 +92,6 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.44.0",
     "vite": "^7.1.6",
-    "@vitest/browser-playwright": "^4.0.6",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-svgr": "^4.5.0",
     "vitest": "^4.0.6"
@@ -111,7 +112,13 @@
   "author": "",
   "prettier": {
     "plugins": [
-      "@trivago/prettier-plugin-sort-imports"
+      "@trivago/prettier-plugin-sort-imports",
+      "prettier-plugin-tailwindcss"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "tailwindFunctions": [
+      "clsx"
     ],
     "trailingComma": "es5",
     "tabWidth": 2,

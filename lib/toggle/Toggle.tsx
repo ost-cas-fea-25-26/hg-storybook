@@ -32,16 +32,16 @@ export default function Toggle({
 
   const colors = {
     primary: {
-      enabled: `text-primary hover:not-data-disabled:bg-primary-50 hover:not-data-disabled:text-primary-700`,
-      default: `text-secondary hover:not-data-disabled:bg-primary-50 hover:not-data-disabled:text-primary-700`,
+      enabled: `text-primary hover:not-disabled:bg-primary-50 hover:not-disabled:text-primary-700`,
+      default: `text-slate-600 hover:not-disabled:bg-primary-50 hover:not-disabled:text-primary-700`,
     },
     contrast: {
-      enabled: 'text-contrast hover:not-data-disabled:bg-contrast-50 hover:not-disabled:text-contrast-700',
-      default: `text-secondary hover:not-data-disabled:bg-contrast-50 hover:not-disabled:text-contrast-700`,
+      enabled: 'text-contrast hover:not-disabled:bg-contrast-50 hover:not-disabled:text-contrast-700',
+      default: `text-slate-600 hover:not-disabled:bg-contrast-50 hover:not-disabled:text-contrast-700`,
     },
   }
 
-  const hoverClasses = `group-data-disabled:hover:cursor-not-allowed hover:not-data-disabled:cursor-pointer`
+  const hoverClasses = 'group-disabled:hover:cursor-not-allowed hover:not-disabled:cursor-pointer'
   return (
     <Field disabled={disabled} className={clsx(hoverClasses, 'max-w-fit')}>
       <Checkbox
@@ -50,7 +50,7 @@ export default function Toggle({
         className={clsx(
           enabled ? colors[color].enabled : colors[color].default,
           disabled ? 'custom-disabled' : 'font-bold',
-          ' rounded-full p-1 pl-2 pr-2 flex items-center gap-1'
+          'flex items-center gap-1 rounded-full px-3 py-1'
         )}
         checked={enabled}
         onChange={() => {

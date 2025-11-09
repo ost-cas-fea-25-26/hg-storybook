@@ -348,7 +348,7 @@ export const FormModal: Story = {
                 <Label>Name</Label>
                 <Input required type={'text'} />
               </Field>
-              <div className={'flex items-center justify-between gap-4 flex-nowrap'}>
+              <div className={'flex flex-nowrap items-center justify-between gap-4'}>
                 <Field className={'flex-1'}>
                   <Label>Strasse</Label>
                   <Input required type={'text'} />
@@ -358,7 +358,7 @@ export const FormModal: Story = {
                   <Input required type={'text'} />
                 </Field>
               </div>{' '}
-              <div className={'flex items-center justify-between gap-4 flex-nowrap'}>
+              <div className={'flex flex-nowrap items-center justify-between gap-4'}>
                 <Field className={'max-w-28'}>
                   <Label>PLZ</Label>
                   <Input required type={'text'} />

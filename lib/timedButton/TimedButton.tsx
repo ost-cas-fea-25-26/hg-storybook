@@ -11,16 +11,6 @@ type Props = {
   disabled?: boolean
 }
 
-/**
- * React Component to Provide timed action on click
- * @param animationDuration the amount of time (ms) the childrenOnClick are displayed.
- * in Async mode: the amount of time the error (in case of rejected Promise) is displayed
- * @param children button content when idle
- * @param childrenOnClick button content when clicked as long as 'animation' in progress
- * @param childrenOnError button content in async mode if the onClick promise is rejected
- * @param onClick action of what happens on click
- * @param disabled if true: nothing happens on click
- * */
 export default function TimedButton({
   animationDuration = 1500,
   children,
@@ -51,12 +41,12 @@ export default function TimedButton({
     }
   }
 
-  const disabledClassName = 'cursor-not-allowed opacity-50'
+  const disabledClassName = 'cursor-not-allowed opacity-80 hover:bg-white'
 
   return (
     <HeadlessButton
       className={clsx(
-        `cursor-pointer duration-200 font-semibold flex justify-center items-center gap-2 text-secondary rounded-md`,
+        `flex cursor-pointer items-center justify-center gap-2 rounded-full px-3 py-1 font-semibold text-slate-600 duration-200 hover:bg-slate-100`,
         { [disabledClassName]: disabled }
       )}
       onClick={onClickInternal}
