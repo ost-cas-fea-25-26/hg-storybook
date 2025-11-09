@@ -1,5 +1,6 @@
 import { Upload } from '@/icon';
 import FileInput from '@/input/dragAndDrop/FileInput.tsx';
+import Label from '@/label/Label';
 import { Field } from '@headlessui/react';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useCallback, useState } from 'react';
@@ -18,7 +19,6 @@ const meta = {
   component: FileInput,
   argTypes: {
     size: {
-      //by default size options are ordered alphabetically s > m > l makes more sense
       options: ['small', 'medium', 'large'],
     },
     buttonContent: {
@@ -58,6 +58,7 @@ export const Small: Story = {
     return (
       <>
         <Field>
+          <Label>Upload</Label>
           <FileInput {...args} setFiles={setFiles} files={files} reset={() => setFiles([])} onDrop={onDrop} />
         </Field>
         <div className={'h-5'}></div>

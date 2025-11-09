@@ -40,7 +40,7 @@ export function Tab({ children }: { children: React.ReactNode }) {
       font-semibold rounded leading-none text-lg 
       px-3 py-2.5
       cursor-pointer
-      text-nowrap text-slate-500 
+      text-nowrap text-slate-600 
       data-selected:bg-white data-selected:text-primary
       hover:text-slate-700 
       first:group-hover:data-selected:pr-4

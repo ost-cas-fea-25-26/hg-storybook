@@ -2,6 +2,7 @@ import TimedButton from './TimedButton';
 import { Cross, Repost, Tick } from '@/icon';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
+import { within, userEvent, waitFor, expect } from 'storybook/test';
 
 const meta = {
   component: TimedButton,
@@ -29,6 +30,30 @@ export const Simple: Story = {
       </>
     ),
   },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole('button', { name: "Button Label" });
+    await expect(button).toBeVisible();
+    await userEvent.click(button);
+    await expect(
+      await canvas.findByText('Button Copied!')
+    ).toBeVisible();
+    await expect(
+      canvas.queryByText('Button Label')
+    ).not.toBeInTheDocument();
+
+    await waitFor(
+      async () => {
+        await expect(
+          await canvas.findByText('Button Label')
+        ).toBeVisible();
+        await expect(
+          canvas.queryByText('Button Copied!')
+        ).not.toBeInTheDocument();
+      },
+      { timeout: (args.animationDuration || 1500) + 100 }
+    );
+  },
 };
 
 export const Async: Story = {
@@ -45,15 +70,35 @@ export const Async: Story = {
     childrenOnClick: (
       <>
         <Tick size={'xs'} />
-        {'Button Copied!'}
+        {'Pending...'}
       </>
     ),
     children: (
       <>
         <Repost size={'xs'} />
-        {'Button Label'}
+        {'Async Button'}
       </>
     ),
+  },
+  play: async ({ canvas }) => {
+    const button = await canvas.findByRole('button', { name: "Async Button" });
+    await expect(button).toBeVisible();
+    await userEvent.click(button);
+    await expect(await canvas.findByText('Pending...')).toBeVisible();
+    await expect(
+      canvas.queryByText('Async Button')
+    ).not.toBeInTheDocument();
+    await waitFor(
+      async () => {
+        await expect(
+          await canvas.findByText('Async Button')
+        ).toBeVisible();
+        await expect(
+          canvas.queryByText('Pending...')
+        ).not.toBeInTheDocument();
+      },
+      { timeout: 1500 + 100 }
+    );
   },
 };
 
@@ -76,15 +121,43 @@ export const AsyncWithError: Story = {
     childrenOnClick: (
       <>
         <Tick size={'xs'} />
-        {'Button Copied!'}
+        {'Submitting...'}
       </>
     ),
     children: (
       <>
         <Repost size={'xs'} />
-        {'Button Label'}
+        {'Submit Button'}
       </>
     ),
+  },
+  play: async ({ canvas, args }) => {
+    const button = await canvas.findByRole('button', { name: "Submit Button" });
+    await expect(button).toBeVisible();
+    await userEvent.click(button);
+    await expect(await canvas.findByText('Submitting...')).toBeVisible();
+    await waitFor(
+      async () => {
+        await expect(
+          await canvas.findByText('Button Error')
+        ).toBeVisible();
+        await expect(
+          canvas.queryByText('Submitting...')
+        ).not.toBeInTheDocument();
+      },
+      { timeout: 1500 + 100 }
+    );
+    await waitFor(
+      async () => {
+        await expect(
+          await canvas.findByText('Submit Button')
+        ).toBeVisible();
+        await expect(
+          canvas.queryByText('Button Error')
+        ).not.toBeInTheDocument();
+      },
+      { timeout: (args.animationDuration || 1500) + 100 }
+    );
   },
 };
 
@@ -92,7 +165,9 @@ export const Disabled: Story = {
   args: {
     animationDuration: 1500,
     disabled: true,
-    onClick: () => {},
+    onClick: () => {
+      console.log('THIS SHOULD NOT BE CALLED');
+    },
     childrenOnClick: (
       <>
         <Tick size={'xs'} />
@@ -102,8 +177,23 @@ export const Disabled: Story = {
     children: (
       <>
         <Repost size={'xs'} />
-        {'Button Label'}
+        {'Disabled Button'}
       </>
     ),
+  },
+  play: async ({ canvas }) => {
+    const button = await canvas.findByRole('button', {
+      name: "Disabled Button",
+    });
+    await expect(button).toBeVisible();
+    await userEvent.click(button);
+    await new Promise((r) => setTimeout(r, 500));
+    await expect(
+      await canvas.findByText('Disabled Button')
+    ).toBeVisible();
+    await expect(
+      canvas.queryByText('Button Copied!')
+    ).not.toBeInTheDocument();
+    await expect(button).toHaveClass('cursor-not-allowed');
   },
 };
