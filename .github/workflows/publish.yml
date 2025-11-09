@@ -1,7 +1,7 @@
 name: NPM Publish and deploy Storybook
 on:
   workflow_run:
-    workflows: ["Run Tests"]
+    workflows: ['Run Tests']
     branches: [main]
     types:
       - completed
@@ -43,4 +43,3 @@ jobs:
       - run: npm i
       - run: npm run build
       - run: npx semantic-release
-

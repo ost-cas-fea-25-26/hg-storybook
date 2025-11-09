@@ -1,16 +1,16 @@
-import Label from '@/label/Label.tsx';
-import Input from './Input.tsx';
-import { Cross, Eye, Pen, SpeechBubble } from '@/icon';
-import { Field } from '@headlessui/react';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React, { useState } from 'react';
+import Input from './Input.tsx'
+import { Cross, Eye, Pen, SpeechBubble } from '@/icon'
+import Label from '@/label/Label.tsx'
+import { Field } from '@headlessui/react'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React, { useState } from 'react'
 
 const icons = {
   Cross: <Cross size={'xs'} />,
   SpeechBubble: <SpeechBubble size={'xs'} />,
   Pen: <Pen size={'xs'} />,
   None: <></>,
-};
+}
 
 const meta = {
   component: Input,
@@ -23,10 +23,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Input>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Clearable: Story = {
   parameters: {
@@ -50,8 +50,8 @@ export const Clearable: Story = {
     },
   },
   render: (args) => {
-    const [value, setValue] = useState<string>('');
-    const clear = () => setValue('');
+    const [value, setValue] = useState<string>('')
+    const clear = () => setValue('')
 
     return (
       <Field className={'max-w-60'}>
@@ -67,9 +67,9 @@ export const Clearable: Story = {
           onChange={(e) => setValue(e.target.value)}
         />
       </Field>
-    );
+    )
   },
-};
+}
 
 export const Password: Story = {
   parameters: {
@@ -84,9 +84,9 @@ export const Password: Story = {
     error: '',
   },
   render: (args) => {
-    const [value, setValue] = useState<string>('');
-    const [type, setType] = useState<'text' | 'password'>('password');
-    const toggleShowPassword = () => setType(type === 'password' ? 'text' : 'password');
+    const [value, setValue] = useState<string>('')
+    const [type, setType] = useState<'text' | 'password'>('password')
+    const toggleShowPassword = () => setType(type === 'password' ? 'text' : 'password')
 
     return (
       <Field className={'max-w-60'}>
@@ -103,6 +103,6 @@ export const Password: Story = {
           onChange={(e) => setValue(e.target.value)}
         />
       </Field>
-    );
+    )
   },
-};
+}

@@ -5,10 +5,10 @@ import { expect } from 'storybook/test';
 
 const meta = {
   component: TabGroup,
-} satisfies Meta<typeof TabGroup>;
+} satisfies Meta<typeof TabGroup>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
@@ -53,7 +53,7 @@ export const WithOnChangeEvent: Story = {
   args: {
     defaultIndex: 0,
     onChange: (index: number) => {
-      alert(`Tab changed to index: ${index}`);
+      alert(`Tab changed to index: ${index}`)
     },
     children: (
       <>
@@ -91,4 +91,4 @@ export const WithOnChangeEvent: Story = {
     await expect(alertMessage).toBe('Tab changed to index: 1');
     window.alert = originalAlert;
   },
-};
+}

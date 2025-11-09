@@ -6,16 +6,16 @@ import { within, userEvent, waitFor, expect } from 'storybook/test';
 
 const meta = {
   component: TimedButton,
-} satisfies Meta<typeof TimedButton>;
+} satisfies Meta<typeof TimedButton>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Simple: Story = {
   args: {
     animationDuration: 1500,
     onClick: (_e) => {
-      console.log('hello world');
+      console.log('hello world')
     },
     childrenOnClick: (
       <>
@@ -62,10 +62,10 @@ export const Async: Story = {
     onClick: async (_e) => {
       return await new Promise((resolve) => {
         setTimeout(() => {
-          console.log('hello world async');
-          resolve();
-        }, 1500);
-      });
+          console.log('hello world async')
+          resolve()
+        }, 1500)
+      })
     },
     childrenOnClick: (
       <>
@@ -108,9 +108,9 @@ export const AsyncWithError: Story = {
     onClick: async (_e) => {
       return await new Promise((_, reject) => {
         setTimeout(() => {
-          reject();
-        }, 1500);
-      });
+          reject()
+        }, 1500)
+      })
     },
     childrenOnError: (
       <span className={'text-red-400 flex items-center gap-2'}>

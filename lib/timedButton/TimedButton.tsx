@@ -1,15 +1,15 @@
-import { Button as HeadlessButton } from '@headlessui/react';
-import clsx from 'clsx';
-import React, { ReactNode, useState } from 'react';
+import { Button as HeadlessButton } from '@headlessui/react'
+import clsx from 'clsx'
+import React, { ReactNode, useState } from 'react'
 
 type Props = {
-  animationDuration: number;
-  children: ReactNode;
-  onClick: (e?: React.SyntheticEvent<HTMLButtonElement>) => void | Promise<void>;
-  childrenOnClick: ReactNode;
-  childrenOnError?: ReactNode;
-  disabled?: boolean;
-};
+  animationDuration: number
+  children: ReactNode
+  onClick: (e?: React.SyntheticEvent<HTMLButtonElement>) => void | Promise<void>
+  childrenOnClick: ReactNode
+  childrenOnError?: ReactNode
+  disabled?: boolean
+}
 
 export default function TimedButton({
   animationDuration = 1500,
@@ -19,27 +19,27 @@ export default function TimedButton({
   onClick = () => {},
   disabled = false,
 }: Props) {
-  const [animating, setAnimating] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [animating, setAnimating] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
 
   const onClickInternal = () => {
-    if (disabled) return;
-    setAnimating(true);
-    const maybePromise = onClick();
+    if (disabled) return
+    setAnimating(true)
+    const maybePromise = onClick()
     if (typeof maybePromise?.then === 'function') {
       return maybePromise
         .then(() => setAnimating(false))
         .catch(() => {
-          setAnimating(false);
-          setError(true);
-          setTimeout(() => setError(false), animationDuration);
-        });
+          setAnimating(false)
+          setError(true)
+          setTimeout(() => setError(false), animationDuration)
+        })
     } else {
       setTimeout(() => {
-        setAnimating(false);
-      }, animationDuration);
+        setAnimating(false)
+      }, animationDuration)
     }
-  };
+  }
 
   const disabledClassName = 'cursor-not-allowed opacity-80 hover:bg-white';
 
@@ -53,5 +53,5 @@ export default function TimedButton({
     >
       {error ? childrenOnError : animating ? childrenOnClick : children}
     </HeadlessButton>
-  );
+  )
 }

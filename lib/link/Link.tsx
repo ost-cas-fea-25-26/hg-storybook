@@ -1,12 +1,12 @@
-import { TEXT } from '@/common/constants.ts';
-import { TextColor } from '@/common/types.ts';
-import clsx from 'clsx';
-import React, { ComponentProps, ReactNode } from 'react';
+import { TEXT } from '@/common/constants.ts'
+import { TextColor } from '@/common/types.ts'
+import clsx from 'clsx'
+import React, { ComponentProps, ReactNode } from 'react'
 
 export interface Props extends ComponentProps<'a'> {
-  url: string;
-  children: ReactNode;
-  color?: TextColor;
+  url: string
+  children: ReactNode
+  color?: TextColor
 }
 
 export default function Link({ url, children, color = 'primary', ...props }: Props) {
@@ -18,5 +18,5 @@ export default function Link({ url, children, color = 'primary', ...props }: Pro
     >
       {children}
     </a>
-  );
+  )
 }

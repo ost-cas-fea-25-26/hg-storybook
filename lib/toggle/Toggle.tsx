@@ -1,22 +1,22 @@
-import { IconProps } from '@/icon';
-import { Checkbox, Field, Label } from '@headlessui/react';
-import clsx from 'clsx';
-import React, { ReactElement, useState } from 'react';
+import { IconProps } from '@/icon'
+import { Checkbox, Field, Label } from '@headlessui/react'
+import clsx from 'clsx'
+import React, { ReactElement, useState } from 'react'
 
 type Props = {
-  onChange?: () => void;
-  disabled?: boolean;
-  color: 'primary' | 'contrast';
-  'data-testid'?: string;
+  onChange?: () => void
+  disabled?: boolean
+  color: 'primary' | 'contrast'
+  'data-testid'?: string
   checkedProps: {
-    icon: ReactElement<IconProps>;
-    label: string;
-  };
+    icon: ReactElement<IconProps>
+    label: string
+  }
   uncheckedProps?: {
-    icon: ReactElement<IconProps>;
-    label: string;
-  };
-};
+    icon: ReactElement<IconProps>
+    label: string
+  }
+}
 
 export default function Toggle({
   checkedProps,
@@ -26,9 +26,9 @@ export default function Toggle({
   color = 'primary',
   'data-testid': testId,
 }: Props) {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(false)
 
-  const actualColor = enabled ? color : 'secondary';
+  const actualColor = enabled ? color : 'secondary'
 
   const colors = {
     primary: {
@@ -39,9 +39,9 @@ export default function Toggle({
       enabled: 'text-contrast hover:not-disabled:bg-contrast-50 hover:not-disabled:text-contrast-700',
       default: `text-slate-600 hover:not-disabled:bg-contrast-50 hover:not-disabled:text-contrast-700`,
     },
-  };
+  }
 
-  const hoverClasses = `group-disabled:hover:cursor-not-allowed hover:not-disabled:cursor-pointer`;
+  const hoverClasses = 'group-disabled:hover:cursor-not-allowed hover:not-disabled:cursor-pointer'
   return (
     <Field disabled={disabled} className={clsx(hoverClasses, 'max-w-fit')}>
       <Checkbox
@@ -54,8 +54,8 @@ export default function Toggle({
         )}
         checked={enabled}
         onChange={() => {
-          onChange();
-          setEnabled(!enabled);
+          onChange()
+          setEnabled(!enabled)
         }}
       >
         {enabled
@@ -80,5 +80,5 @@ export default function Toggle({
         </Label>
       </Checkbox>
     </Field>
-  );
+  )
 }

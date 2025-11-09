@@ -3,13 +3,13 @@ import {
   TabGroup as HeadlessTabGroup,
   TabList as HeadlessTabList,
   TabPanel as HeadlessTabPanel,
-} from '@headlessui/react';
-import React from 'react';
+} from '@headlessui/react'
+import React from 'react'
 
 export interface TabProps {
-  defaultIndex?: number;
-  children: React.ReactNode;
-  onChange?: (index: number) => void;
+  defaultIndex?: number
+  children: React.ReactNode
+  onChange?: (index: number) => void
 }
 
 export function TabGroup({ defaultIndex = 0, children, onChange }: TabProps) {
@@ -17,12 +17,12 @@ export function TabGroup({ defaultIndex = 0, children, onChange }: TabProps) {
     <HeadlessTabGroup
       defaultIndex={defaultIndex}
       onChange={(index) => {
-        if (onChange) onChange(index);
+        if (onChange) onChange(index)
       }}
     >
       {children}
     </HeadlessTabGroup>
-  );
+  )
 }
 
 export function TabList({ children }: { children: React.ReactNode }) {
@@ -30,7 +30,7 @@ export function TabList({ children }: { children: React.ReactNode }) {
     <HeadlessTabList className="flex flex-row p-1 group transition-all duration-300 ease-in-out rounded w-fit bg-secondary-200">
       {children}
     </HeadlessTabList>
-  );
+  )
 }
 
 export function Tab({ children }: { children: React.ReactNode }) {
@@ -57,9 +57,9 @@ export function Tab({ children }: { children: React.ReactNode }) {
     >
       {children}
     </HeadlessTab>
-  );
+  )
 }
 
 export function TabPanel({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <HeadlessTabPanel className={className}>{children}</HeadlessTabPanel>;
+  return <HeadlessTabPanel className={className}>{children}</HeadlessTabPanel>
 }

@@ -1,4 +1,4 @@
-import { TextColor } from '@/common/types.ts';
+import { TextColor } from '@/common/types.ts'
 
 export const TEXT: Record<TextColor, string> = {
   default: 'text-slate-900',
@@ -6,4 +6,4 @@ export const TEXT: Record<TextColor, string> = {
   error: 'text-red-600',
   secondary: 'text-slate-600',
   white: 'text-white',
-};
+}

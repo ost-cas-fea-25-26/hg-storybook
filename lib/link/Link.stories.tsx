@@ -1,6 +1,6 @@
-import Link from './Link';
-import { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+import Link from './Link'
+import { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 const meta = {
   component: Link,
@@ -13,10 +13,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Link>;
+} satisfies Meta<typeof Link>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
@@ -24,7 +24,7 @@ export const Default: Story = {
     children: 'Link Label',
   },
   render: (args) => <Link {...args}>{args.children}</Link>,
-};
+}
 
 export const NewTab: Story = {
   args: {
@@ -33,4 +33,4 @@ export const NewTab: Story = {
     target: '_blank',
   },
   render: (args) => <Link {...args}>{args.children}</Link>,
-};
+}
