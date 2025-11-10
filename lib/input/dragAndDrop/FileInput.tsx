@@ -1,7 +1,7 @@
 import { ComponentSize, IconSize } from '@/common/types.ts'
 import { Upload } from '@/icon'
 import { Button, Loader } from '@/index.ts'
-import Input from '@/input/Input.tsx'
+import { Input } from '@headlessui/react'
 import clsx from 'clsx'
 import React, { ReactNode } from 'react'
 import { useDropzone } from 'react-dropzone'
