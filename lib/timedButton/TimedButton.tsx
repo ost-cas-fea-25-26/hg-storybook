@@ -8,6 +8,7 @@ type Props = {
   onClick: (e?: React.SyntheticEvent<HTMLButtonElement>) => void | Promise<void>
   childrenOnClick: ReactNode
   childrenOnError?: ReactNode
+  childrenOnSuccess?: ReactNode
   disabled?: boolean
 }
 
@@ -16,27 +17,29 @@ export default function TimedButton({
   children,
   childrenOnClick,
   childrenOnError,
+  childrenOnSuccess,
   onClick = () => {},
   disabled = false,
 }: Props) {
-  const [animating, setAnimating] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [state, setState] = useState<'error' | 'animating' | 'success' | 'idle'>('idle')
 
   const onClickInternal = () => {
     if (disabled) return
-    setAnimating(true)
+    setState('animating')
     const maybePromise = onClick()
     if (typeof maybePromise?.then === 'function') {
       return maybePromise
-        .then(() => setAnimating(false))
+        .then(() => {
+          setState('success')
+          setTimeout(() => setState('idle'), animationDuration)
+        })
         .catch(() => {
-          setAnimating(false)
-          setError(true)
-          setTimeout(() => setError(false), animationDuration)
+          setState('error')
+          setTimeout(() => setState('idle'), animationDuration)
         })
     } else {
       setTimeout(() => {
-        setAnimating(false)
+        setState('idle')
       }, animationDuration)
     }
   }
@@ -51,7 +54,10 @@ export default function TimedButton({
       )}
       onClick={onClickInternal}
     >
-      {error ? childrenOnError : animating ? childrenOnClick : children}
+      {state === 'idle' && children}
+      {state === 'error' && childrenOnError}
+      {state === 'success' && childrenOnSuccess}
+      {state === 'animating' && childrenOnClick}
     </HeadlessButton>
   )
 }
