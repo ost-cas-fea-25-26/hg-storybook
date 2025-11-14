@@ -1,6 +1,5 @@
 import TimedButton from './TimedButton'
-import { Cross, Repost, Tick } from '@/icon'
-import Loader from '@/loader/Loader.tsx'
+import { Cross, Repost, Tick, Upload } from '@/icon'
 import { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 import { expect, userEvent, waitFor, within } from 'storybook/test'
@@ -61,13 +60,14 @@ export const Async: Story = {
       })
     },
     childrenOnClick: (
-      <div className={'p-1'}>
-        <Loader color="secondary" size={'small'} />
-      </div>
+      <>
+        <Upload size={'xs'} />
+        {'Pending...'}
+      </>
     ),
     childrenOnSuccess: (
-      <span className={'flex items-center gap-2 text-green-400'}>
-        <Tick color={'text-green-400'} size={'xs'} />
+      <span className={'flex items-center gap-2 text-green-800'}>
+        <Tick color={'text-green-800'} size={'xs'} />
         <span>Button Success</span>
       </span>
     ),
@@ -86,7 +86,7 @@ export const Async: Story = {
     await expect(canvas.queryByText('Async Button')).not.toBeInTheDocument()
     await waitFor(
       async () => {
-        await expect(await canvas.findByText('Async Button')).toBeVisible()
+        await expect(await canvas.findByText('Button Success')).toBeVisible()
         await expect(canvas.queryByText('Pending...')).not.toBeInTheDocument()
       },
       { timeout: 1500 + 100 }
