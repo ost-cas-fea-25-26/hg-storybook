@@ -1,5 +1,6 @@
 import TimedButton from './TimedButton'
 import { Cross, Repost, Tick } from '@/icon'
+import Loader from '@/loader/Loader.tsx'
 import { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 import { expect, userEvent, waitFor, within } from 'storybook/test'
@@ -60,10 +61,15 @@ export const Async: Story = {
       })
     },
     childrenOnClick: (
-      <>
-        <Tick size={'xs'} />
-        {'Pending...'}
-      </>
+      <div className={'p-1'}>
+        <Loader color="secondary" size={'small'} />
+      </div>
+    ),
+    childrenOnSuccess: (
+      <span className={'flex items-center gap-2 text-green-400'}>
+        <Tick color={'text-green-400'} size={'xs'} />
+        <span>Button Success</span>
+      </span>
     ),
     children: (
       <>
