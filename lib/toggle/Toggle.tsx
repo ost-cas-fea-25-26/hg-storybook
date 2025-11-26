@@ -6,6 +6,7 @@ import React, { ReactElement, useState } from 'react'
 type Props = {
   onChange?: () => void
   disabled?: boolean
+  initialChecked?: boolean
   color: 'primary' | 'contrast'
   'data-testid'?: string
   checkedProps: {
@@ -19,6 +20,7 @@ type Props = {
 }
 
 export default function Toggle({
+  initialChecked = false,
   checkedProps,
   uncheckedProps,
   onChange = () => {},
@@ -26,7 +28,7 @@ export default function Toggle({
   color = 'primary',
   'data-testid': testId,
 }: Props) {
-  const [enabled, setEnabled] = useState(false)
+  const [enabled, setEnabled] = useState(initialChecked)
 
   const actualColor = enabled ? color : 'secondary'
 
