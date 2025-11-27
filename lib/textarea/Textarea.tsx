@@ -4,9 +4,10 @@ import React, { ComponentProps, useId } from 'react'
 
 export interface Props extends ComponentProps<'textarea'> {
   error?: string
+  height?: string
 }
 
-export default function Textarea({ error, ...props }: Props) {
+export default function Textarea({ error, height, className, ...props }: Props) {
   const id = useId()
   const errorId = error ? `${id}-error` : undefined
   const defaultStyle =
@@ -15,13 +16,13 @@ export default function Textarea({ error, ...props }: Props) {
   const hasErrorClassNames = error ? 'outline-2 outline-red-600' : 'hover:outline-2 hover:outline-primary-600 '
 
   return (
-    <div className="w-full">
-      <div className="relative w-full">
+    <div className={clsx('w-full', height)}>
+      <div className="relative h-full w-full">
         <HeadlessTextarea
-          className={clsx(defaultStyle, hasErrorClassNames)}
+          {...props}
           aria-invalid={!!error}
           aria-describedby={errorId}
-          {...props}
+          className={clsx(defaultStyle, hasErrorClassNames, className)}
         />
       </div>
       {error && (
