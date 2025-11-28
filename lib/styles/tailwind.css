@@ -7,7 +7,7 @@
 
 /*on elements with 'disabled' attribute, use: disabled:custom-disabled ; otherwise conditionally add the class*/
 @utility custom-disabled {
-  @apply opacity-50 hover:cursor-not-allowed;
+  @apply opacity-50 hover:cursor-not-allowed hover:outline-0;
 }
 
 @theme static {

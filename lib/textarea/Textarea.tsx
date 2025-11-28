@@ -6,7 +6,7 @@ export interface Props extends ComponentProps<'textarea'> {
   error?: string
 }
 
-export default function Textarea({ error, ...props }: Props) {
+export default function Textarea({ error, className, ...props }: Props) {
   const id = useId()
   const errorId = error ? `${id}-error` : undefined
   const defaultStyle =
@@ -15,20 +15,18 @@ export default function Textarea({ error, ...props }: Props) {
   const hasErrorClassNames = error ? 'outline-2 outline-red-600' : 'hover:outline-2 hover:outline-primary-600 '
 
   return (
-    <div className="w-full">
-      <div className="relative w-full">
-        <HeadlessTextarea
-          className={clsx(defaultStyle, hasErrorClassNames)}
-          aria-invalid={!!error}
-          aria-describedby={errorId}
-          {...props}
-        />
-      </div>
+    <>
+      <HeadlessTextarea
+        {...props}
+        aria-invalid={!!error}
+        aria-describedby={errorId}
+        className={clsx(defaultStyle, hasErrorClassNames, className)}
+      />
       {error && (
         <p className="mt-1 text-right text-sm font-medium" role="alert" id={errorId}>
           {error}
         </p>
       )}
-    </div>
+    </>
   )
 }

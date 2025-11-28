@@ -69,7 +69,7 @@ export default function FileInput({
   const showDisabledClasses = loading || disabled
 
   return (
-    <div className={clsx('w-fit max-w-full')}>
+    <div className={clsx('w-full')}>
       <div
         className={clsx(
           `relative flex items-center justify-center rounded border-1 border-dashed border-slate-400 p-3 text-center text-slate-600/80`,

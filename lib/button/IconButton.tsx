@@ -25,7 +25,16 @@ const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
   },
 }
 
-export default function IconButton({ icon, name, children, size = 'medium', variant, onClick, disabled }: Props) {
+export default function IconButton({
+  icon,
+  name,
+  children,
+  size = 'medium',
+  variant = 'primary',
+  onClick,
+  disabled,
+  type = 'button',
+}: Props) {
   const defaultStyle =
     'flex truncate items-center transition-all duration-500 font-sans font-600 flex gap-2 cursor-pointer'
 
@@ -34,6 +43,7 @@ export default function IconButton({ icon, name, children, size = 'medium', vari
       name={name}
       aria-label={name}
       disabled={disabled}
+      type={type}
       onClick={(e) => {
         if (disabled) return
         onClick?.(e)

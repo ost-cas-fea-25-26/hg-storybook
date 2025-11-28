@@ -6,13 +6,14 @@ import clsx from 'clsx'
 import React, { MouseEventHandler, ReactNode } from 'react'
 
 export type ButtonProps = {
-  variant: ButtonVariant
+  variant?: ButtonVariant
   name?: string
   size?: ComponentSize
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined
   children?: ReactNode
   rounded?: boolean
   width?: 'w-fit' | 'w-full'
+  type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
 }
 
@@ -26,18 +27,21 @@ export default function Button({
   children,
   name,
   size = 'medium',
-  variant,
+  variant = 'primary',
   onClick,
   rounded,
   width,
   disabled,
+  type = 'button',
 }: ButtonProps) {
-  const defaultStyle = 'transition-all duration-500 font-medium font-sans font-600 flex items-center gap-2'
+  const defaultStyle =
+    'transition-all duration-500 font-medium font-sans font-600 flex items-center justify-center gap-2'
 
   const roundedClassName = rounded ? 'rounded-full' : 'rounded'
   return (
     <HeadlessButton
       name={name}
+      type={type}
       aria-label={name}
       disabled={disabled}
       onClick={(e) => onClick?.(e)}
