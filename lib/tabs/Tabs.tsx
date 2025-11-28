@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Tab as HeadlessTab,
   TabGroup as HeadlessTabGroup,

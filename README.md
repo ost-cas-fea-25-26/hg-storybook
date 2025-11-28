@@ -21,16 +21,34 @@ HG Storybook is a component library based on Headless UI components.
 - Timed Button
 - Toggle
 
-## Installation
+## Getting Started
 
-Install hg-storybook with npm
+### Install pnpm
 
 ```bash
-  pnpm add hg-storybook
+npm install -g pnpm@latest-10
 ```
 
+### Build the Project:
+
 ```bash
-  npm install hg-storybook
+pnpm build
+```
+### Run the project in dev-mode
+
+```bash
+pnpm storybook
+```
+### Setting up Tests
+
+```bash
+npx playwright install
+```
+
+run them with: 
+
+```bash
+pnpm test
 ```
 
 ## Tech Stack

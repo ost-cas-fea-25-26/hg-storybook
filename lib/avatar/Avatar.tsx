@@ -1,3 +1,5 @@
+'use client'
+
 import { IconSize } from '@/common/types.ts'
 import { Pen } from '@/icon'
 import clsx from 'clsx'

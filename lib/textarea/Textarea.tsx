@@ -1,3 +1,5 @@
+'use client'
+
 import { Textarea as HeadlessTextarea } from '@headlessui/react'
 import clsx from 'clsx'
 import React, { ComponentProps, useId } from 'react'

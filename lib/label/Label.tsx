@@ -1,3 +1,5 @@
+'use client'
+
 import { Label as HeadlessLabel } from '@headlessui/react'
 import React, { ComponentProps, ReactNode } from 'react'
 

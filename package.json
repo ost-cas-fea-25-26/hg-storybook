@@ -6,7 +6,6 @@
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist",
     "generate": "npx tsx  lib/icon/icons/generateIcons.ts && npx prettier --write  lib/icon/index.tsx",
