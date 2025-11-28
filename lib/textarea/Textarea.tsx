@@ -16,20 +16,18 @@ export default function Textarea({ error, height, className, ...props }: Props) 
   const hasErrorClassNames = error ? 'outline-2 outline-red-600' : 'hover:outline-2 hover:outline-primary-600 '
 
   return (
-    <div className={clsx('w-full', height)}>
-      <div className="relative h-full w-full">
-        <HeadlessTextarea
-          {...props}
-          aria-invalid={!!error}
-          aria-describedby={errorId}
-          className={clsx(defaultStyle, hasErrorClassNames, className)}
-        />
-      </div>
+    <>
+      <HeadlessTextarea
+        {...props}
+        aria-invalid={!!error}
+        aria-describedby={errorId}
+        className={clsx(defaultStyle, hasErrorClassNames, className)}
+      />
       {error && (
         <p className="mt-1 text-right text-sm font-medium" role="alert" id={errorId}>
           {error}
         </p>
       )}
-    </div>
+    </>
   )
 }
