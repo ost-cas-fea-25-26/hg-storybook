@@ -13,7 +13,7 @@ export type ButtonProps = {
   children?: ReactNode
   rounded?: boolean
   width?: 'w-fit' | 'w-full'
-  type?: 'button' | 'submit'
+  type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
 }
 
