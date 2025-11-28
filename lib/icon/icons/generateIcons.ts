@@ -20,6 +20,7 @@ const pascalCase = (s: string) =>
         .reduce((acc, str) => acc.charAt(0).toUpperCase() + acc.slice(1) + str.charAt(0).toUpperCase() + str.slice(1))
     : s.charAt(0).toUpperCase() + s.slice(1)
 let output = '/** generated file, do not edit manually - run "npm run generate" instead */\n'
+output += "'use client'\n"
 output += "import React from 'react'\n"
 output += "import { IconSize } from '@/common/types.ts';\n"
 output += "export type IconProps = { size?: IconSize; color?: string, className?: string, 'data-testid'?: string }\n"

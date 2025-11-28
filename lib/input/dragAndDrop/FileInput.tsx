@@ -1,3 +1,5 @@
+'use client'
+
 import { ComponentSize, IconSize } from '@/common/types.ts'
 import { Upload } from '@/icon'
 import { Button, Loader } from '@/index.ts'

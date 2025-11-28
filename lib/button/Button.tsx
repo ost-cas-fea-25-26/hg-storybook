@@ -1,3 +1,5 @@
+'use client'
+
 import { VARIANTS } from '@/button/common/styleMappings.ts'
 import { ButtonVariant } from '@/button/common/types.ts'
 import { ComponentSize } from '@/common/types.ts'

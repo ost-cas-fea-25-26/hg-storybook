@@ -1,3 +1,5 @@
+'use client'
+
 import { ButtonProps } from '@/button/Button.tsx'
 import { VARIANTS } from '@/button/common/styleMappings.ts'
 import { ComponentSize, IconSize } from '@/common/types.ts'

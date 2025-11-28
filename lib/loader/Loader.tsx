@@ -1,3 +1,5 @@
+'use client'
+
 import { ComponentSize } from '@/common/types.ts'
 import clsx from 'clsx'
 import React from 'react'

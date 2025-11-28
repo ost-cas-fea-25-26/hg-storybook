@@ -1,3 +1,5 @@
+'use client'
+
 import { TEXT } from '@/common/constants.ts'
 import { TextColor } from '@/common/types.ts'
 import clsx from 'clsx'

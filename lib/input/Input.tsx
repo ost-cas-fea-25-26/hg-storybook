@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Input as HeadlessInput } from '@headlessui/react'
 import clsx from 'clsx'
 import React, { ComponentProps, MouseEventHandler, ReactNode, useId } from 'react'

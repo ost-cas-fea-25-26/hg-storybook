@@ -1,3 +1,5 @@
+'use client'
+
 import Button from '@/button/Button.tsx'
 import { ButtonVariant } from '@/button/common/types.ts'
 import { Cross } from '@/icon'

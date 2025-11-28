@@ -1,3 +1,5 @@
+'use client'
+
 import { IconProps } from '@/icon'
 import { Checkbox, Field, Label } from '@headlessui/react'
 import clsx from 'clsx'
