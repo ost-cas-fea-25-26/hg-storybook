@@ -4,10 +4,9 @@ import React, { ComponentProps, useId } from 'react'
 
 export interface Props extends ComponentProps<'textarea'> {
   error?: string
-  height?: string
 }
 
-export default function Textarea({ error, height, className, ...props }: Props) {
+export default function Textarea({ error, className, ...props }: Props) {
   const id = useId()
   const errorId = error ? `${id}-error` : undefined
   const defaultStyle =
