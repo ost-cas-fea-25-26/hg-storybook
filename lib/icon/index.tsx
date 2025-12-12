@@ -1,4 +1,6 @@
 /** generated file, do not edit manually - run "npm run generate" instead */
+'use client'
+
 import ArrowDownSvg from './icons/arrow_down.svg?react'
 import ArrowLeftSvg from './icons/arrow_left.svg?react'
 import ArrowRightSvg from './icons/arrow_right.svg?react'
@@ -25,6 +27,8 @@ import TimeSvg from './icons/time.svg?react'
 import UploadSvg from './icons/upload.svg?react'
 import { IconSize } from '@/common/types.ts'
 import React from 'react'
+
+/** generated file, do not edit manually - run "npm run generate" instead */
 
 export type IconProps = { size?: IconSize; color?: string; className?: string; 'data-testid'?: string }
 const sizes: Record<IconSize, number> = { xs: 16, s: 28, m: 40, l: 64, xl: 80 }

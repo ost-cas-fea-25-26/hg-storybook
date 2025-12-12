@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>
 
 export const Basic: Story = {
   args: {
-    size: 'large',
+    size: 'm',
     editButton: true,
     borderless: false,
     editAriaLabel: 'Avatar bearbeiten',

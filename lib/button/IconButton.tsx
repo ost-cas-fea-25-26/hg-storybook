@@ -1,3 +1,5 @@
+'use client'
+
 import { ButtonProps } from '@/button/Button.tsx'
 import { VARIANTS } from '@/button/common/styleMappings.ts'
 import { ComponentSize, IconSize } from '@/common/types.ts'
@@ -12,28 +14,38 @@ interface Props extends ButtonProps {
 
 const sizes: Record<ComponentSize, { icon: IconSize; class: string }> = {
   small: {
-    class: 'p-1 px-2 gap-2 rounded-md',
+    class: 'p-1 px-2 gap-2 rounded',
     icon: 'xs',
   },
   medium: {
-    class: 'p-3 flex-col min-w-20 rounded-md',
+    class: 'p-3 flex-col min-w-20 rounded',
     icon: 's',
   },
   large: {
-    class: 'py-4 px-5 flex-col min-w-25 rounded-md',
+    class: 'py-4 px-5 flex-col min-w-25 rounded',
     icon: 'm',
   },
 }
 
-export default function IconButton({ icon, name, children, size = 'medium', variant, onClick, disabled }: Props) {
+export default function IconButton({
+  icon,
+  name,
+  children,
+  size = 'medium',
+  variant = 'primary',
+  onClick,
+  disabled,
+  type = 'button',
+}: Props) {
   const defaultStyle =
-    'flex truncate items-center transition-all duration-500 font-medium font-sans font-600 flex gap-2 cursor-pointer'
+    'flex truncate items-center transition-all duration-500 font-sans font-600 flex gap-2 cursor-pointer'
 
   return (
     <HeadlessButton
       name={name}
       aria-label={name}
       disabled={disabled}
+      type={type}
       onClick={(e) => {
         if (disabled) return
         onClick?.(e)

@@ -1,7 +1,9 @@
+'use client'
+
 import { ComponentSize, IconSize } from '@/common/types.ts'
 import { Upload } from '@/icon'
 import { Button, Loader } from '@/index.ts'
-import Input from '@/input/Input.tsx'
+import { Input } from '@headlessui/react'
 import clsx from 'clsx'
 import React, { ReactNode } from 'react'
 import { useDropzone } from 'react-dropzone'
@@ -69,12 +71,11 @@ export default function FileInput({
   const showDisabledClasses = loading || disabled
 
   return (
-    <div className={clsx('w-fit max-w-full')}>
+    <div className={clsx('w-full')}>
       <div
         className={clsx(
-          `rounded-md border-dashed border-1 border-slate-400  text-secondary/80 
-          flex items-center justify-center relative p-3 text-center `,
-          showDisabledClasses ? 'custom-disabled focus:outline-0' : 'hover:bg-secondary/20 cursor-pointer',
+          `relative flex items-center justify-center rounded border-1 border-dashed border-slate-400 p-3 text-center text-slate-600/80`,
+          showDisabledClasses ? 'custom-disabled focus:outline-0' : 'cursor-pointer hover:bg-slate-600/20',
           hasButton && 'mb-2',
           sizes[size].container
         )}
@@ -86,10 +87,10 @@ export default function FileInput({
           <>
             <Input disabled={disabled} {...props} {...getInputProps()} />
             {files?.length ? (
-              <div className={'flex items-center justify-center gap-2 flex-col max-w-full overflow-hidden'}>
+              <div className={'flex max-w-full flex-col items-center justify-center gap-2 overflow-hidden'}>
                 <Upload size={sizes[size].icon} color={'secondary'} />
                 {files.map((f, i) => (
-                  <span key={f.name + i} className={clsx('font-bold max-w-100 truncate', sizes[size].title)}>
+                  <span key={f.name + i} className={clsx('max-w-100 truncate font-bold', sizes[size].title)}>
                     {f.name}
                   </span>
                 ))}
@@ -97,9 +98,9 @@ export default function FileInput({
             ) : isDragActive ? (
               <Upload size={sizes[size].icon} color={'secondary'} />
             ) : (
-              <div className={'flex items-center justify-center gap-2 flex-col'}>
+              <div className={'flex flex-col items-center justify-center gap-2'}>
                 <Upload size={sizes[size].icon} color={'secondary'} />
-                {label && <span className={clsx(sizes[size].title, 'font-bold max-w-100 truncate')}>{label}</span>}
+                {label && <span className={clsx(sizes[size].title, 'max-w-100 truncate font-bold')}>{label}</span>}
                 {description && <span className={clsx(sizes[size].subtitle)}>{description}</span>}
               </div>
             )}

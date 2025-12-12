@@ -1,3 +1,5 @@
+'use client'
+
 import { Button as HeadlessButton } from '@headlessui/react'
 import clsx from 'clsx'
 import React, { ReactNode, useState } from 'react'
@@ -8,60 +10,56 @@ type Props = {
   onClick: (e?: React.SyntheticEvent<HTMLButtonElement>) => void | Promise<void>
   childrenOnClick: ReactNode
   childrenOnError?: ReactNode
+  childrenOnSuccess?: ReactNode
   disabled?: boolean
 }
 
-/**
- * React Component to Provide timed action on click
- * @param animationDuration the amount of time (ms) the childrenOnClick are displayed.
- * in Async mode: the amount of time the error (in case of rejected Promise) is displayed
- * @param children button content when idle
- * @param childrenOnClick button content when clicked as long as 'animation' in progress
- * @param childrenOnError button content in async mode if the onClick promise is rejected
- * @param onClick action of what happens on click
- * @param disabled if true: nothing happens on click
- * */
 export default function TimedButton({
   animationDuration = 1500,
   children,
   childrenOnClick,
   childrenOnError,
+  childrenOnSuccess,
   onClick = () => {},
   disabled = false,
 }: Props) {
-  const [animating, setAnimating] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [state, setState] = useState<'error' | 'animating' | 'success' | 'idle'>('idle')
 
   const onClickInternal = () => {
     if (disabled) return
-    setAnimating(true)
+    setState('animating')
     const maybePromise = onClick()
     if (typeof maybePromise?.then === 'function') {
       return maybePromise
-        .then(() => setAnimating(false))
+        .then(() => {
+          setState('success')
+          setTimeout(() => setState('idle'), animationDuration)
+        })
         .catch(() => {
-          setAnimating(false)
-          setError(true)
-          setTimeout(() => setError(false), animationDuration)
+          setState('error')
+          setTimeout(() => setState('idle'), animationDuration)
         })
     } else {
       setTimeout(() => {
-        setAnimating(false)
+        setState('idle')
       }, animationDuration)
     }
   }
 
-  const disabledClassName = 'cursor-not-allowed opacity-50'
+  const disabledClassName = 'cursor-not-allowed opacity-80 hover:bg-white'
 
   return (
     <HeadlessButton
       className={clsx(
-        `cursor-pointer duration-200 font-semibold flex justify-center items-center gap-2 text-secondary rounded-md`,
+        `flex cursor-pointer items-center justify-center gap-2 rounded-full px-3 py-1 font-semibold text-slate-600 duration-200 hover:bg-slate-100`,
         { [disabledClassName]: disabled }
       )}
       onClick={onClickInternal}
     >
-      {error ? childrenOnError : animating ? childrenOnClick : children}
+      {state === 'idle' && children}
+      {state === 'error' && childrenOnError}
+      {state === 'success' && childrenOnSuccess}
+      {state === 'animating' && childrenOnClick}
     </HeadlessButton>
   )
 }

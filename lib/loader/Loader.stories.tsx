@@ -16,7 +16,7 @@ export const SimpleLoader: Story = {
   },
   render: (args) => {
     return (
-      <div className={`w-40 h-20 bg-secondary-400`}>
+      <div className={`bg-secondary-400 h-20 w-40`}>
         <Loader {...args} />
       </div>
     )

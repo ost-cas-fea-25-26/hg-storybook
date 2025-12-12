@@ -12,7 +12,7 @@
 
 ## Coding
 
-- max lines per component file: 200
+- max lines per component file: 300
 - define component Props in same file as component
 
 ### Syntax Preferences

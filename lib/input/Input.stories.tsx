@@ -1,5 +1,6 @@
 import Input from './Input.tsx'
 import { Cross, Eye, Pen, SpeechBubble } from '@/icon'
+import Label from '@/label/Label.tsx'
 import { Field } from '@headlessui/react'
 import { Meta, StoryObj } from '@storybook/react-vite'
 import React, { useState } from 'react'
@@ -54,6 +55,7 @@ export const Clearable: Story = {
 
     return (
       <Field className={'max-w-60'}>
+        <Label>Input</Label>
         <Input
           {...args}
           placeholder={'Type here...'}
@@ -88,6 +90,7 @@ export const Password: Story = {
 
     return (
       <Field className={'max-w-60'}>
+        <Label>Input</Label>
         <Input
           {...args}
           placeholder={'Type here...'}
