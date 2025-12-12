@@ -11,10 +11,14 @@ export interface Props {
   editButton?: boolean
   onEdit?: () => void
   editAriaLabel?: string
+  borderless?: boolean
 }
 
-export default function Avatar({ src, size = 'l', editButton, onEdit, editAriaLabel }: Props) {
-  const defaultClassNames = 'rounded-full object-cover outline-slate-100 outline-[6px] bg-primary-200 relative'
+export default function Avatar({ src, size = 'l', editButton, onEdit, editAriaLabel, borderless }: Props) {
+  const defaultClassNames = 'rounded-full object-cover bg-primary-200 relative'
+
+  const borderClass = borderless ? 'outline-0' : 'outline-slate-100 outline-[6px]'
+
   const sizeClasses = {
     xs: 'size-8',
     s: 'size-12',
@@ -40,7 +44,7 @@ export default function Avatar({ src, size = 'l', editButton, onEdit, editAriaLa
   }
 
   return (
-    <div className={clsx(defaultClassNames, sizeClasses[size])}>
+    <div className={clsx(defaultClassNames, borderClass, sizeClasses[size])}>
       {src ? <img src={src} alt="Avatar" className="h-full w-full rounded-full object-cover" /> : <div />}
       {editButton && (
         <button
