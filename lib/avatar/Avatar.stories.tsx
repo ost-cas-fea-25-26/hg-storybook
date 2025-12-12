@@ -27,6 +27,7 @@ export const Basic: Story = {
   args: {
     size: 'm',
     editButton: true,
+    borderless: false,
     editAriaLabel: 'Avatar bearbeiten',
     src: 'Profile Image',
   },
