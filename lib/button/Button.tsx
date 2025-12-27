@@ -17,6 +17,7 @@ export type ButtonProps = {
   width?: 'w-fit' | 'w-full'
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
+  dataTestId?: string
 }
 
 const sizes: Record<ComponentSize, string> = {
@@ -35,6 +36,7 @@ export default function Button({
   width,
   disabled,
   type = 'button',
+  dataTestId,
 }: ButtonProps) {
   const defaultStyle =
     'transition-all duration-500 font-medium font-sans font-600 flex items-center justify-center gap-2'
@@ -55,6 +57,7 @@ export default function Button({
         sizes[size],
         disabled ? 'custom-disabled' : 'cursor-pointer'
       )}
+      data-testid={dataTestId}
     >
       {children}
     </HeadlessButton>
