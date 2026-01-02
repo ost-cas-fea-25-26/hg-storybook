@@ -30,6 +30,7 @@ export const Basic: Story = {
     borderless: false,
     editAriaLabel: 'Avatar bearbeiten',
     src: 'Profile Image',
+    placeholderText: '',
   },
   render: (args) => <Avatar {...args} />,
 }

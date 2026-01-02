@@ -12,9 +12,18 @@ export interface Props {
   onEdit?: () => void
   editAriaLabel?: string
   borderless?: boolean
+  placeholderText?: string
 }
 
-export default function Avatar({ src, size = 'l', editButton, onEdit, editAriaLabel, borderless }: Props) {
+export default function Avatar({
+  src,
+  size = 'l',
+  editButton,
+  onEdit,
+  editAriaLabel,
+  borderless,
+  placeholderText,
+}: Props) {
   const defaultClassNames = 'rounded-full object-cover bg-primary-200 relative'
 
   const borderClass = borderless ? 'outline-0' : 'outline-slate-100 outline-[6px]'
@@ -43,6 +52,14 @@ export default function Avatar({ src, size = 'l', editButton, onEdit, editAriaLa
     xl: 'size-4',
   }
 
+  const placeholderClass = {
+    xs: 'text-xs',
+    s: 'text-sm',
+    m: 'text-base',
+    l: 'text-lg',
+    xl: 'text-3xl',
+  }
+
   return (
     <div className={clsx(defaultClassNames, borderClass, sizeClasses[size])}>
       {src ? <img src={src} alt="Avatar" className="h-full w-full rounded-full object-cover" /> : <div />}
@@ -57,6 +74,16 @@ export default function Avatar({ src, size = 'l', editButton, onEdit, editAriaLa
         >
           <Pen color="white" className={editIconSizeClasses[size]} />
         </button>
+      )}
+      {!src && placeholderText && (
+        <span
+          className={clsx(
+            placeholderClass[size],
+            'text-primary-600 absolute inset-0 flex items-center justify-center text-center'
+          )}
+        >
+          {placeholderText}
+        </span>
       )}
     </div>
   )
