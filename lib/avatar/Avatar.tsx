@@ -24,7 +24,7 @@ export default function Avatar({
   borderless,
   placeholderText,
 }: Props) {
-  const defaultClassNames = 'rounded-full object-cover bg-primary-200 relative'
+  const defaultClassNames = 'aspect-square rounded-full object-cover bg-primary-200 relative'
 
   const borderClass = borderless ? 'outline-0' : 'outline-slate-100 outline-[6px]'
 
