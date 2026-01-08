@@ -25,6 +25,8 @@ export {
   Tick,
   Time,
   Upload,
+  Trash,
+  Edit
 } from './icon'
 export { default as Button } from './button/Button'
 export { default as IconButton } from './button/IconButton'
