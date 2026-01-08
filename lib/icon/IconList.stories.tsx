@@ -5,6 +5,7 @@ import {
   ArrowUp,
   Calendar,
   Cross,
+  Edit,
   Eye,
   Fullscreen,
   Heart,
@@ -23,6 +24,7 @@ import {
   SpeechBubbleEmpty,
   Tick,
   Time,
+  Trash,
   Upload,
 } from '@/icon'
 import { Meta, StoryObj } from '@storybook/react-vite'
@@ -55,6 +57,8 @@ const IconList = function ({ size = 's', color = '#475569' }: IconProps) {
       <Tick size={size} color={color} />
       <Time size={size} color={color} />
       <Upload size={size} color={color} />
+      <Trash size={size} color={color} />
+      <Edit size={size} color={color} />
     </div>
   )
 }
