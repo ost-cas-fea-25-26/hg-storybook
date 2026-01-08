@@ -1,0 +1,45 @@
+name: NPM Publish and deploy Storybook
+on:
+  workflow_run:
+    workflows: ['Run Tests']
+    branches: [main]
+    types:
+      - completed
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{vars.NODE_VERSION}}
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          install_command: npm i
+          build_command: npm run build-storybook
+          path: storybook-static
+          checkout: false
+  publish-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{vars.NODE_VERSION}}
+          registry-url: https://registry.npmjs.org/
+      - run: npm i
+      - run: npm run build
+      - run: npx semantic-release
